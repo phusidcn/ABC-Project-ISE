@@ -7,7 +7,32 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="btnCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    
     <Grid>
+        
         <Grid Name="TitleBar" Height="25" Background="#9c0000"  VerticalAlignment="Top">
             <TextBlock Text="Quản lý chi tiêu" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button HorizontalAlignment="Right" 
@@ -43,10 +68,11 @@
                            Foreground="White"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
+                           Margin="100"
                            FontSize="18"/>
                     <materialDesign:PopupBox
                         HorizontalAlignment="Left"
-                        Margin="90"
+                        Margin="185"
                         PlacementMode="BottomAndAlignLeftEdges"
                         StaysOpen="False"
                         Width="50">
@@ -108,6 +134,68 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"
                        FontSize="22"/>
+        </Grid>
+        <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Height="475" Margin="0,25,0,0" Background="#d60000">
+            <StackPanel>
+                <Grid Height="203">
+                    <Button x:Name="btnCloseMenu" Margin="5" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Collapsed" Click="btnCloseMenu_Click">
+                        <materialDesign:PackIcon Foreground="White" Kind="ArrowLeft" Width="32" Height="32"/>
+                    </Button>
+                    <Button x:Name="btnOpenMenu" Margin="5" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnOpenMenu_Click">
+                        <materialDesign:PackIcon Foreground="White" Kind="Menu" Width="32" Height="32"/>
+                    </Button>
+                </Grid>
+                <ListView Height="272" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Text" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Giao dịch" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Notebook" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Ghi nợ" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Pig" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Tiết kiệm" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Group" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Nhóm" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ChartAreaspline" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Xu hướng" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ChartPie" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Biểu đồ" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Help" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Giúp đỡ" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="53" Background="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Settings" Background="White" Width="32" Height="32" VerticalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="Cài đặt" VerticalAlignment="Center" Margin="25 10" FontSize="16"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
