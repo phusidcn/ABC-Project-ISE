@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="475" d:DesignWidth="630"
 	Title="addDeal" OpacityMask="AliceBlue">
-    <Grid Height="360" Width="440" Margin="60,100,130,40" Background="AliceBlue">
+    <Grid Height="360" Width="440" Margin="60,100,130,40" Background="White">
         <StackPanel Orientation="Vertical" Height="360">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
