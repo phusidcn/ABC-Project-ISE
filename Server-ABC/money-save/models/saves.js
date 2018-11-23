@@ -1,7 +1,10 @@
-var saves = [
-  'Buy a movie ticket',
-  'Buy a milk tea',
-  'Buy a book'
-];
+var mongoose = require('mongoose');
+ var Schema = mongoose.Schema;
 
-module.exports = saves;
+ var SaveSchema = new Schema({
+   text: {type: 'String', required: true},
+   done: {type: 'Boolean'}
+ });
+ var Save = mongoose.model('Save', SaveSchema);
+ 
+ module.exports = Save;
