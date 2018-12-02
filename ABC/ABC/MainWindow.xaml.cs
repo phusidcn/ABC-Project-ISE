@@ -23,40 +23,64 @@ namespace ABC
         public MainWindow()
         {
             InitializeComponent();
-            frMainMaxnimumsize.Content = new HomePageMaximumsize();
+            //.Content = new HomePageMaximumsize();
         }
-        private void CloseProgram_Click(object sender, RoutedEventArgs e)
+
+        private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void MinimizeProgram_Click(object sender, RoutedEventArgs e)
+        private void btnMinimizeProgram_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
-        private void btnOpenMenu_Click(object sender, RoutedEventArgs e)
+
+        private void frTrangChu_ContentRendered(object sender, EventArgs e)
         {
-            btnOpenMenu.Visibility = Visibility.Collapsed;
-            btnCloseMenu.Visibility = Visibility.Visible;
-            frMainMaxnimumsize.Content = null;
-            frMainMinisize.Content = new HomePageMinisize();
+
+            frTrangChu.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
         }
 
-        private void btnCloseMenu_Click(object sender, RoutedEventArgs e)
+        private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
         {
-            btnOpenMenu.Visibility = Visibility.Visible;
-            btnCloseMenu.Visibility = Visibility.Collapsed;
-            frMainMinisize.Content = null;
-            frMainMaxnimumsize.Content = new HomePageMaximumsize();
-        }
-        private void frMainMinisize_ContentRendered(object sender, EventArgs e)
-        {
-            frMainMinisize.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+
         }
 
-        private void frMainMaxnimumsize_ContentRendered(object sender, EventArgs e)
+        private void btnGhiNo_Click(object sender, RoutedEventArgs e)
         {
-            frMainMaxnimumsize.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+
         }
+
+        private void btnTietKiem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNhom_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnXuHuong_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBieuDo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGiupDo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNganSach_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    
     }
 }
