@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ABC
 {
     /// <summary>
-    /// Interaction logic for addDealMaximumsize.xaml
+    /// Interaction logic for ThemNo.xaml
     /// </summary>
-    public partial class addDealMaximumsize : Page
+    public partial class ThemNo : Page
     {
-        public addDealMaximumsize()
+        public ThemNo()
         {
             InitializeComponent();
         }

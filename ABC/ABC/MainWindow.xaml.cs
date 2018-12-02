@@ -23,7 +23,7 @@ namespace ABC
         public MainWindow()
         {
             InitializeComponent();
-            //.Content = new HomePageMaximumsize();
+            frTrangChu.Content = new TrangChu();
         }
 
         private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
@@ -38,18 +38,19 @@ namespace ABC
 
         private void frTrangChu_ContentRendered(object sender, EventArgs e)
         {
-
             frTrangChu.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
         }
 
         private void btnGiaoDich_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new TrangChu();
         }
 
         private void btnGhiNo_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new SoNo();
         }
 
         private void btnTietKiem_Click(object sender, RoutedEventArgs e)

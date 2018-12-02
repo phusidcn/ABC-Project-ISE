@@ -16,15 +16,20 @@ using System.Windows.Shapes;
 namespace ABC
 {
     /// <summary>
-    /// Interaction logic for NotificationMaximumsize.xaml
+    /// Interaction logic for ThemThu.xaml
     /// </summary>
-    public partial class NotificationMaximumsize : Page
+    public partial class ThemThu : Page
     {
-        public NotificationMaximumsize()
+        public ThemThu()
         {
             InitializeComponent();
         }
         private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = null;
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             this.Content = null;
         }

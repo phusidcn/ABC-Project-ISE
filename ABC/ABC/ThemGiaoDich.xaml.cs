@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace ABC
 {
     /// <summary>
-    /// Interaction logic for HomePageMinisize.xaml
+    /// Interaction logic for addDealMaximumsize.xaml
     /// </summary>
-    public partial class HomePageMinisize : Page
+    public partial class ThemGiaoDich : Page
     {
-        public HomePageMinisize()
+        public ThemGiaoDich()
         {
             InitializeComponent();
+        }
+
+        private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = null;
         }
     }
 }

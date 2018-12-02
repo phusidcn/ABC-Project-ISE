@@ -59,15 +59,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="addDealMaximumsize.xaml">
+    <Page Include="ThemGiaoDich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomePageMaximumsize.xaml">
+    <Page Include="ThemNo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomePageMinisize.xaml">
+    <Page Include="ThemThu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrangChu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoNo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,31 +83,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="addDealMaximumsize.xaml.cs">
-      <DependentUpon>addDealMaximumsize.xaml</DependentUpon>
+    <Compile Include="ThemGiaoDich.xaml.cs">
+      <DependentUpon>ThemGiaoDich.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HomePageMaximumsize.xaml.cs">
-      <DependentUpon>HomePageMaximumsize.xaml</DependentUpon>
+    <Compile Include="ThemNo.xaml.cs">
+      <DependentUpon>ThemNo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomePageMinisize.xaml.cs">
-      <DependentUpon>HomePageMinisize.xaml</DependentUpon>
+    <Compile Include="ThemThu.xaml.cs">
+      <DependentUpon>ThemThu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrangChu.xaml.cs">
+      <DependentUpon>TrangChu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoNo.xaml.cs">
+      <DependentUpon>SoNo.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NotificationMaximumsize.xaml">
+    <Page Include="ThongBao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NotificationMaximumsize.xaml.cs">
-      <DependentUpon>NotificationMaximumsize.xaml</DependentUpon>
+    <Compile Include="ThongBao.xaml.cs">
+      <DependentUpon>ThongBao.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
