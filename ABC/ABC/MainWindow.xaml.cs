@@ -55,7 +55,8 @@ namespace ABC
 
         private void btnTietKiem_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new TietKiem();
         }
 
         private void btnNhom_Click(object sender, RoutedEventArgs e)

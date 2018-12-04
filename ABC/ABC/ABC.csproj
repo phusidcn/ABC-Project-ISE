@@ -71,6 +71,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ThemTietKiem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TietKiem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TrangChu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +103,12 @@
     </Compile>
     <Compile Include="ThemThu.xaml.cs">
       <DependentUpon>ThemThu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemTietKiem.xaml.cs">
+      <DependentUpon>ThemTietKiem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TietKiem.xaml.cs">
+      <DependentUpon>TietKiem.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrangChu.xaml.cs">
       <DependentUpon>TrangChu.xaml</DependentUpon>
