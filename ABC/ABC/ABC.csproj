@@ -68,16 +68,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BieuDo.xaml.cs">
+      <DependentUpon>BieuDo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAO_EntityFramework.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
     </Compile>
+    <Compile Include="GiupDo.xaml.cs">
+      <DependentUpon>GiupDo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HEO.cs">
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
     </Compile>
+    <Compile Include="NganSach.xaml.cs">
+      <DependentUpon>NganSach.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Nhom.cs">
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NhomCanDung.xaml.cs">
+      <DependentUpon>NhomCanDung.xaml</DependentUpon>
     </Compile>
     <Compile Include="SO_GIAO_DICH.cs">
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
@@ -91,6 +103,25 @@
     <Compile Include="Vi.cs">
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
     </Compile>
+    <Compile Include="XuHuong.xaml.cs">
+      <DependentUpon>XuHuong.xaml</DependentUpon>
+    </Compile>
+    <Page Include="BieuDo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GiupDo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NganSach.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NhomCanDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ThemGiaoDich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +194,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ThongBao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XuHuong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -61,27 +61,32 @@ namespace ABC
 
         private void btnNhom_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new NhomCanDung();
         }
 
         private void btnXuHuong_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new XuHuong();
         }
 
         private void btnBieuDo_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new BieuDo();
         }
 
         private void btnGiupDo_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new GiupDo();
         }
 
         private void btnNganSach_Click(object sender, RoutedEventArgs e)
         {
-
+            frTrangChu.Content = null;
+            frTrangChu.Content = new NganSach();
         }
     
     }

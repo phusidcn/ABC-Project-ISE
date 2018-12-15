@@ -33,11 +33,14 @@
                     Kind="WindowMinimize"
                     Foreground="White"/>
             </Button>
+            
+
         </Grid>
         <Grid Height="44"  Margin="0,25,0,631" Background="#d60000"/>
         <Grid Margin="0, 69, 0 ,581" Height="50" Background="#d60000"/>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="200" Height="675"
               Margin="0,25,0,0" Background="#d60000">
+           
             <StackPanel>
                 <Grid Height="200">
                 </Grid>
