@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -41,7 +47,10 @@
       <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,10 +68,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+    <Compile Include="DAO_EntityFramework.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HEO.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nhom.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SO_GIAO_DICH.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SO_NO.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vi.cs">
+      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
+    </Compile>
+>>>>>>> a4eb704632957142e070eeacc649ba3e70e8538e
     <Page Include="ThemGiaoDich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,8 +130,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+<<<<<<< HEAD
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+=======
+    <Compile Include="DAO_EntityFramework.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAO_EntityFramework.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO_EntityFramework.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
+>>>>>>> a4eb704632957142e070eeacc649ba3e70e8538e
     </Compile>
     <Compile Include="ThemGiaoDich.xaml.cs">
       <DependentUpon>ThemGiaoDich.xaml</DependentUpon>
@@ -153,6 +200,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DAO_EntityFramework.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DAO_EntityFramework.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAO_EntityFramework.edmx.diagram">
+      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,7 +217,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DAO_EntityFramework.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
+      <LastGenOutput>DAO_EntityFramework.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAO_EntityFramework.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
+      <LastGenOutput>DAO_EntityFramework.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
