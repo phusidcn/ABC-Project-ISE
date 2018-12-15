@@ -1,0 +1,37 @@
+﻿<Page x:Class="ABC.TietKiem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="675" d:DesignWidth="800"
+	Title="TietKiem">
+
+    <StackPanel>
+        <Grid Name="MenuBar" Height="44" Background="#d60000">
+            <StackPanel VerticalAlignment="Center">
+                <Grid>
+                    <Label Name="lbNotification"
+                           BorderBrush="{x:Null}"
+                           Content="Tiết kiệm" 
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="23"/>
+                    
+                    <Button HorizontalAlignment="Right" Name="btnThemTietKiem" Background="{x:Null}"
+                    BorderBrush="{x:Null}" Click="btnThemTietKiem_Click"
+                    Height="25"
+                    Width="50">
+                        <materialDesign:PackIcon
+                    Kind="Plus"
+                    Foreground="White"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Grid Height="50" Background="White"/>
+        <Frame x:Name="frTietKiem" Height="475" Width="630" ContentRendered="frTietKiem_ContentRendered"/>
+    </StackPanel>
+</Page>
