@@ -68,18 +68,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-<<<<<<< HEAD
     <Compile Include="BieuDo.xaml.cs">
       <DependentUpon>BieuDo.xaml</DependentUpon>
     </Compile>
-=======
-<<<<<<< HEAD
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-=======
->>>>>>> b6cf96b81443253fc19d97bea21b71c7cc2fa038
     <Compile Include="DAO_EntityFramework.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,7 +107,6 @@
     <Compile Include="Vi.cs">
       <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="XuHuong.xaml.cs">
       <DependentUpon>XuHuong.xaml</DependentUpon>
     </Compile>
@@ -132,9 +126,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-=======
->>>>>>> a4eb704632957142e070eeacc649ba3e70e8538e
->>>>>>> b6cf96b81443253fc19d97bea21b71c7cc2fa038
     <Page Include="ThemGiaoDich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,10 +158,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
-=======
+    </Compile>
     <Compile Include="DAO_EntityFramework.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -180,7 +170,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
->>>>>>> a4eb704632957142e070eeacc649ba3e70e8538e
     </Compile>
     <Compile Include="ThemGiaoDich.xaml.cs">
       <DependentUpon>ThemGiaoDich.xaml</DependentUpon>
