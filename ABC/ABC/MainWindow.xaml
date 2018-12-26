@@ -4,8 +4,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000"
         WindowStyle="None" ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen">
-
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource MainVM}">
+        
     <Grid>
         <Grid Name="TitleBar" Height="25" Background="#9c0000"  VerticalAlignment="Top">
             <TextBlock Text="Quản lý chi tiêu" Foreground="White"

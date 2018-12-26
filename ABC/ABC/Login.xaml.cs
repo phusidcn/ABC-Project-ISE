@@ -23,5 +23,16 @@ namespace ABC
         {
             InitializeComponent();
         }
-    }
+
+		private void btnCloseLogin_Click(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
+		}
+
+		private void btnMinimizeLogin_Click(object sender, RoutedEventArgs e)
+		{
+			this.WindowState = WindowState.Minimized;
+		}
+
+	}
 }

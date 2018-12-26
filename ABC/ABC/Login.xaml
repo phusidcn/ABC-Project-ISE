@@ -17,45 +17,83 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Name="loginWindow"
-        Title="Login" Height="400" Width="600"  AllowsTransparency="True" >
+        Title="Login" Height="400" Width="600">
     <Grid>
-        <Rectangle RadiusY="18" RadiusX="18" Fill="White"/>
-        <Image Source="Images/bg-login.jpg" Margin="310,0,0,0" Stretch="UniformToFill"/>
-        <Rectangle Margin="280,0,0,0">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#CC935E12" Offset="1"/>
-                    <GradientStop Color="#CCEA4646"/>
-                    <GradientStop Color="#CCB89128" Offset="0.566"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <StackPanel Margin="0 0 350 0">
-            <Label Content="Login" FontFamily="Segoe UI Black" FontSize="24" Margin="0,20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#707070" TextWrapping="Wrap"><Run Text="Chào mừng bạn đến với ABC MoneySave"></Run></TextBlock>
-            </StackPanel>
-            <StackPanel Margin="0 15" Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
-                <TextBox materialDesign:HintAssist.Hint="Username" Width="250" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Foreground="#707070"/>
-                <PasswordBox materialDesign:HintAssist.Hint="Password" Width="250" Margin="5"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="TitleBar" Height="25" Background="#9c0000"  VerticalAlignment="Top">
+            <TextBlock Text="Quản lý chi tiêu" Foreground="White"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button HorizontalAlignment="Right" 
+                    Name="btnCloseLogin"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="btnCloseLogin_Click"
+                    Height="25"
+                    Width="50">
+                <materialDesign:PackIcon
+                    Kind="Close"
+                    Foreground="White"/>
+            </Button>
+            <Button HorizontalAlignment="Right" 
+                    Name="btnMinimizeLogin"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="btnMinimizeLogin_Click"
+                    Height="25"
+                    Width="50"
+                    Margin="0,0,50,0">
+                <materialDesign:PackIcon
+                    Kind="WindowMinimize"
+                    Foreground="White"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Rectangle RadiusY="18" RadiusX="18" Fill="White"/>
+            <Image Source="Images/bg-login.jpg" Margin="310,0,0,0" Stretch="UniformToFill"/>
+            <Rectangle Margin="280,0,0,0">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#CC935E12" Offset="1"/>
+                        <GradientStop Color="#CCEA4646"/>
+                        <GradientStop Color="#CCB89128" Offset="0.566"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <StackPanel Margin="0 0 350 0">
+                <Label Content="Login" FontFamily="Segoe UI Black" FontSize="24" Margin="0,20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#707070" TextWrapping="Wrap"><Run Text="Chào mừng bạn đến với ABC MoneySave"></Run></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0 15" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center" Foreground="#707070"/>
+                    <TextBox materialDesign:HintAssist.Hint="Username" Width="250" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Key" VerticalAlignment="Center" Foreground="#707070"/>
+                    <PasswordBox materialDesign:HintAssist.Hint="Password" Width="250" Margin="5"/>
+                </StackPanel>
+
+                <Grid>
+                    <CheckBox Content="Forget password ?" Margin="20,10" Foreground="#707070"/>
+                </Grid>
+
+                <Button HorizontalAlignment="Center" Content="LOGIN" FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6"/>
+
             </StackPanel>
 
-            <Grid>
-                <CheckBox Content="Forget password ?" Margin="20,10" Foreground="#707070"/>
-            </Grid>
-
-            <Button HorizontalAlignment="Center" Content="LOGIN" FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6"/>
+            <StackPanel Margin="280,50,0,50">
+                <TextBlock Text="ABC App" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontFamily="Champagne &amp; Limousines" FontWeight="Bold"/>
+                <TextBlock Text="Quản lý tài chính thông minh" Foreground="White" HorizontalAlignment="Center" Width="310" FontSize="20" FontFamily="Segoe UI Black" TextWrapping="Wrap" TextAlignment="Center" Margin="0,50,0,0"/>
+                <TextBlock Text="ABC Team" Foreground="White" FontSize="18" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Right" Margin="10"/>
+            </StackPanel>
+        </Grid>
+            
         
-        </StackPanel>
-
-        <StackPanel Margin="280,50,0,50">
-            <TextBlock Text="ABC App" Foreground="White" HorizontalAlignment="Center" FontSize="48" FontFamily="Champagne &amp; Limousines" FontWeight="Bold"/>
-            <TextBlock Text="Quản lý tài chính thông minh" Foreground="White" HorizontalAlignment="Center" Width="310" FontSize="20" FontFamily="Segoe UI Black" TextWrapping="Wrap" TextAlignment="Center" Margin="0,50,0,0"/>
-            <TextBlock Text="ABC Team" Foreground="White" FontSize="18" FontFamily="Champagne &amp; Limousines" TextWrapping="Wrap" TextAlignment="Right" Margin="10"/>
-        </StackPanel>
     </Grid>
+   
 </Window>
