@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABC.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,8 +62,52 @@ namespace ABC
 
         private void btnNhom_Click(object sender, RoutedEventArgs e)
         {
-            frTrangChu.Content = null;
-            frTrangChu.Content = new NhomCanDung();
+			//frTrangChu.Content = null;
+			//frTrangChu.Content = new NhomCanDung();
+
+			//using (var context = new QLChiTieuEntities())
+			//{
+			//	List<User> users = context.Users.ToList();	
+
+			//	foreach(User user in users)
+			//	{
+			//		MessageBox.Show(user.Ten);
+			//	}
+			//}
+
+			//System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
+
+			using (var context = new QLChiTieuEntities())
+			{
+				//Create new user
+
+				//User newUser = new User();
+				//newUser.ID = 1;
+				//newUser.Ten = "Quang Le";
+
+
+
+				//newUser.PWHash = context.uspLogin("quang@gmail.com", "123",responseMessage);
+
+				//context.Users.Add(newUser);
+				//var dobString = "1/1/1998";
+				//var dob = Convert.ToDateTime(dobString);
+				//context.uspAddUser("quang@gmail.com", "123", "Quang", dob , responseMessage);
+				//context.SaveChanges();
+
+				
+				//var DSUser = from user in context.Users
+				//			 orderby user.ID descending
+				//			 select user;
+
+				//foreach (User us in DSUser)
+				//{
+				//	Console.WriteLine(us.Ten);
+				//}
+
+
+			} 
+
         }
 
         private void btnXuHuong_Click(object sender, RoutedEventArgs e)

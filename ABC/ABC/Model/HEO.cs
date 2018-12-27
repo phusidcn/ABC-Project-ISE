@@ -21,5 +21,7 @@ namespace ABC.Model
         public int HIEN_TAI { get; set; }
         public System.DateTime NGAY_KT { get; set; }
         public int ID_USER { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

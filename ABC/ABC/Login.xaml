@@ -18,7 +18,6 @@
         WindowStartupLocation="CenterScreen"
         Name="loginWindow"
         Title="Login" Height="400" Width="600"
-        DataContext="{StaticResource LoginVM}"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -84,7 +83,7 @@
                     <CheckBox Content="Forget password ?" Margin="20,10" Foreground="#707070"/>
                 </Grid>
 
-                <Button HorizontalAlignment="Center" Content="LOGIN" FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6"/>
+                <Button Name="BtnLogin" HorizontalAlignment="Center" Content="LOGIN" FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6" Click="BtnLogin_Click"/>
 
             </StackPanel>
 

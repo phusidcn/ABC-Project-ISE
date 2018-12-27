@@ -5,7 +5,7 @@
         Title="MainWindow" Height="700" Width="1000"
         WindowStyle="None" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        DataContext="{StaticResource MainVM}">
+       >
         
     <Grid>
         <Grid Name="TitleBar" Height="25" Background="#9c0000"  VerticalAlignment="Top">
@@ -131,6 +131,8 @@
                
             </StackPanel>
         </Grid>
-        <Frame x:Name="frTrangChu" Height="675" Width="800" Margin="200,25,0,0" ContentRendered="frTrangChu_ContentRendered"/>
+        <Frame x:Name="frTrangChu" Height="675" Width="800" Margin="200,-3,0,28" ContentRendered="frTrangChu_ContentRendered">
+            
+        </Frame>
     </Grid>
 </Window>

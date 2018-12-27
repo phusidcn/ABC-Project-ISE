@@ -75,81 +75,48 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="DAO_EntityFramework.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
     <Compile Include="GiupDo.xaml.cs">
       <DependentUpon>GiupDo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HEO.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ABC.Context.cs">
+    <Compile Include="Model\ABCEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABC.Context.tt</DependentUpon>
+      <DependentUpon>ABCEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ABC.cs">
+    <Compile Include="Model\ABCEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\ABC.Designer.cs">
+    <Compile Include="Model\ABCEntity.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ABC.edmx</DependentUpon>
+      <DependentUpon>ABCEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\HEO.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Nhom.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_GIAO_DICH.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_NO.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\USER_GIAO_DICH.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\USER_VI.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Vi.cs">
-      <DependentUpon>ABC.tt</DependentUpon>
+      <DependentUpon>ABCEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="NganSach.xaml.cs">
       <DependentUpon>NganSach.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Nhom.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
     <Compile Include="NhomCanDung.xaml.cs">
       <DependentUpon>NhomCanDung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SO_GIAO_DICH.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SO_NO.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vi.cs">
-      <DependentUpon>DAO_EntityFramework.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="XuHuong.xaml.cs">
       <DependentUpon>XuHuong.xaml</DependentUpon>
     </Compile>
@@ -166,10 +133,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NhomCanDung.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ResourceXAML\MainResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -207,16 +170,6 @@
     </Page>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DAO_EntityFramework.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAO_EntityFramework.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAO_EntityFramework.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
     </Compile>
     <Compile Include="ThemGiaoDich.xaml.cs">
       <DependentUpon>ThemGiaoDich.xaml</DependentUpon>
@@ -277,19 +230,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DAO_EntityFramework.edmx">
+    <EntityDeploy Include="Model\ABCEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DAO_EntityFramework.Designer.cs</LastGenOutput>
+      <LastGenOutput>ABCEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DAO_EntityFramework.edmx.diagram">
-      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Model\ABC.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ABC.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\ABC.edmx.diagram">
-      <DependentUpon>ABC.edmx</DependentUpon>
+    <None Include="Model\ABCEntity.edmx.diagram">
+      <DependentUpon>ABCEntity.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -302,31 +248,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAO_EntityFramework.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
-      <LastGenOutput>DAO_EntityFramework.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DAO_EntityFramework.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DAO_EntityFramework.edmx</DependentUpon>
-      <LastGenOutput>DAO_EntityFramework.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ABC.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABC.edmx</DependentUpon>
-      <LastGenOutput>ABC.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\ABC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABC.edmx</DependentUpon>
-      <LastGenOutput>ABC.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ResourceXAML\" />
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\ABCEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ABCEntity.edmx</DependentUpon>
+      <LastGenOutput>ABCEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\ABCEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ABCEntity.edmx</DependentUpon>
+      <LastGenOutput>ABCEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

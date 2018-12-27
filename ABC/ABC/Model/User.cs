@@ -17,6 +17,7 @@ namespace ABC.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.HEOs = new HashSet<HEO>();
             this.SO_GIAO_DICH = new HashSet<SO_GIAO_DICH>();
             this.Vis = new HashSet<Vi>();
         }
@@ -27,6 +28,8 @@ namespace ABC.Model
         public byte[] PWHash { get; set; }
         public Nullable<System.DateTime> Ngay_Sinh { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HEO> HEOs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SO_GIAO_DICH> SO_GIAO_DICH { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
