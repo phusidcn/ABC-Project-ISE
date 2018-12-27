@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLChiTieuModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HEO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MUC_DICH" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MUC_TIEU" Type="int" Nullable="false" />
+          <Property Name="HIEN_TAI" Type="int" Nullable="false" />
+          <Property Name="NGAY_KT" Type="date" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nhom">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LOAI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ICON" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SO_GIAO_DICH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_VI" Type="int" Nullable="false" />
+          <Property Name="NHOM" Type="int" Nullable="false" />
+          <Property Name="SO_TIEN" Type="int" Nullable="false" />
+          <Property Name="GHI_CHU" Type="nvarchar" MaxLength="150" />
+          <Property Name="NGAY" Type="date" />
+        </EntityType>
+        <EntityType Name="SO_NO">
+          <Key>
+            <PropertyRef Name="STT" />
+            <PropertyRef Name="ID_GIAO_DICH" />
+          </Key>
+          <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_GIAO_DICH" Type="int" Nullable="false" />
+          <Property Name="LOAI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PERSON" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="NGAY" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_GIAO_DICH">
+          <Key>
+            <PropertyRef Name="ID_GIAO_DICH" />
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_GIAO_DICH" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_VI">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+            <PropertyRef Name="ID_VI" />
+          </Key>
+          <Property Name="ID_USER" Type="int" Nullable="false" />
+          <Property Name="ID_VI" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PWHash" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="Ngay_Sinh" Type="date" />
+        </EntityType>
+        <EntityType Name="Vi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SO_TIEN" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_SO_NO_GIAO_DICH">
+          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="1" />
+          <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SO_GIAO_DICH">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_NO">
+              <PropertyRef Name="ID_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOGD_NHOM">
+          <End Role="Nhom" Type="Self.Nhom" Multiplicity="1" />
+          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhom">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_GIAO_DICH">
+              <PropertyRef Name="NHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOGD_VI">
+          <End Role="Vi" Type="Self.Vi" Multiplicity="1" />
+          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_GIAO_DICH">
+              <PropertyRef Name="ID_VI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_VI_USER">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="USER_VI" Type="Self.USER_VI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_VI">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_VI_VI">
+          <End Role="Vi" Type="Self.Vi" Multiplicity="1" />
+          <End Role="USER_VI" Type="Self.USER_VI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_VI">
+              <PropertyRef Name="ID_VI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERGD_GIAO_DICH">
+          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="1" />
+          <End Role="USER_GIAO_DICH" Type="Self.USER_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SO_GIAO_DICH">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_GIAO_DICH">
+              <PropertyRef Name="ID_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERGD_USERS">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="USER_GIAO_DICH" Type="Self.USER_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER_GIAO_DICH">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLChiTieuModel1StoreContainer">
+          <EntitySet Name="HEO" EntityType="Self.HEO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nhom" EntityType="Self.Nhom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SO_GIAO_DICH" EntityType="Self.SO_GIAO_DICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SO_NO" EntityType="Self.SO_NO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_GIAO_DICH" EntityType="Self.USER_GIAO_DICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_VI" EntityType="Self.USER_VI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vi" EntityType="Self.Vi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SO_NO_GIAO_DICH" Association="Self.FK_SO_NO_GIAO_DICH">
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+            <End Role="SO_NO" EntitySet="SO_NO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOGD_NHOM" Association="Self.FK_SOGD_NHOM">
+            <End Role="Nhom" EntitySet="Nhom" />
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOGD_VI" Association="Self.FK_SOGD_VI">
+            <End Role="Vi" EntitySet="Vi" />
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_VI_USER" Association="Self.FK_USER_VI_USER">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="USER_VI" EntitySet="USER_VI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_VI_VI" Association="Self.FK_USER_VI_VI">
+            <End Role="Vi" EntitySet="Vi" />
+            <End Role="USER_VI" EntitySet="USER_VI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERGD_GIAO_DICH" Association="Self.FK_USERGD_GIAO_DICH">
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+            <End Role="USER_GIAO_DICH" EntitySet="USER_GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERGD_USERS" Association="Self.FK_USERGD_USERS">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="USER_GIAO_DICH" EntitySet="USER_GIAO_DICH" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLChiTieuModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HEO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MUC_DICH" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MUC_TIEU" Type="Int32" Nullable="false" />
+          <Property Name="HIEN_TAI" Type="Int32" Nullable="false" />
+          <Property Name="NGAY_KT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nhom">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SO_GIAO_DICH" Relationship="QLChiTieuModel1.FK_SOGD_NHOM" FromRole="Nhom" ToRole="SO_GIAO_DICH" />
+        </EntityType>
+        <EntityType Name="SO_GIAO_DICH">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_VI" Type="Int32" Nullable="false" />
+          <Property Name="NHOM" Type="Int32" Nullable="false" />
+          <Property Name="SO_TIEN" Type="Int32" Nullable="false" />
+          <Property Name="GHI_CHU" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Nhom1" Relationship="QLChiTieuModel1.FK_SOGD_NHOM" FromRole="SO_GIAO_DICH" ToRole="Nhom" />
+          <NavigationProperty Name="SO_NO" Relationship="QLChiTieuModel1.FK_SO_NO_GIAO_DICH" FromRole="SO_GIAO_DICH" ToRole="SO_NO" />
+          <NavigationProperty Name="Vi" Relationship="QLChiTieuModel1.FK_SOGD_VI" FromRole="SO_GIAO_DICH" ToRole="Vi" />
+          <NavigationProperty Name="Users" Relationship="QLChiTieuModel1.USER_GIAO_DICH1" FromRole="SO_GIAO_DICH" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SO_NO">
+          <Key>
+            <PropertyRef Name="STT" />
+            <PropertyRef Name="ID_GIAO_DICH" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_GIAO_DICH" Type="Int32" Nullable="false" />
+          <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PERSON" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="SO_GIAO_DICH" Relationship="QLChiTieuModel1.FK_SO_NO_GIAO_DICH" FromRole="SO_NO" ToRole="SO_GIAO_DICH" />
+        </EntityType>
+        <EntityType Name="USER_GIAO_DICH">
+          <Key>
+            <PropertyRef Name="ID_GIAO_DICH" />
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_GIAO_DICH" Type="Int32" Nullable="false" />
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER_VI">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+            <PropertyRef Name="ID_VI" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" />
+          <Property Name="ID_VI" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PWHash" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+          <Property Name="Ngay_Sinh" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SO_GIAO_DICH" Relationship="QLChiTieuModel1.USER_GIAO_DICH1" FromRole="User" ToRole="SO_GIAO_DICH" />
+          <NavigationProperty Name="Vis" Relationship="QLChiTieuModel1.USER_VI1" FromRole="User" ToRole="Vi" />
+        </EntityType>
+        <EntityType Name="Vi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SO_TIEN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SO_GIAO_DICH" Relationship="QLChiTieuModel1.FK_SOGD_VI" FromRole="Vi" ToRole="SO_GIAO_DICH" />
+          <NavigationProperty Name="Users" Relationship="QLChiTieuModel1.USER_VI1" FromRole="Vi" ToRole="User" />
+        </EntityType>
+        <EntityContainer Name="QLChiTieuEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HEOs" EntityType="Self.HEO" />
+          <EntitySet Name="Nhoms" EntityType="Self.Nhom" />
+          <EntitySet Name="SO_GIAO_DICH" EntityType="Self.SO_GIAO_DICH" />
+          <EntitySet Name="SO_NO" EntityType="Self.SO_NO" />
+          <EntitySet Name="USER_GIAO_DICH" EntityType="Self.USER_GIAO_DICH" />
+          <EntitySet Name="USER_VI" EntityType="Self.USER_VI" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Vis" EntityType="Self.Vi" />
+          <AssociationSet Name="FK_SOGD_NHOM" Association="QLChiTieuModel1.FK_SOGD_NHOM">
+            <End Role="Nhom" EntitySet="Nhoms" />
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SO_NO_GIAO_DICH" Association="QLChiTieuModel1.FK_SO_NO_GIAO_DICH">
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+            <End Role="SO_NO" EntitySet="SO_NO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOGD_VI" Association="QLChiTieuModel1.FK_SOGD_VI">
+            <End Role="Vi" EntitySet="Vis" />
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          </AssociationSet>
+          <AssociationSet Name="USER_GIAO_DICH1" Association="QLChiTieuModel1.USER_GIAO_DICH1">
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="USER_VI1" Association="QLChiTieuModel1.USER_VI1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Vi" EntitySet="Vis" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_SOGD_NHOM">
+          <End Type="QLChiTieuModel1.Nhom" Role="Nhom" Multiplicity="1" />
+          <End Type="QLChiTieuModel1.SO_GIAO_DICH" Role="SO_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhom">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_GIAO_DICH">
+              <PropertyRef Name="NHOM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SO_NO_GIAO_DICH">
+          <End Type="QLChiTieuModel1.SO_GIAO_DICH" Role="SO_GIAO_DICH" Multiplicity="1" />
+          <End Type="QLChiTieuModel1.SO_NO" Role="SO_NO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SO_GIAO_DICH">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_NO">
+              <PropertyRef Name="ID_GIAO_DICH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOGD_VI">
+          <End Type="QLChiTieuModel1.Vi" Role="Vi" Multiplicity="1" />
+          <End Type="QLChiTieuModel1.SO_GIAO_DICH" Role="SO_GIAO_DICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_GIAO_DICH">
+              <PropertyRef Name="ID_VI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_GIAO_DICH1">
+          <End Type="QLChiTieuModel1.SO_GIAO_DICH" Role="SO_GIAO_DICH" Multiplicity="*" />
+          <End Type="QLChiTieuModel1.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="USER_VI1">
+          <End Type="QLChiTieuModel1.User" Role="User" Multiplicity="*" />
+          <End Type="QLChiTieuModel1.Vi" Role="Vi" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLChiTieuModel1StoreContainer" CdmEntityContainer="QLChiTieuEntities1">
+          <EntitySetMapping Name="HEOs">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.HEO">
+              <MappingFragment StoreEntitySet="HEO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="MUC_DICH" ColumnName="MUC_DICH" />
+                <ScalarProperty Name="MUC_TIEU" ColumnName="MUC_TIEU" />
+                <ScalarProperty Name="HIEN_TAI" ColumnName="HIEN_TAI" />
+                <ScalarProperty Name="NGAY_KT" ColumnName="NGAY_KT" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nhoms">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.Nhom">
+              <MappingFragment StoreEntitySet="Nhom">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+                <ScalarProperty Name="ICON" ColumnName="ICON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SO_GIAO_DICH">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.SO_GIAO_DICH">
+              <MappingFragment StoreEntitySet="SO_GIAO_DICH">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_VI" ColumnName="ID_VI" />
+                <ScalarProperty Name="NHOM" ColumnName="NHOM" />
+                <ScalarProperty Name="SO_TIEN" ColumnName="SO_TIEN" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SO_NO">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.SO_NO">
+              <MappingFragment StoreEntitySet="SO_NO">
+                <ScalarProperty Name="STT" ColumnName="STT" />
+                <ScalarProperty Name="ID_GIAO_DICH" ColumnName="ID_GIAO_DICH" />
+                <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+                <ScalarProperty Name="PERSON" ColumnName="PERSON" />
+                <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_GIAO_DICH">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.USER_GIAO_DICH">
+              <MappingFragment StoreEntitySet="USER_GIAO_DICH">
+                <ScalarProperty Name="ID_GIAO_DICH" ColumnName="ID_GIAO_DICH" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_VI">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.USER_VI">
+              <MappingFragment StoreEntitySet="USER_VI">
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+                <ScalarProperty Name="ID_VI" ColumnName="ID_VI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PWHash" ColumnName="PWHash" />
+                <ScalarProperty Name="Ngay_Sinh" ColumnName="Ngay_Sinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vis">
+            <EntityTypeMapping TypeName="QLChiTieuModel1.Vi">
+              <MappingFragment StoreEntitySet="Vi">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TEN" ColumnName="TEN" />
+                <ScalarProperty Name="SO_TIEN" ColumnName="SO_TIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="USER_GIAO_DICH1" TypeName="QLChiTieuModel1.USER_GIAO_DICH1" StoreEntitySet="USER_GIAO_DICH">
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="ID_USER" />
+            </EndProperty>
+            <EndProperty Name="SO_GIAO_DICH">
+              <ScalarProperty Name="ID" ColumnName="ID_GIAO_DICH" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="USER_VI1" TypeName="QLChiTieuModel1.USER_VI1" StoreEntitySet="USER_VI">
+            <EndProperty Name="Vi">
+              <ScalarProperty Name="ID" ColumnName="ID_VI" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="ID" ColumnName="ID_USER" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
