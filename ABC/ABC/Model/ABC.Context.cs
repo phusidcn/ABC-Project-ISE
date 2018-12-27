@@ -11,7 +11,8 @@ namespace ABC.Model
 {
     using System;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
+	using System.Data.Entity.Core.Objects;
+	using System.Data.Entity.Infrastructure;
     
     public partial class QLChiTieuEntities1 : DbContext
     {
@@ -33,5 +34,7 @@ namespace ABC.Model
         public virtual DbSet<USER_VI> USER_VI { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vi> Vis { get; set; }
-    }
+
+		
+	}
 }
