@@ -127,9 +127,72 @@
     <Compile Include="ViewModel\TietKiemViewModel.cs" />
     <Compile Include="ViewModel\TrangChuViewModel.cs" />
     <Compile Include="ViewModel\XuHuongViewModel.cs" />
+    <Compile Include="Views\BieuDoView.xaml.cs">
+      <DependentUpon>BieuDoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GiupDoView.xaml.cs">
+      <DependentUpon>GiupDoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NganSachView.xaml.cs">
+      <DependentUpon>NganSachView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NhomCanDungView.xaml.cs">
+      <DependentUpon>NhomCanDungView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SoNoView.xaml.cs">
+      <DependentUpon>SoNoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThongBaoView.xaml.cs">
+      <DependentUpon>ThongBaoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TietKiemView.xaml.cs">
+      <DependentUpon>TietKiemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrangChuView.xaml.cs">
+      <DependentUpon>TrangChuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XuHuongView.xaml.cs">
+      <DependentUpon>XuHuongView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BieuDo.xaml.cs">
       <DependentUpon>BieuDo.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\BieuDoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GiupDoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NganSachView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NhomCanDungView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SoNoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThongBaoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TietKiemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrangChuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XuHuongView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

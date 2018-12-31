@@ -2,48 +2,56 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:views="clr-namespace:ABC"
+        xmlns:views="clr-namespace:ABC.Views"
         xmlns:viewModels="clr-namespace:ABC.ViewModel"
         Title="MainWindow" Height="700" Width="1000"
-        WindowStyle="None" ResizeMode="NoResize" 
+        WindowStyle="None" ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen"
+        WindowState="{Binding CurrentWindowState, Mode=TwoWay}"
        >
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels:TrangChuViewModel}">
-            <views:TrangChu/>
+        <DataTemplate DataType="{x:Type viewModels:BieuDoViewModel}">
+            <views:BieuDoView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
+            <views:GiupDoView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:NganSachViewModel}">
+            <views:NganSachView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:NhomCanDungViewModel}">
+            <views:NhomCanDungView/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:GhiNoViewModel}">
-            <views:SoNo/>
+            <views:SoNoView/>
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type viewModels:NganSachViewModel}">
-            <views:NganSach/>
-        </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type viewModels:TietKiemViewModel}">
-            <views:TietKiem/>
+            <views:TietKiemView/>
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type viewModels:NhomCanDungViewModel}">
-            <views:NhomCanDung/>
+
+        <DataTemplate DataType="{x:Type viewModels:TrangChuViewModel}">
+            <views:TrangChuView/>
         </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
-            <views:GiupDo/>
-        </DataTemplate>
-        
-        <DataTemplate DataType="{x:Type viewModels:BieuDoViewModel}">
-            <views:BieuDo/>
-        </DataTemplate>
-        
+
         <DataTemplate DataType="{x:Type viewModels:XuHuongViewModel}">
-            <views:XuHuong/>
+            <views:XuHuongView/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
+            <views:GiupDoView/>
+        </DataTemplate>
+        <!--
+        <DataTemplate DataType="{x:Type viewModels:ThongBaoViewModel}">
+            <views:ThongBaoView/>
+        </DataTemplate>-->
     </Window.Resources>
     <Grid>
         <Grid Name="TitleBar" Height="25" Background="#9c0000"  VerticalAlignment="Top">
@@ -51,9 +59,10 @@
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button HorizontalAlignment="Right" 
                     Name="btnCloseProgram"
+                    Command="{Binding ButtonClickCommand}"
+                    CommandParameter="close"
                     Background="{x:Null}"
                     BorderBrush="{x:Null}"
-                    Click="btnCloseProgram_Click"
                     Height="25"
                     Width="50">
                 <materialDesign:PackIcon
@@ -62,9 +71,10 @@
             </Button>
             <Button HorizontalAlignment="Right" 
                     Name="btnMinimizeProgram"
+                    Command="{Binding ButtonClickCommand}"
+                    CommandParameter="minimize"
                     Background="{x:Null}"
                     BorderBrush="{x:Null}"
-                    Click="btnMinimizeProgram_Click"
                     Height="25"
                     Width="50"
                     Margin="0,0,50,0">

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using ABC.Commands;
 using ABC.Model;
 
+using System.Windows;
+using System.Windows.Controls;
+
 namespace ABC.ViewModel
 {
     public class MainWindowViewModel:BindableBase
@@ -13,7 +16,9 @@ namespace ABC.ViewModel
         public MainWindowViewModel()
         {
             NavCommand = new MyICommand<string>(OnNav);
+            ButtonClickCommand = new MyICommand<string>(OnClick);
             CurrentViewModel = giaoDichViewModel;
+            CurrentWindowState = WindowState.Normal;
         }
 
         #region ViewModel
@@ -31,10 +36,19 @@ namespace ABC.ViewModel
             get { return _CurrentViewModel; }
             set { SetProperty(ref _CurrentViewModel, value); }
         }
+
+        private WindowState _CurrentWindowState;
+        public WindowState CurrentWindowState
+        {
+            get { return _CurrentWindowState; }
+            set { SetProperty(ref _CurrentWindowState, value); }
+        }
+
         #endregion
 
         #region Commands
         public MyICommand<string> NavCommand { get; private set; }
+        public MyICommand<string> ButtonClickCommand { get; private set; }
 
         private void OnNav(string des)
         {
@@ -63,6 +77,21 @@ namespace ABC.ViewModel
                     break;
                 case "giup_do":
                     CurrentViewModel = giupDoViewModel;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OnClick(string btn)
+        {
+            switch (btn)
+            {
+                case "close":
+                    ABC.App.Current.Shutdown();
+                    break;
+                case "minimize":
+                    CurrentWindowState = WindowState.Minimized;
                     break;
                 default:
                     break;
