@@ -18,7 +18,7 @@ namespace ABC.Model
     public partial class QLChiTieuEntities : DbContext
     {
         public QLChiTieuEntities()
-            : base("QLChiTieuEntities")
+            : base("name=QLChiTieuEntities")
         {
         }
     

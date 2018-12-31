@@ -82,7 +82,7 @@
           <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SO_TIEN" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_HEO_USER">
+        <Association Name="FK_HEO_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="HEO" Type="Self.HEO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,7 +199,7 @@
           <EntitySet Name="USER_VI" EntityType="Self.USER_VI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vi" EntityType="Self.Vi" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_HEO_USER" Association="Self.FK_HEO_USER">
+          <AssociationSet Name="FK_HEO_Users" Association="Self.FK_HEO_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="HEO" EntitySet="HEO" />
           </AssociationSet>
@@ -248,7 +248,7 @@
           <Property Name="HIEN_TAI" Type="Int32" Nullable="false" />
           <Property Name="NGAY_KT" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ID_USER" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_HEO_USER" FromRole="HEO" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_HEO_Users" FromRole="HEO" ToRole="Users" />
         </EntityType>
         <EntityType Name="Nhom">
           <Key>
@@ -296,7 +296,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PWHash" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
           <Property Name="Ngay_Sinh" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="HEOs" Relationship="Self.FK_HEO_USER" FromRole="Users" ToRole="HEO" />
+          <NavigationProperty Name="HEOs" Relationship="Self.FK_HEO_Users" FromRole="Users" ToRole="HEO" />
           <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.USER_GIAO_DICH" FromRole="Users" ToRole="SO_GIAO_DICH" />
           <NavigationProperty Name="Vis" Relationship="Self.USER_VI" FromRole="Users" ToRole="Vi" />
         </EntityType>
@@ -310,7 +310,7 @@
           <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.FK_SOGD_VI" FromRole="Vi" ToRole="SO_GIAO_DICH" />
           <NavigationProperty Name="Users" Relationship="Self.USER_VI" FromRole="Vi" ToRole="Users" />
         </EntityType>
-        <Association Name="FK_HEO_USER">
+        <Association Name="FK_HEO_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="HEO" Type="Self.HEO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -373,7 +373,7 @@
           <EntitySet Name="SO_NO" EntityType="Self.SO_NO" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Vis" EntityType="Self.Vi" />
-          <AssociationSet Name="FK_HEO_USER" Association="Self.FK_HEO_USER">
+          <AssociationSet Name="FK_HEO_Users" Association="Self.FK_HEO_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="HEO" EntitySet="HEOs" />
           </AssociationSet>

@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -83,38 +83,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ABCEntity.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ABCEntity.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ABCEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ABCEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ABCEntity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ABCEntity.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\HEO.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Nhom.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLChiTieuEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLChiTieuEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLChiTieuEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QLChiTieuEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_GIAO_DICH.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_NO.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Vi.cs">
-      <DependentUpon>ABCEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View\BieuDo.xaml.cs">
       <DependentUpon>BieuDo.xaml</DependentUpon>
@@ -245,23 +245,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\ABCEntity.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ABCEntity.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="Model\ABCEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABCEntity.edmx</DependentUpon>
-      <LastGenOutput>ABCEntity.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Model\ABCEntity.edmx.diagram">
-      <DependentUpon>ABCEntity.edmx</DependentUpon>
-    </None>
-    <None Include="Model\ABCEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ABCEntity.edmx</DependentUpon>
-      <LastGenOutput>ABCEntity.cs</LastGenOutput>
+    <EntityDeploy Include="Model\QLChiTieuEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLChiTieuEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\QLChiTieuEntity.edmx.diagram">
+      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -276,15 +266,6 @@
   <ItemGroup>
     <Folder Include="ResourceXAML\" />
     <Folder Include="ViewModel\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="QLChiTieu.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="QLChiTieu_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>QLChiTieu.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -302,6 +283,25 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\QLChiTieuEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieuEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLChiTieuEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieuEntity.cs</LastGenOutput>
+    </Content>
+    <Content Include="QLChiTieu.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QLChiTieu_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>QLChiTieu.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
