@@ -24,10 +24,10 @@ namespace ABC
         public MainWindow()
         {
             InitializeComponent();
-            frTrangChu.Content = new TrangChu();
+            //frTrangChu.Content = new TrangChu();
         }
 
-        private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
+       /* private void btnCloseProgram_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -133,6 +133,6 @@ namespace ABC
             frTrangChu.Content = null;
             frTrangChu.Content = new NganSach();
         }
-    
+    */
     }
 }

@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\MyICommand.cs" />
     <Compile Include="Model\HEO.cs">
       <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
@@ -116,6 +117,16 @@
     <Compile Include="Model\Vi.cs">
       <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BieuDoViewModel.cs" />
+    <Compile Include="ViewModel\BindableBase.cs" />
+    <Compile Include="ViewModel\GhiNoViewModel.cs" />
+    <Compile Include="ViewModel\GiupDoViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\NganSachViewModel.cs" />
+    <Compile Include="ViewModel\NhomCanDungViewModel.cs" />
+    <Compile Include="ViewModel\TietKiemViewModel.cs" />
+    <Compile Include="ViewModel\TrangChuViewModel.cs" />
+    <Compile Include="ViewModel\XuHuongViewModel.cs" />
     <Compile Include="View\BieuDo.xaml.cs">
       <DependentUpon>BieuDo.xaml</DependentUpon>
     </Compile>
@@ -265,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ResourceXAML\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
