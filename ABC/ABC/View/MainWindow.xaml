@@ -5,7 +5,7 @@
         Title="MainWindow" Height="700" Width="1000"
         WindowStyle="None" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
-        
+        DataContext="{StaticResource MainVM}"
         
        >
         
