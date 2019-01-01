@@ -45,9 +45,6 @@
             <views:XuHuongView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
-            <views:GiupDoView/>
-        </DataTemplate>
         <!--
         <DataTemplate DataType="{x:Type viewModels:ThongBaoViewModel}">
             <views:ThongBaoView/>
@@ -183,8 +180,8 @@
                Height="675" 
                Width="800" 
                Margin="200,25,0,0" 
-               Content="{Binding CurrentViewModel}">
-               <!--ContentRendered="frTrangChu_ContentRendered">-->
+               Content="{Binding CurrentViewModel}"
+               NavigationUIVisibility="Hidden">
             
         </Frame>
     </Grid>

@@ -31,6 +31,6 @@
             </StackPanel>
         </Grid>
         <Grid Height="50" Background="White"/>
-        <Frame x:Name="frTietKiem" Height="475" Width="630" />
+        <Frame x:Name="frTietKiem" Height="475" Width="630" NavigationUIVisibility="Hidden"/>
     </StackPanel>
 </UserControl>

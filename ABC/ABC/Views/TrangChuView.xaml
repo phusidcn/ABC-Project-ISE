@@ -101,6 +101,6 @@
                        FontSize="23" Height="30" Width="130"
                        Margin="215,10,285,10"/>
         </Grid>
-        <Frame x:Name="frTrangChu" Height="675" Width="800"/>
+        <Frame x:Name="frTrangChu" Height="675" Width="800" NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>

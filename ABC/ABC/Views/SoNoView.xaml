@@ -51,6 +51,6 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Frame x:Name="frSoNo" Height="475" Width="630" />
+        <Frame x:Name="frSoNo" Height="475" Width="630" NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>
