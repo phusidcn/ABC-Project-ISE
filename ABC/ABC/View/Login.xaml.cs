@@ -39,15 +39,25 @@ namespace ABC
 
 		private void BtnLogin_Click(object sender, RoutedEventArgs e)
 		{
+
+            string username = txtUserName.Text;
+            string password = pswPassword.Password;
 			using (var context = new QLChiTieuEntities())
 			{
 				System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
 
-				context.uspLogin("quang@gmail.com", "1234567", responseMessage);
+				context.uspLogin(username, password, responseMessage);
 
 				MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
 				//Console.WriteLine(responseMessage.ToString());
 			}
 		}
-	}
+
+        private void BtnSignUp_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            Window signup = new View.SignUp();
+            signup.Show();
+        }
+    }
 }

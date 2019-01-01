@@ -132,6 +132,9 @@
     <Compile Include="View\NhomCanDung.xaml.cs">
       <DependentUpon>NhomCanDung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SignUp.xaml.cs">
+      <DependentUpon>SignUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\XuHuong.xaml.cs">
       <DependentUpon>XuHuong.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NhomCanDung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
