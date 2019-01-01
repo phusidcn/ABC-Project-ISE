@@ -5,8 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
+             xmlns:viewModel="clr-namespace:ABC.ViewModel"
+             xmlns:views="clr-namespace:ABC.Views"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:TietKiemViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModel:TietKiemViewModel}">
+            <views:ThemTietKiemView/>
+        </DataTemplate>
+    </UserControl.Resources>
     <StackPanel>
         <Grid Name="MenuBar" Height="44" Background="#d60000">
             <StackPanel VerticalAlignment="Center">
@@ -19,18 +29,20 @@
                            HorizontalAlignment="Center"
                            FontSize="23"/>
 
-                    <Button HorizontalAlignment="Right" Name="btnThemTietKiem" Background="{x:Null}"
-                    BorderBrush="{x:Null}" 
-                    Height="25"
-                    Width="50">
+                    <Button HorizontalAlignment="Right" Name="btnThemTietKiem" 
+                            Background="{x:Null}"
+                            Command="{Binding themTietKiem}"
+                            BorderBrush="{x:Null}" 
+                            Height="25"
+                            Width="50">
                         <materialDesign:PackIcon
-                    Kind="Plus"
-                    Foreground="White"/>
+                        Kind="Plus"
+                        Foreground="White"/>
                     </Button>
                 </Grid>
             </StackPanel>
         </Grid>
         <Grid Height="50" Background="White"/>
-        <Frame x:Name="frTietKiem" Height="475" Width="630" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frTietKiem" Height="475" Width="630" NavigationUIVisibility="Hidden" Content="{Binding addView}"/>
     </StackPanel>
 </UserControl>

@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="ABC.Views.ThemGiaoDichView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ABC.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="675" d:DesignWidth="800">
+    <Grid Height="360" Width="440" Margin="60,100,130,40" Background="AliceBlue">
+        <StackPanel Orientation="Vertical" Height="360">
+            <Grid Height="50" Background="#d60000">
+                <TextBlock Foreground="White" FontSize="20"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center">
+                    Thêm giao dịch</TextBlock>
+                <Button HorizontalAlignment="Right" Name="btnCloseProgram" Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Height="25"
+                    Width="50">
+                    <materialDesign:PackIcon
+                    Kind="Close"
+                    Foreground="White"/>
+                </Button>
+            </Grid>
+            <ListView FontSize="12">
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="HelpCircle"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+                        <ComboBox IsEditable="True" Width="300" Height="25">
+                            <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
+                            <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
+                            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CurrencyUsd"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+                        <TextBox Width="300">0</TextBox>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Pencil"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+                        <TextBox Width="300">Ghi chú</TextBox>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Calendar"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+
+                        <DatePicker Width="300"/>
+
+
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountMultiple"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+                        <TextBox Width="300">Cùng ai?</TextBox>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+            <Button Background="Red" HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Width="60" Height="30" Margin="190,0,190,15">Ok</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

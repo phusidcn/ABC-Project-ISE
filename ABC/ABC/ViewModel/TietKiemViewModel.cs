@@ -3,11 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ABC.Commands;
 
 namespace ABC.ViewModel
 {
-    class TietKiemViewModel:BindableBase
+    public class TietKiemViewModel:BindableBase
     {
 
+        public TietKiemViewModel()
+        {
+            themTietKiem = new MyICommand(OnClick);
+            addView = null;
+        }
+
+        private ThemTietKiemViewModel themTietKiemViewModel = new ThemTietKiemViewModel();
+        private BindableBase _addView;
+
+        public BindableBase addView
+        {
+            get { return _addView; }
+            set { SetProperty(ref _addView, value); }
+        }
+
+        public MyICommand themTietKiem { get; private set; }
+
+        private void OnClick(){
+            Console.Write("ok\n");
+            _addView = themTietKiemViewModel;
+        }
     }
 }
