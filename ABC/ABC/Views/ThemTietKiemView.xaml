@@ -6,13 +6,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
              xmlns:convert="clr-namespace:ABC.Commands"
+             xmlns:vm="clr-namespace:ABC.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="475" d:DesignWidth="630"
-             Visibility="{Binding addSaveState}">
-    <UserControl.Resources>
-        <convert:BoolToVisibilityConverter x:Key="convert"/>
-    </UserControl.Resources>
-    <Grid Height="260" Width="440" Margin="60,150,130,65" Background="WhiteSmoke">
+             d:DesignHeight="260" d:DesignWidth="440">
+    <UserControl.DataContext>
+        <vm:ThemTietKiemViewModel/>
+    </UserControl.DataContext>   
+    <Grid Height="260" Width="440" Background="WhiteSmoke">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
@@ -21,7 +21,7 @@
                     Thêm</TextBlock>
                 <Button HorizontalAlignment="Right" 
                     Name="btnCloseProgram" Background="{x:Null}"
-                    Command="{Binding cancel}"
+                    Command="{Binding cancelCommand}"
                     BorderBrush="{x:Null}" 
                     Height="25"
                     Width="50">
@@ -67,6 +67,7 @@
                 <ListViewItem>
                     <Button Name="btnOk" 
                             Background="Red" HorizontalAlignment="Center"
+                            Command="{Binding okCommand}"
                             VerticalAlignment="Center" Width="60" Height="30"
                             Margin="190,0,190,15">Ok</Button>
                 </ListViewItem>

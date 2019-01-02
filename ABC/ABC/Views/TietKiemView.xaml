@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModel="clr-namespace:ABC.ViewModel"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:views="clr-namespace:ABC.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="675" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModel:TietKiemViewModel/>
@@ -41,7 +42,11 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <Grid Height="50" Background="White"/>
-        <Frame x:Name="frTietKiem" Height="475" Width="630" NavigationUIVisibility="Hidden" Content="{Binding addView}"/>
+        <materialDesign:DialogHost 
+            HorizontalAlignment="Center"
+            IsOpen="{Binding IsAddDialogOpen}"
+            CloseOnClickAway="True"
+            Height="675" Width="800"
+            DialogContent="{Binding addView}"/>
     </StackPanel>
 </UserControl>

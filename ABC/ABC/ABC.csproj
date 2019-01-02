@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\BoolToVisibilityConverter.cs" />
     <Compile Include="Commands\DialogCloser.cs" />
     <Compile Include="Commands\MyICommand.cs" />
     <Compile Include="Model\HEO.cs">

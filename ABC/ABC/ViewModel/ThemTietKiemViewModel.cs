@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
+using MaterialDesignThemes.Wpf;
 using ABC.Commands;
 
 namespace ABC.ViewModel
@@ -11,18 +11,23 @@ namespace ABC.ViewModel
     {
         public ThemTietKiemViewModel()
         {
-
+            cancelCommand = new MyICommand(onCancel);
+            okCommand = new MyICommand(onOk);
         }
 
 
-        private  bool 
+        public MyICommand cancelCommand { get; private set; }
+        public MyICommand okCommand { get; private set; }
 
-        public MyICommand cancel;
 
         void onCancel()
         {
-            
+            DialogHost.CloseDialogCommand.Execute(null, null);
+        }
 
+        void onOk()
+        {
+            DialogHost.CloseDialogCommand.Execute(null, null);
         }
     }
 }

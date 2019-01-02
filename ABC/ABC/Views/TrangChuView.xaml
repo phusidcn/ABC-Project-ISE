@@ -5,8 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
+             xmlns:vm="clr-namespace:ABC.ViewModel"
+             xmlns:views="clr-namespace:ABC.Views"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:TrangChuViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:ThemGiaoDichViewModel}">
+            <views:ThemGiaoDichView/>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid Name="MenuBar" Height="44"  Margin="0,0,0,631" Background="#d60000">
             <StackPanel VerticalAlignment="Center">
@@ -35,7 +45,7 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                     <Button Name="btnThemGiaoDich"
-                            
+                            Command="{Binding OpenAddDialogCommand}"
                             Background="{x:Null}"  
                             BorderBrush="{x:Null}" 
                             Width="50" 
@@ -101,6 +111,17 @@
                        FontSize="23" Height="30" Width="130"
                        Margin="215,10,285,10"/>
         </Grid>
-        <Frame x:Name="frTrangChu" Height="675" Width="800" NavigationUIVisibility="Hidden"/>
+        <Frame 
+            x:Name="frTrangChu" 
+            Height="675" Width="800" 
+            NavigationUIVisibility="Hidden"/>
+        
+        <materialDesign:DialogHost 
+            HorizontalAlignment="Center"
+            IsOpen="{Binding IsAddDialogOpen}"
+            CloseOnClickAway="True"
+            Height="675" Width="800"
+            DialogContent="{Binding AddContent}"/>
+
     </Grid>
 </UserControl>

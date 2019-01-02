@@ -5,8 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
+             xmlns:vm="clr-namespace:ABC.ViewModel"
+             xmlns:views="clr-namespace:ABC.Views"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:GhiNoViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:ThemNoViewModel}">
+            <views:ThemNoView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ThemThuViewModel}">
+            <views:ThemThuView/>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid Name="MenuBar" Height="44"  Margin="0,0,0,631" Background="#d60000">
             <StackPanel VerticalAlignment="Center">
@@ -34,6 +48,7 @@
                     <Button Name="btnThemNguoiNo" Content="Thêm" Background="Red"
                             Width="90" Height="40"
                             FontSize="20" Margin="272,310,272,23"
+                            Command="{Binding themKhoanChoVayCommand}"
                             />
 
                     <!--
@@ -47,10 +62,16 @@
                     <Button Name="btnThemNoNguoi" Content="Thêm" Background="Red"
                             Width="90" Height="40"
                             FontSize="20" Margin="272,310,272,23"
+                            Command="{Binding themKhoanVayCommand}"
                             />
                 </TabItem>
             </TabControl>
         </Grid>
-        <Frame x:Name="frSoNo" Height="475" Width="630" NavigationUIVisibility="Hidden"/>
+        <materialDesign:DialogHost 
+            HorizontalAlignment="Center"
+            IsOpen="{Binding IsAddDialogOpen}"
+            CloseOnClickAway="True"
+            Height="675" Width="800"
+            DialogContent="{Binding themKhoanGhi}"/>
     </Grid>
 </UserControl>

@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="475" d:DesignWidth="630">
-    <Grid Height="360" Width="440" Margin="60,100,130,15" Background="AliceBlue">
+             xmlns:viewModel="clr-namespace:ABC.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="360" d:DesignWidth="440">
+    <UserControl.DataContext>
+        <viewModel:ThemThuViewModel/>
+    </UserControl.DataContext>
+    <Grid Height="360" Width="440" Background="AliceBlue">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
@@ -16,6 +20,7 @@
                     Thêm</TextBlock>
                 <Button HorizontalAlignment="Right" Name="btnCloseProgram" Background="{x:Null}"
                     BorderBrush="{x:Null}"
+                    Command="{Binding cancelCommand}"
                     Height="25"
                     Width="50">
                     <materialDesign:PackIcon
@@ -61,7 +66,7 @@
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
-                        <TextBox Width="300">dd/mm/yyyy</TextBox>
+                        <DatePicker Width="300"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="50" Background="White">
@@ -76,6 +81,7 @@
                 </ListViewItem>
                 <ListViewItem>
                     <Button Name="btnOk" 
+                            Command="{Binding okCommand}"
                             Background="Red" HorizontalAlignment="Center"
                             VerticalAlignment="Center" Width="60" Height="30"
                             Margin="190,0,190,15">Ok</Button>
