@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
-             xmlns:xc="clr-namespace:ABC.Commands"
-             xc:DialogCloser.DialogResult="{Binding DialogResult}"
+             xmlns:convert="clr-namespace:ABC.Commands"
              mc:Ignorable="d" 
-             d:DesignHeight="475" d:DesignWidth="630">
-    <Grid Height="260" Width="440" Margin="60,150,130,65" Background="White">
+             d:DesignHeight="475" d:DesignWidth="630"
+             Visibility="{Binding addSaveState}">
+    <UserControl.Resources>
+        <convert:BoolToVisibilityConverter x:Key="convert"/>
+    </UserControl.Resources>
+    <Grid Height="260" Width="440" Margin="60,150,130,65" Background="WhiteSmoke">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
@@ -28,20 +31,20 @@
                 </Button>
             </Grid>
             <ListView FontSize="12">
-                <ListViewItem Height="50" Background="White">
+                <ListViewItem Height="50" Background="WhiteSmoke">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="CurrencyUsd"
-                                                 Background="White"
+                                                 Background="WhiteSmoke"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
                         <TextBox Width="300">0</TextBox>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Height="50" Background="White">
+                <ListViewItem Height="50" Background="WhiteSmoke">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Bullseye"
-                                                 Background="White"
+                                                 Background="WhiteSmoke"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
@@ -49,14 +52,15 @@
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem Height="50" Background="White">
+                <ListViewItem Height="50" Background="WhiteSmoke">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Calendar"
-                                                 Background="White"
+                                                 Background="WhiteSmoke"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
-                        <TextBox Width="300">dd/mm/yyyy</TextBox>
+                        
+                        <DatePicker Width="300"/>
                     </StackPanel>
                 </ListViewItem>
 

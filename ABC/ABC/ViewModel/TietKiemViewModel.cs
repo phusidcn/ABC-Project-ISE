@@ -13,7 +13,7 @@ namespace ABC.ViewModel
         public TietKiemViewModel()
         {
             themTietKiem = new MyICommand(OnClick);
-            addView = null;
+            
         }
 
         private ThemTietKiemViewModel themTietKiemViewModel = new ThemTietKiemViewModel();
@@ -28,8 +28,7 @@ namespace ABC.ViewModel
         public MyICommand themTietKiem { get; private set; }
 
         private void OnClick(){
-            Console.Write("ok\n");
-            _addView = themTietKiemViewModel;
+            addView = themTietKiemViewModel;
         }
     }
 }

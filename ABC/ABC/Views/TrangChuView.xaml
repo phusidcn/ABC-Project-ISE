@@ -35,12 +35,12 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                     <Button Name="btnThemGiaoDich"
+                            
                             Background="{x:Null}"  
                             BorderBrush="{x:Null}" 
                             Width="50" 
                             HorizontalAlignment="Right"
-                            Margin="0,0,130,0"
-                            >
+                            Margin="0,0,130,0">
                         <materialDesign:PackIcon 
                             Kind="Plus"
                             Foreground="White"/>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using ABC.Commands;
 
 namespace ABC.ViewModel
@@ -11,21 +11,18 @@ namespace ABC.ViewModel
     {
         public ThemTietKiemViewModel()
         {
-            DialogResult = false;
-            cancel = new MyICommand(onCancel);
-        }
-        bool? DialogResult;
 
-        public MyICommand cancel { get; private set; }
-
-        private void onCancel()
-        {
-            DialogResult = true;
         }
 
-        private void onOk()
+
+        private  bool 
+
+        public MyICommand cancel;
+
+        void onCancel()
         {
-            //khi an nut ok, se lay du lieu va them vao db, dong thoi thoat
+            
+
         }
     }
 }
