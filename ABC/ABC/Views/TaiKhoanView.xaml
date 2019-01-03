@@ -11,7 +11,6 @@
     <UserControl.DataContext>
         <vm:TaiKhoanViewModel/>
     </UserControl.DataContext>
-    
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type vm:ThayDoiTenDangNhapViewModel}">
             <local:ThayDoiTenDangNhapView/>
@@ -33,38 +32,39 @@
                 Thông tin người dùng
             </TextBlock>
         </Grid>
-        <materialDesign:Card
+        <materialDesign:DialogHost 
+            HorizontalAlignment="Center"
+            IsOpen="{Binding IsAddDialogOpen}"
+            CloseOnClickAway="True"
+            Height="631" Width="800"
+            DialogContent="{Binding AddContent}">
+            <StackPanel>
+                <materialDesign:Card
               Background="{DynamicResource PrimaryHueDarkBrush}"
               Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
               Width="400"
               Padding="8"
               Margin="100">
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon 
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon 
                     Kind="AccountCircle"
                     Height="170"
                     Width="170"/>
-                <StackPanel>
-                    <TextBlock FontSize="18" FontWeight="Black" Margin="5">Nguyễn Văn A</TextBlock>
-                    <TextBlock FontSize="16" Margin="5">Tên đăng nhập: tendangnhap</TextBlock>
-                    <TextBlock FontSize="16" Margin="5">Ngày sinh: 02/02/2019</TextBlock>
-                </StackPanel>
+                        <StackPanel>
+                            <TextBlock FontSize="18" FontWeight="Black" Margin="5">Nguyễn Văn A</TextBlock>
+                            <TextBlock FontSize="16" Margin="5">Tên đăng nhập: tendangnhap</TextBlock>
+                            <TextBlock FontSize="16" Margin="5">Ngày sinh: 02/02/2019</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:Card>
+                <Button x:Name="btnDoiTenDangNhap"
+        			Command="{Binding OpenChangeUserNameDialogCommand}"
+        			Margin="200 20 200 5"
+        			Width="400" Content="Đổi tên đăng nhập"/>
+                <Button x:Name="btnDoiMatKhau"
+        			Command="{Binding OpenChangePassDialogCommand}"
+        			Width="400" Content="Đổi mật khẩu"/>
             </StackPanel>
-        </materialDesign:Card>
-        <Button Name="btnDoiTenDangNhap"
-                Margin="200 20 200 5"
-                Width="400">
-            Đổi tên đăng nhập
-        </Button>
-        <Button Name="btnDoiMatKhau"
-                Width="400">
-            Đổi mật khẩu
-        </Button>
-        <materialDesign:DialogHost 
-            HorizontalAlignment="Center"
-            IsOpen="{Binding IsAddDialogOpen}"
-            CloseOnClickAway="True"
-            Height="675" Width="800"
-            DialogContent="{Binding AddContent}"/>
+        </materialDesign:DialogHost>
     </StackPanel>
 </UserControl>

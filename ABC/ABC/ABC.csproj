@@ -121,11 +121,14 @@
     </Compile>
     <Compile Include="ViewModel\BieuDoViewModel.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
+    <Compile Include="ViewModel\DoiMatKhauViewModel.cs" />
     <Compile Include="ViewModel\GhiNoViewModel.cs" />
     <Compile Include="ViewModel\GiupDoViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NganSachViewModel.cs" />
     <Compile Include="ViewModel\NhomCanDungViewModel.cs" />
+    <Compile Include="ViewModel\TaiKhoanViewModel.cs" />
+    <Compile Include="ViewModel\ThayDoiTenDangNhapViewModel.cs" />
     <Compile Include="ViewModel\ThemGiaoDichViewModel.cs" />
     <Compile Include="ViewModel\ThemNoViewModel.cs" />
     <Compile Include="ViewModel\ThemThuViewModel.cs" />
@@ -135,6 +138,9 @@
     <Compile Include="ViewModel\XuHuongViewModel.cs" />
     <Compile Include="Views\BieuDoView.xaml.cs">
       <DependentUpon>BieuDoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoiMatKhauView.xaml.cs">
+      <DependentUpon>DoiMatKhauView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GiupDoView.xaml.cs">
       <DependentUpon>GiupDoView.xaml</DependentUpon>
@@ -147,6 +153,12 @@
     </Compile>
     <Compile Include="Views\SoNoView.xaml.cs">
       <DependentUpon>SoNoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaiKhoanView.xaml.cs">
+      <DependentUpon>TaiKhoanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThayDoiTenDangNhapView.xaml.cs">
+      <DependentUpon>ThayDoiTenDangNhapView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ThemGiaoDichView.xaml.cs">
       <DependentUpon>ThemGiaoDichView.xaml</DependentUpon>
@@ -179,6 +191,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DoiMatKhauView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GiupDoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +208,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SoNoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaiKhoanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThayDoiTenDangNhapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
