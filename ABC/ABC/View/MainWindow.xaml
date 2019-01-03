@@ -54,9 +54,10 @@
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button HorizontalAlignment="Right" 
                     Name="btnCloseProgram"
+                    Command="{Binding ButtonClickCommand}"
+                    CommandParameter="close"
                     Background="{x:Null}"
                     BorderBrush="{x:Null}"
-                    Click="btnCloseProgram_Click"
                     Height="25"
                     Width="50">
                 <materialDesign:PackIcon
@@ -65,9 +66,10 @@
             </Button>
             <Button HorizontalAlignment="Right" 
                     Name="btnMinimizeProgram"
+                    Command="{Binding ButtonClickCommand}"
+                    CommandParameter="minimize"
                     Background="{x:Null}"
                     BorderBrush="{x:Null}"
-                    Click="btnMinimizeProgram_Click"
                     Height="25"
                     Width="50"
                     Margin="0,0,50,0">
@@ -75,19 +77,41 @@
                     Kind="WindowMinimize"
                     Foreground="White"/>
             </Button>
-            
+
 
         </Grid>
         <Grid Height="44"  Margin="0,25,0,631" Background="#d60000"/>
         <Grid Margin="0, 69, 0 ,581" Height="50" Background="#d60000"/>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="200" Height="675"
-              Margin="0,25,0,0" Background="#d60000">
-           
+              Margin="0,25,0,0" Background="White">
             <StackPanel>
-                <Grid Height="200">
+                <Grid Height="225">
+                    <StackPanel>
+                        <materialDesign:PackIcon 
+                            Kind="AccountCircle"
+                            Height="160"
+                            Width="160"
+                            Margin="20 0 20 0"/>
+                        <TextBlock 
+                            FontSize="15"
+                            HorizontalAlignment="Center">
+                            account</TextBlock>
+                        <Button Name="btnSettingInfo" Command="{Binding NavCommand}" CommandParameter="chinh_sua"
+                                Width="60"
+                                Height="30"
+                                Background="White"
+                                VerticalAlignment="Center">
+                            <materialDesign:PackIcon
+                                Kind="Edit"
+                                Width="30"
+                                Height="25"
+                                Foreground="Black"
+                                />
+                        </Button>
+                    </StackPanel>
                 </Grid>
-                <Button Name="btnGiaoDich" Click="btnGiaoDich_Click" Height="60" Background="White">
-                    <StackPanel Orientation="Horizontal" Height="60" Width="180">
+                <Button Name="btnGiaoDich" Command="{Binding NavCommand}" CommandParameter="giao_dich" Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal" Height="40" Width="180">
                         <materialDesign:PackIcon Kind="Text" Foreground="Black" Background="White"
                                                          Width="32" Height="32"
                                                          VerticalAlignment="Center"
@@ -96,8 +120,8 @@
                                            Margin="25 10" Foreground="Black" FontSize="20"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnGhiNo" Click="btnGhiNo_Click" Height="60" Background="White">
-                    <StackPanel Orientation="Horizontal" Height="60" Width="180">
+                <Button Name="btnGhiNo" Command="{Binding NavCommand}" CommandParameter="ghi_no" Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal" Height="40" Width="180">
                         <materialDesign:PackIcon Kind="Notebook" Foreground="Black" Background="White"
                                                  Width="32" Height="32" 
                                                  VerticalAlignment="Center" 
@@ -107,8 +131,8 @@
 
                     </StackPanel>
                 </Button>
-                <Button Name="btnTietKiem" Click="btnTietKiem_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnTietKiem" Command="{Binding NavCommand}" CommandParameter="tiet_kiem" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="Pig" Foreground="Black" Background="White"
                                                  Width="32" Height="32"
                                                  VerticalAlignment="Center"
@@ -117,8 +141,8 @@
                                    Margin="25 10" Foreground="Black" FontSize="20"></TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="btnNhom" Click="btnNhom_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnNhom" Command="{Binding NavCommand}" CommandParameter="nhom" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="Group"
                                                  Background="White"
                                                  Foreground="Black"
@@ -129,8 +153,8 @@
                                    Margin="25 10" FontSize="20"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnNganSach" Click="btnNganSach_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnNganSach" Command="{Binding NavCommand}" CommandParameter="ngan_sach" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="InboxMultiple"
                                                  Background="White" Foreground="Black"
                                                  Width="32" Height="32"
@@ -139,8 +163,8 @@
                                    Margin="25 10" Foreground="Black" FontSize="20"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnXuHuong" Click="btnXuHuong_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnXuHuong" Command="{Binding NavCommand}" CommandParameter="xu_huong" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="ChartAreaspline"
                                                  Background="White" Foreground="Black"
                                                  Width="32" Height="32"
@@ -149,8 +173,8 @@
                                    Margin="25 10" Foreground="Black" FontSize="20"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnBieuDo" Click="btnBieuDo_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnBieuDo" Command="{Binding NavCommand}" CommandParameter="bieu_do" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="ChartPie"
                                                  Background="White" Foreground="Black"
                                                  Width="32" Height="32"
@@ -159,8 +183,8 @@
                                    Margin="25 10" Foreground="Black" FontSize="20"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnGiupDo" Click="btnGiupDo_Click" Height="60" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="60">
+                <Button Name="btnGiupDo" Command="{Binding NavCommand}" CommandParameter="giup_do" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="Help"
                                                  Background="White" Foreground="Black"
                                                  Width="32" Height="32"
@@ -169,11 +193,26 @@
                                    Foreground="Black" Margin="25 10" FontSize="20"></TextBlock>
                     </StackPanel>
                 </Button>
-               
+                <Button Name="btnDangXuat" Command="{Binding NavCommand}" CommandParameter="giup_do" Height="50" Background="White" >
+                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
+                        <materialDesign:PackIcon Kind="Logout"
+                                                 Background="White" Foreground="Black"
+                                                 Width="32" Height="32"
+                                                 VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Đăng xuất" VerticalAlignment="Center"
+                                   Foreground="Black" Margin="25 10" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+
             </StackPanel>
         </Grid>
-        <Frame x:Name="frTrangChu" Height="675" Width="800" Margin="200,-3,0,28" ContentRendered="frTrangChu_ContentRendered">
-            
+        <Frame x:Name="frTrangChu" 
+               Height="675" 
+               Width="800" 
+               Margin="200,25,0,0" 
+               Content="{Binding CurrentViewModel}"
+               NavigationUIVisibility="Hidden">
+
         </Frame>
     </Grid>
 </Window>

@@ -21,12 +21,12 @@ namespace ABC.UserControlABC
 	/// </summary>
 	public partial class ControlBarUC : UserControl
 	{
-		public ControlBarViewModel Viewmodel { get; set; }
+        //public ControlBarViewModel Viewmodel { get; set; }
 
-		public ControlBarUC()
-		{
-			InitializeComponent();
-			this.DataContext = Viewmodel = new ControlBarViewModel();
-		}
+        //public ControlBarUC()
+        //{
+        //    InitializeComponent();
+        //    this.DataContext = Viewmodel = new ControlBarViewModel();
+        //}
 	}
 }
