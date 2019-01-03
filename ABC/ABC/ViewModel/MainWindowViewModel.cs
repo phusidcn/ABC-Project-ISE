@@ -30,6 +30,7 @@ namespace ABC.ViewModel
         private XuHuongViewModel xuHuongViewModel = new XuHuongViewModel();
         private BieuDoViewModel bieuDoViewModel = new BieuDoViewModel();
         private GiupDoViewModel giupDoViewModel = new GiupDoViewModel();
+        private TaiKhoanViewModel taiKhoanViewModel = new TaiKhoanViewModel();
         private BindableBase _CurrentViewModel;
         public BindableBase CurrentViewModel
         {
@@ -77,6 +78,9 @@ namespace ABC.ViewModel
                     break;
                 case "giup_do":
                     CurrentViewModel = giupDoViewModel;
+                    break;
+                case "chinh_sua":
+                    CurrentViewModel = taiKhoanViewModel;
                     break;
                 default:
                     break;
