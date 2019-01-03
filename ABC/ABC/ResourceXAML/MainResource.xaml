@@ -2,5 +2,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:ABC.ResourceXAML"
                     xmlns:viewmodel="clr-namespace:ABC.ViewModel">
-    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <!--<viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>-->
 </ResourceDictionary>
