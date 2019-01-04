@@ -13,6 +13,7 @@ namespace ABC.ViewModel
 {
     public class LoginViewModel:BindableBase
     {
+        
         public LoginViewModel()
         {
             CurrentState  = WindowState.Normal;
@@ -21,6 +22,10 @@ namespace ABC.ViewModel
             LoginCommand = new MyICommand<object>(OnLoginCommand);
             SignUpCommand = new MyICommand<object>(OnSignUpCommand);
         }
+        
+        private string successLogin = "User successfully logged in";
+        private string incorrectPass = "Incorrect password";
+        private string invalid = "Invalid login";
 
         #region Properties
         //Trang thai man hinh
@@ -77,6 +82,12 @@ namespace ABC.ViewModel
                     context.uspLogin(userN, PassWord, responseMessage);
 
                     MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+                    if (responseMessage.Value.ToString() == successLogin)
+                    {
+                        writeToSession(GetCustomerIdByUserName(userN));
+                        Window main = new MainWindow();
+                        main.Show();
+                    }
                 }
             }
         }
@@ -108,6 +119,7 @@ namespace ABC.ViewModel
             {
                 Console.WriteLine(e.Message);
             }
+            bw.Close();
         }
 
         private string ConvertToUnsecureString(System.Security.SecureString securePassword)
