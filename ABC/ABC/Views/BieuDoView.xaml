@@ -22,104 +22,76 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel
-                Margin="50 60"
+        
+        
+        <StackPanel
+                Margin="10 60 0 0"
                 Orientation="Horizontal">
-                <RadioButton
+            <RadioButton
                     Margin="0 5"
                     Name="rbtnXemTheoThang">
-                    Xem theo tháng
-                </RadioButton>
-                <materialDesign:PopupBox
+                Xem theo tháng
+            </RadioButton>
+            <materialDesign:PopupBox
                     VerticalAlignment="Top"
                     StaysOpen="True"
                     IsEnabled="{Binding IsChecked, ElementName=rbtnXemTheoThang}">
-                    <Grid
-                          Width="300"
-                          Margin="8,8,8,8">
-                        <Grid.Resources>
-                            <Style
-                              TargetType="RadioButton"
-                              BasedOn="{StaticResource MaterialDesignRadioButton}">
-                                <Setter
-                                    Property="Margin"
-                                    Value="8,8,10,8" />
-                            </Style>
-                            <Style
-                              TargetType="TextBox"
-                              BasedOn="{StaticResource MaterialDesignTextBox}">
-                                <Setter
-                                    Property="materialDesign:HintAssist.IsFloating"
-                                    Value="True" />
-                                <Setter
-                                    Property="Margin"
-                                    Value="8,8,8,8" />
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-          Width="*" />
-                            <ColumnDefinition
-          Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition
-          Height="*" />
-                            <RowDefinition
-          Height="*" />
-                            <RowDefinition
-          Height="*" />
-                            <RowDefinition
-          Height="*" />
-                            <RowDefinition
-          Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-        Grid.Column="0"
-        Grid.Row="0"
-        Style="{StaticResource MaterialDesignTitleTextBlock}"
-        Margin="8,8,8,16">
-      OPTIONS
-                        </TextBlock>
-                        <TextBox
-        Grid.Column="0"
-        Grid.Row="1"
-        materialDesign:HintAssist.Hint="Setting 1"
-        Text="200" />
-                        <TextBox
-        Grid.Column="0"
-        Grid.Row="2"
-        materialDesign:HintAssist.Hint="Setting 2"
-        Text="400" />
-                        <TextBox
-        Grid.Column="0"
-        Grid.Row="3"
-        materialDesign:HintAssist.Hint="Setting 3"
-        Text="600" />
-                        <CheckBox
-        Grid.Column="1"
-        Grid.Row="1"
-        VerticalAlignment="Bottom" />
-                        <CheckBox
-        Grid.Column="1"
-        Grid.Row="2"
-        IsChecked="True"
-        VerticalAlignment="Bottom" />
-                        <CheckBox
-        Grid.Column="1"
-        Grid.Row="3"
-        VerticalAlignment="Bottom" />
-                        
-                    </Grid>
-                </materialDesign:PopupBox>
-            </StackPanel>
+                <StackPanel Width="300">
+                    <ComboBox
+                                Name="cbXemTheoThang"
+                                materialDesign:HintAssist.Hint="Chọn tháng"
+                                materialDesign:HintAssist.IsFloating="True"
+                                MaxDropDownHeight="200"
+                                Margin="8 8 8 8">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button 
+                                Content="OK"
+                                Background="Red"
+                                Width="60"/>
+                </StackPanel>
+            </materialDesign:PopupBox>
+
             <RadioButton
-                Margin="30 80 16 0"
-                Style="{DynamicResource MaterialDesignUserForegroundRadioButton}">
+                        Margin="0 5"
+                    Name="rbtnXemTheoNam"
+                    Style="{DynamicResource MaterialDesignUserForegroundRadioButton}">
                 Xem theo năm
             </RadioButton>
+            <materialDesign:PopupBox
+                    VerticalAlignment="Top"
+                    StaysOpen="True"
+                    IsEnabled="{Binding IsChecked, ElementName=rbtnXemTheoNam}">
+                <StackPanel Width="300">
+                    <ComboBox
+                                Name="cbXemTheoNam"
+                                materialDesign:HintAssist.Hint="Chọn năm"
+                                materialDesign:HintAssist.IsFloating="True"
+                                MaxDropDownHeight="200"
+                                Margin="8 8 8 8">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button 
+                                Content="OK"
+                                Background="Red"
+                                Width="60"/>
+                </StackPanel>
+            </materialDesign:PopupBox>
+
         </StackPanel>
+
         <DVC:Chart Canvas.Top="80" Canvas.Left="10" Name="mcChart"
            Width="400" Height="250"
            Background="LightSteelBlue">
