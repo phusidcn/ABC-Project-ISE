@@ -12,18 +12,35 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ABC.Helper;
 
 namespace ABC.View
 {
     /// <summary>
     /// Interaction logic for SignUp.xaml
     /// </summary>
-    public partial class SignUp : Window
+    public partial class SignUp : Window, IHavePassword
     {
         public SignUp()
         {
             InitializeComponent();
         }
+
+        public System.Security.SecureString Password
+        {
+            get
+            {
+                return pswPass.SecurePassword;
+            }
+        }
+
+        public System.Security.SecureString RePassword
+        {
+            get
+            {
+                return pswReEnter.SecurePassword;
+            }
+        } 
 
         private void BtnCloseSignUp_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +73,7 @@ namespace ABC.View
                 {
                     var birthday = txtBirthDay.Text;
                     var DateOfBirth = Convert.ToDateTime(birthday);
-                    context.uspAddUser(txtEmail.Text, pswPass.Password, txtUserName.Text, DateOfBirth, responseMessage);
+                    //context.uspAddUser(txtEmail.Text, pswPass.Password, txtUserName.Text, DateOfBirth, responseMessage);
                     MessageBox.Show("Your Account was created", "Notification", MessageBoxButton.OK,
                         MessageBoxImage.Information, MessageBoxResult.OK);
                 }

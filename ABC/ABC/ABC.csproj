@@ -101,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\IHavePassword.cs" />
     <Compile Include="Helper\MyICommand.cs" />
     <Compile Include="Model\HEO.cs">
       <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
@@ -144,10 +145,12 @@
     <Compile Include="ViewModel\DoiMatKhauViewModel.cs" />
     <Compile Include="ViewModel\GhiNoViewModel.cs" />
     <Compile Include="ViewModel\GiupDoViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\NganSachViewModel.cs" />
     <Compile Include="ViewModel\NhomCanDungViewModel.cs" />
+    <Compile Include="ViewModel\SignUpViewModel.cs" />
     <Compile Include="ViewModel\TaiKhoanViewModel.cs" />
     <Compile Include="ViewModel\ThayDoiTenDangNhapViewModel.cs" />
     <Compile Include="ViewModel\ThemGiaoDichViewModel.cs" />
