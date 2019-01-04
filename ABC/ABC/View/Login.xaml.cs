@@ -32,5 +32,13 @@ namespace ABC
                 return pswPassword.SecurePassword;
             }
         } 
+
+        public System.Security.SecureString RePassword
+        {
+            get
+            {
+                return pswPassword.SecurePassword;
+            }
+        }
     }
 }

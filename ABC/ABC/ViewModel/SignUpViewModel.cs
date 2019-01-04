@@ -128,7 +128,10 @@ namespace ABC.ViewModel
                 {
                     MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
                 }
-                
+                var container = parameter as Window;
+                container.Visibility = Visibility.Hidden;
+                Window signin = new Login();
+                signin.Show();
             }
         }
         #endregion
