@@ -22,6 +22,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <Grid Height="50" Background="White" Margin="0,44,0,581"/>
+        
     </Grid>
 </UserControl>

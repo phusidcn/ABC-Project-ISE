@@ -11,7 +11,7 @@
     <UserControl.DataContext>
         <viewModel:ThemThuViewModel/>
     </UserControl.DataContext>
-    <Grid Height="360" Width="440" Background="AliceBlue">
+    <Grid Height="360" Width="440" Background="White">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"

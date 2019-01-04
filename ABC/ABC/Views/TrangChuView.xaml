@@ -65,6 +65,21 @@
                             Kind="SwapHorizontalBold"
                             Foreground="White"/>
                     </Button>
+                    <materialDesign:Badged Badge="1" Margin="700 40 30 0">
+                        <Button Name="btnThongBao"
+                            Background="{x:Null}"  
+                            BorderBrush="{x:Null}" 
+                            Width="50" 
+                            HorizontalAlignment="Right"
+                            
+                            >
+                            <materialDesign:PackIcon 
+                            Kind="Bell"
+                            Foreground="White"/>
+                        </Button>
+                    </materialDesign:Badged>
+                    <!--
+                    
                     <Button Name="btnThongBao"
                             Background="{x:Null}"  
                             BorderBrush="{x:Null}" 
@@ -76,6 +91,7 @@
                             Kind="Bell"
                             Foreground="White"/>
                     </Button>
+                    -->
                     <materialDesign:PopupBox 
                     HorizontalAlignment="Right"
                     Margin="10"
