@@ -13,6 +13,7 @@ namespace ABC.ViewModel
 {
     public class MainWindowViewModel : BindableBase
     {
+        public static int userID { get; set; }
         public MainWindowViewModel()
         {
             NavCommand = new MyICommand<string>(OnNav);

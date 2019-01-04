@@ -37,7 +37,7 @@
                     IsEnabled="{Binding IsChecked, ElementName=rbtnXemTheoThang}">
                     <Grid
                           Width="300"
-                          Margin="8,8,8,8">
+                          Margin="8,8,8,8" >
                         <Grid.Resources>
                             <Style
                               TargetType="RadioButton"
