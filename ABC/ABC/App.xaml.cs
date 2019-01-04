@@ -43,6 +43,7 @@ namespace ABC
             }
             else
             {
+                ABC.ViewModel.MainWindowViewModel.userID = identity;
                 Window Main = new MainWindow();
                 Main.Show();
             }

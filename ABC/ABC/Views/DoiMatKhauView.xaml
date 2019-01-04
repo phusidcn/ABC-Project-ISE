@@ -18,17 +18,17 @@
         <StackPanel>
             <TextBlock Margin="20 50 20 5">Nhập mật khẩu cũ</TextBlock>
             <PasswordBox
-              materialDesign:HintAssist.Hint="Mật khẩu cũ"
+              materialDesign:HintAssist.Hint="Mật khẩu cũ" Name="pswOldPass"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
               Margin="20 0"/>
             <TextBlock Margin="20 50 20 5">Nhập mật khẩu mới</TextBlock>
             <PasswordBox
-              materialDesign:HintAssist.Hint="Mật khẩu mới"
+              materialDesign:HintAssist.Hint="Mật khẩu mới" Name="pswNewPass"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
               Margin="20 0"/>
             <TextBlock Margin="20 50 20 5">Nhập lại mật khẩu mới</TextBlock>
             <PasswordBox
-              materialDesign:HintAssist.Hint="Mật khẩu mới"
+              materialDesign:HintAssist.Hint="Mật khẩu mới" Name="pswCheck"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
               Margin="20 0"/>
             <Canvas>

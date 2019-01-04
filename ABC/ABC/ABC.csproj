@@ -106,6 +106,9 @@
     <Compile Include="Model\HEO.cs">
       <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Ngan_Sach.cs">
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Nhom.cs">
       <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
@@ -162,9 +165,6 @@
     <Compile Include="ViewModel\XuHuongViewModel.cs" />
     <Compile Include="Views\BieuDoView.xaml.cs">
       <DependentUpon>BieuDoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoiMatKhauView.xaml.cs">
-      <DependentUpon>DoiMatKhauView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GiupDoView.xaml.cs">
       <DependentUpon>GiupDoView.xaml</DependentUpon>

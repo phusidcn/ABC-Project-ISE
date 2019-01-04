@@ -98,7 +98,7 @@ namespace ABC.ViewModel
         {
             using (var db = new QLChiTieuEntities())
             {
-                var query = db.Users.Where(s => s.Email == usName).First<User>();
+                var query = db.Users.Where(s => s.UserName == usName).First<User>();
                 return query.ID;
             }
         }

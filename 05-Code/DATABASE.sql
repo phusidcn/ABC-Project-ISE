@@ -113,14 +113,7 @@ ALTER TABLE HEO ADD CONSTRAINT FK_HEO_USER FOREIGN KEY(ID_USER) REFERENCES Users
 ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_Users FOREIGN KEY(IdUser) REFERENCES Users(ID)
 ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_NganSach FOREIGN KEY(IdNganSach) REFERENCES Ngan_Sach(ID)
 
-
-SELECT * FROM sys.database_files
-SELECT *
-FROM [dbo].[Users]
-
-
-
-CREATE PROCEDURE dbo.uspAddUser
+create procedure dbo.uspAddUser
     @pUsername VARCHAR(50), 
     @pPassword NVARCHAR(50), 
     @pTen NVARCHAR(50) = NULL,

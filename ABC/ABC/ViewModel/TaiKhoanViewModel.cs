@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ABC.Helper;
+using ABC.Model;
 
 namespace ABC.ViewModel
 {
@@ -11,9 +12,25 @@ namespace ABC.ViewModel
     {
         public TaiKhoanViewModel()
         {
+            int id = ABC.ViewModel.MainWindowViewModel.userID;
+            using(var db = new QLChiTieuEntities())
+            {
+                var query = db.Users.Find(id);
+                SelectedUser = query;
+            }
+            
             OpenChangePassDialogCommand = new MyICommand<object>(OpenChangePassDialog);
             OpenChangeUserNameDialogCommand = new MyICommand<object>(OpenChangeUserNameDialog);
         }
+
+        #region Properties
+        private User _selectedUser;
+        public User SelectedUser
+        {
+            get { return _selectedUser; }
+            set { SetProperty(ref _selectedUser, value); }
+        }
+        #endregion
 
         #region child view
         private ThayDoiTenDangNhapViewModel doiTenVM = new ThayDoiTenDangNhapViewModel();

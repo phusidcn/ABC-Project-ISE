@@ -28,17 +28,18 @@ namespace ABC.Model
         }
     
         public virtual DbSet<HEO> HEOs { get; set; }
+        public virtual DbSet<Ngan_Sach> Ngan_Sach { get; set; }
         public virtual DbSet<Nhom> Nhoms { get; set; }
         public virtual DbSet<SO_GIAO_DICH> SO_GIAO_DICH { get; set; }
         public virtual DbSet<SO_NO> SO_NO { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vi> Vis { get; set; }
     
-        public virtual int uspAddUser(string pEmail, string pPassword, string pTen, Nullable<System.DateTime> pDob, ObjectParameter responseMessage)
+        public virtual int uspAddUser(string pUsername, string pPassword, string pTen, Nullable<System.DateTime> pDob, ObjectParameter responseMessage)
         {
-            var pEmailParameter = pEmail != null ?
-                new ObjectParameter("pEmail", pEmail) :
-                new ObjectParameter("pEmail", typeof(string));
+            var pUsernameParameter = pUsername != null ?
+                new ObjectParameter("pUsername", pUsername) :
+                new ObjectParameter("pUsername", typeof(string));
     
             var pPasswordParameter = pPassword != null ?
                 new ObjectParameter("pPassword", pPassword) :
@@ -52,20 +53,46 @@ namespace ABC.Model
                 new ObjectParameter("pDob", pDob) :
                 new ObjectParameter("pDob", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddUser", pEmailParameter, pPasswordParameter, pTenParameter, pDobParameter, responseMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspAddUser", pUsernameParameter, pPasswordParameter, pTenParameter, pDobParameter, responseMessage);
         }
     
-        public virtual int uspLogin(string pEmail, string pPassword, ObjectParameter responseMessage)
+        public virtual int uspLogin(string pUsername, string pPassword, ObjectParameter responseMessage)
         {
-            var pEmailParameter = pEmail != null ?
-                new ObjectParameter("pEmail", pEmail) :
-                new ObjectParameter("pEmail", typeof(string));
+            var pUsernameParameter = pUsername != null ?
+                new ObjectParameter("pUsername", pUsername) :
+                new ObjectParameter("pUsername", typeof(string));
     
             var pPasswordParameter = pPassword != null ?
                 new ObjectParameter("pPassword", pPassword) :
                 new ObjectParameter("pPassword", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspLogin", pEmailParameter, pPasswordParameter, responseMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspLogin", pUsernameParameter, pPasswordParameter, responseMessage);
+        }
+    
+        public virtual int uspModifyPassWord(Nullable<int> pId, string nPassword, ObjectParameter responseMessage)
+        {
+            var pIdParameter = pId.HasValue ?
+                new ObjectParameter("pId", pId) :
+                new ObjectParameter("pId", typeof(int));
+    
+            var nPasswordParameter = nPassword != null ?
+                new ObjectParameter("nPassword", nPassword) :
+                new ObjectParameter("nPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspModifyPassWord", pIdParameter, nPasswordParameter, responseMessage);
+        }
+    
+        public virtual int uspModifyUserName(Nullable<int> pId, string nUsername, ObjectParameter responseMessage)
+        {
+            var pIdParameter = pId.HasValue ?
+                new ObjectParameter("pId", pId) :
+                new ObjectParameter("pId", typeof(int));
+    
+            var nUsernameParameter = nUsername != null ?
+                new ObjectParameter("nUsername", nUsername) :
+                new ObjectParameter("nUsername", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("uspModifyUserName", pIdParameter, nUsernameParameter, responseMessage);
         }
     }
 }
