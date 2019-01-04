@@ -21,28 +21,48 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <!--
-        
         <ItemsControl
-          ItemsSource="{Binding xxxDienVaoNhe}"
-          Grid.IsSharedSizeScope="True">
+                    Name="icNganSach"
+                      ItemsSource="{Binding Items2}"
+                      Grid.IsSharedSizeScope="True">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    //binding tên của cái lọ ở đây
-        <GroupBox
-                          Header="{Binding}"
-                          Style="{DynamicResource MaterialDesignCardGroupBox}"
-                          Margin="16">
-            <TextBlock>
+                    <Border
+                                x:Name="Border"
+                                Padding="5"
+                                BorderThickness="0 0 0 1"
+                                BorderBrush="{DynamicResource MaterialDesignDivider}">
+                        <Grid>
 
-            </TextBlock>
-        </GroupBox>
-        </DataTemplate>
-        </ItemsControl.ItemTemplate>
+                            <Canvas Height="80" Width="700" Margin="50 0 50 0">
+                                <TextBlock 
+                            FontWeight="Bold"
+                            FontSize="14"
+                            Canvas.Left="0"
+                                            Text="{Binding Name}"/>
+                                <TextBlock Canvas.Right="0" Text="{Binding Age}"/>
+                                <TextBlock Canvas.Top="20" Text="{Binding Age}"/>
+                                <TextBlock Canvas.Top="20"
+                                       Canvas.Right="0" Text="{Binding Mail}"/>
+                                <TextBlock Canvas.Top="40"
+                                       Canvas.Right="0" Text="{Binding Mail}"/>
+
+                                <TextBlock Canvas.Top="40">% (mặc định: 50%)</TextBlock>
+                                <Slider
+                             Margin="95 5"
+                              Minimum="0"
+                              Maximum="100"
+                              Style="{StaticResource MaterialDesignDiscreteSlider}"
+                              ToolTip="MaterialDesignDiscreteSlider"
+                              Value="50"
+                              Width="280" />
+
+                            </Canvas>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
-    -->
-        <!-- and here's another -->
-       
-
     </StackPanel>
 </UserControl>
