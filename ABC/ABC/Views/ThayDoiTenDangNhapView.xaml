@@ -18,10 +18,10 @@
             </Grid>
             <StackPanel>
                 <TextBlock Margin="20 50 20 5">Nhập tên đăng nhập mới</TextBlock>
-                <TextBox Margin="20 20 20 0">Vd: abcfit</TextBox>
+                <TextBox materialDesign:HintAssist.Hint="vd: nguyenvanA" Name="txtNewName" Margin="20 20 20 0" ></TextBox>
                 <TextBlock Margin="20 50 20 5">Nhập mật khẩu</TextBlock>
                 <PasswordBox
-              materialDesign:HintAssist.Hint="Mật khẩu"
+              materialDesign:HintAssist.Hint="Mật khẩu" Name="pswValidate"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
               Margin="20 0"/>
                 <Canvas>

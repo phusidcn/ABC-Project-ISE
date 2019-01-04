@@ -84,8 +84,10 @@ namespace ABC.ViewModel
                     MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
                     if (responseMessage.Value.ToString() == successLogin)
                     {
-                        writeToSession(GetCustomerIdByUserName(userN));
+                        int id = GetCustomerIdByUserName(userN);
+                        writeToSession(id);
                         Window main = new MainWindow();
+                        ABC.ViewModel.MainWindowViewModel.userID = id;
                         main.Show();
                     }
                 }
@@ -94,8 +96,11 @@ namespace ABC.ViewModel
 
         private int GetCustomerIdByUserName(string usName)
         {
-            var db = new QLChiTieuEntities();
-            return db.Users.Find(usName).ID;
+            using (var db = new QLChiTieuEntities())
+            {
+                var query = db.Users.Where(s => s.UserName == usName).First<User>();
+                return query.ID;
+            }
         }
 
         private void writeToSession(int id)

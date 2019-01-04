@@ -104,37 +104,40 @@
     <Compile Include="Helper\IHavePassword.cs" />
     <Compile Include="Helper\MyICommand.cs" />
     <Compile Include="Model\HEO.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ngan_Sach.cs">
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Nhom.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLChiTieuEntity.Context.cs">
+    <Compile Include="Model\QLChiTieu.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLChiTieuEntity.Context.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLChiTieuEntity.cs">
+    <Compile Include="Model\QLChiTieu.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\QLChiTieuEntity.Designer.cs">
+    <Compile Include="Model\QLChiTieu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_GIAO_DICH.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SO_NO.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Vi.cs">
-      <DependentUpon>QLChiTieuEntity.tt</DependentUpon>
+      <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
     <Compile Include="UserControlABC\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
@@ -162,9 +165,6 @@
     <Compile Include="ViewModel\XuHuongViewModel.cs" />
     <Compile Include="Views\BieuDoView.xaml.cs">
       <DependentUpon>BieuDoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoiMatKhauView.xaml.cs">
-      <DependentUpon>DoiMatKhauView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GiupDoView.xaml.cs">
       <DependentUpon>GiupDoView.xaml</DependentUpon>
@@ -424,12 +424,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.Config" />
-    <EntityDeploy Include="Model\QLChiTieuEntity.edmx">
+    <EntityDeploy Include="Model\QLChiTieu.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLChiTieuEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLChiTieu.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\QLChiTieuEntity.edmx.diagram">
-      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
+    <None Include="Model\QLChiTieu.edmx.diagram">
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -460,22 +460,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\QLChiTieuEntity.Context.tt">
+    <Content Include="Model\QLChiTieu.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
-      <LastGenOutput>QLChiTieuEntity.Context.cs</LastGenOutput>
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieu.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\QLChiTieuEntity.tt">
+    <Content Include="Model\QLChiTieu.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLChiTieuEntity.edmx</DependentUpon>
-      <LastGenOutput>QLChiTieuEntity.cs</LastGenOutput>
-    </Content>
-    <Content Include="QLChiTieu.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="QLChiTieu_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>QLChiTieu.mdf</DependentUpon>
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieu.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

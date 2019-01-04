@@ -7,7 +7,7 @@ GO
 CREATE TABLE Users(
 	ID INT IDENTITY(1,1) PRIMARY KEY,
 	Ten nvarchar(50) NOT NULL,
-	Email varchar(50) NOT NULL UNIQUE,
+	UserName varchar(50) NOT NULL UNIQUE,
 	PWHash BINARY(64) NOT NULL,
 	Ngay_Sinh date
 )
@@ -76,6 +76,26 @@ CREATE TABLE SO_NO
 	CONSTRAINT PK_SN PRIMARY KEY(STT, ID_GIAO_DICH)
 )
 
+Create table Ngan_Sach
+(
+	ID INT IDENTITY PRIMARY KEY,
+	Ten INT NOT NULL,
+	IdNhom INT NOT NULL,
+	SoTien INT NOT NULL,
+	SoTienConLai INT NOT NULL,
+	PhanTram decimal(3,2) NOT NULL,
+	Ngay_Bat_Dau DATE NULL,
+	Ngay_Ket_Thuc DATE NULL
+)
+
+
+Create table USER_Ngan_Sach
+(
+	IdNganSach INT NOT NULL,
+	IdUser INT NOT NULL
+	CONSTRAINT PK_U_N_S PRIMARY KEY(IdNganSach,IdUser)
+)
+
 ---FOREIGN KEY
 ALTER TABLE USER_VI ADD CONSTRAINT FK_USER_VI_USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 ALTER TABLE USER_VI ADD CONSTRAINT FK_USER_VI_VI FOREIGN KEY(ID_VI) REFERENCES Vi(ID)
@@ -90,15 +110,11 @@ ALTER TABLE SO_NO ADD CONSTRAINT FK_SO_NO_GIAO_DICH FOREIGN KEY(ID_GIAO_DICH) RE
 
 ALTER TABLE HEO ADD CONSTRAINT FK_HEO_USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 
+ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_Users FOREIGN KEY(IdUser) REFERENCES Users(ID)
+ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_NganSach FOREIGN KEY(IdNganSach) REFERENCES Ngan_Sach(ID)
 
-SELECT * FROM sys.database_files
-SELECT *
-FROM [dbo].[Users]
-
-
-
-CREATE PROCEDURE dbo.uspAddUser
-    @pEmail VARCHAR(50), 
+create procedure dbo.uspAddUser
+    @pUsername VARCHAR(50), 
     @pPassword NVARCHAR(50), 
     @pTen NVARCHAR(50) = NULL,
 	@pDob date = NULL,
@@ -109,8 +125,8 @@ BEGIN
 
     BEGIN TRY
 
-        INSERT INTO dbo.[Users] (Ten, Email, PWHash, Ngay_Sinh)
-        VALUES(@pTen, @pEmail , HASHBYTES('SHA2_512', @pPassword), @pDob)
+        INSERT INTO dbo.[Users] (Ten, UserName, PWHash, Ngay_Sinh)
+        VALUES(@pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
 
         SET @responseMessage='Success'
 
@@ -121,26 +137,27 @@ BEGIN
 
 END
 
---?Ua nó có test cái vụ email trùng chưa @@
-
-
---TEst
-DECLARE @responseMessage NVARCHAR(250)
-
-EXEC dbo.uspAddUser
-			@pEmail = 'Admin', 
-			@pPassword = N'123', 
-			@pTen = N'Nguyễn Trương Quang',
-			@pDob = N'02/17/1998',
-			@responseMessage=@responseMessage OUTPUT
-
-print(@responseMessage)
-
-
+create procedure dbo.uspModifyPassWord
+	@pId INT,
+	@nPassword NVARCHAR(50),
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRY
+		update Users
+		set PWHash = HASHBYTES('SHA2_512',@nPassword)
+		where id = @pId
+		set @responseMessage='successful'
+	end try 
+	begin catch
+		set @responseMessage='error'
+	END CATCH
+end
 --- procedure login
 
 CREATE PROCEDURE dbo.uspLogin
-    @pEmail VARCHAR(50),
+    @pUsername VARCHAR(50),
     @pPassword NVARCHAR(50),
     @responseMessage NVARCHAR(250)='' OUTPUT
 AS
@@ -150,9 +167,9 @@ BEGIN
 
     DECLARE @userID INT
 
-    IF EXISTS (SELECT TOP 1 ID FROM [dbo].[Users] WHERE Email=@pEmail)
+    IF EXISTS (SELECT TOP 1 ID FROM [dbo].[Users] WHERE UserName=@pUsername)
     BEGIN
-        SET @userID=(SELECT ID FROM [dbo].[Users] WHERE Email=@pEmail AND PWHash=HASHBYTES('SHA2_512', @pPassword))
+        SET @userID=(SELECT ID FROM [dbo].[Users] WHERE UserName=@pUsername AND PWHash=HASHBYTES('SHA2_512', @pPassword))
 
        IF(@userID IS NULL)
            SET @responseMessage='Incorrect password'
@@ -164,31 +181,20 @@ BEGIN
 
 END
 
-
---Test login
-
-DECLARE	@responseMessage nvarchar(250)
-
---Correct login and password
-EXEC	dbo.uspLogin
-		@pEmail = N'Admin',
-		@pPassword = N'123',
-		@responseMessage = @responseMessage OUTPUT
-
-SELECT	@responseMessage as N'@responseMessage'
-
---Incorrect login
-EXEC	dbo.uspLogin
-		@pEmail = N'Admin1', 
-		@pPassword = N'123',
-		@responseMessage = @responseMessage OUTPUT
-
-SELECT	@responseMessage as N'@responseMessage'
-
---Incorrect password
-EXEC	dbo.uspLogin
-		@pEmail = N'Admin', 
-		@pPassword = N'1234',
-		@responseMessage = @responseMessage OUTPUT
-
-SELECT	@responseMessage as N'@responseMessage'
+create procedure dbo.uspModifyUserName
+	@pId INT,
+	@nUsername NVARCHAR(50),
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRY
+		update Users
+		set UserName=@nUsername
+		where id = @pId
+		set @responseMessage='successful'
+	end try 
+	begin catch
+		set @responseMessage='error'
+	END CATCH
+end

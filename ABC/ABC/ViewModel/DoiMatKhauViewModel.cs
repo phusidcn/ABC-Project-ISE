@@ -22,6 +22,7 @@ namespace ABC.ViewModel
 
         void OnSave()
         {
+            
             DialogHost.CloseDialogCommand.Execute(null, null);
         }
 

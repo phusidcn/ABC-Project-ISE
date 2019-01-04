@@ -51,9 +51,9 @@
                     Height="170"
                     Width="170"/>
                         <StackPanel>
-                            <TextBlock FontSize="18" FontWeight="Black" Margin="5">Nguyễn Văn A</TextBlock>
-                            <TextBlock FontSize="16" Margin="5">Tên đăng nhập: tendangnhap</TextBlock>
-                            <TextBlock FontSize="16" Margin="5">Ngày sinh: 02/02/2019</TextBlock>
+                            <TextBlock FontSize="18" FontWeight="Black" Margin="5" Text="{Binding SelectedUser.UserName, Mode=TwoWay}"></TextBlock>
+                            <TextBlock FontSize="16" Margin="5" Text="{Binding SelectedUser.Ten}"></TextBlock>
+                            <TextBlock FontSize="16" Margin="5" Text="{Binding SelectedUser.Ngay_Sinh}"></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </materialDesign:Card>
