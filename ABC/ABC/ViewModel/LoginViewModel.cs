@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.IO;
 using ABC.Helper;
 using ABC.Model;
 
@@ -77,6 +78,35 @@ namespace ABC.ViewModel
 
                     MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
                 }
+            }
+        }
+
+        private int GetCustomerIdByUserName(string usName)
+        {
+            var db = new QLChiTieuEntities();
+            return db.Users.Find(usName).ID;
+        }
+
+        private void writeToSession(int id)
+        {
+            BinaryWriter bw;
+            try
+            {
+                bw = new BinaryWriter(new FileStream("session", FileMode.Open));
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
+
+            try
+            {
+                bw.Write(id);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 

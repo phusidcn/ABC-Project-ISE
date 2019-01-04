@@ -35,7 +35,7 @@
 					Name="btnCloseLogin"
 					Background="{x:Null}"
 					BorderBrush="{x:Null}"
-					Click="BtnCloseSignUp_Click"
+					Command="{Binding CloseCommand}"
 					Height="25"
 					Width="50">
 				<materialDesign:PackIcon
@@ -46,7 +46,7 @@
 					Name="btnMinimizeLogin"
 					Background="{x:Null}"
 					BorderBrush="{x:Null}"
-					Click="BtnMinimizeSignUp_Click"
+					Command="{Binding MinimizeCommand}"
 					Height="25"
 					Width="50"
 					Margin="0,0,50,0">
