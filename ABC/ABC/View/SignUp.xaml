@@ -20,8 +20,8 @@
 		xmlns:viewModel="clr-namespace:ABC.ViewModel"
 		WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
 	<Window.DataContext>
-		<viewModel:SignUpViewModel/>
-	</Window.DataContext>
+        <viewModel:SignUpViewModel/>
+    </Window.DataContext>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"></RowDefinition>
