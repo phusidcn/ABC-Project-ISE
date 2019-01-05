@@ -19,11 +19,6 @@
         <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
             <views:GiupDoView/>
         </DataTemplate>
-
-        <DataTemplate DataType="{x:Type viewModels:NganSachViewModel}">
-            <views:NganSachView/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModels:NhomCanDungViewModel}">
             <views:NhomCanDungView/>
         </DataTemplate>
@@ -151,16 +146,6 @@
                         <TextBlock Text="Nhóm" VerticalAlignment="Center"
                                    Foreground="Black"
                                    Margin="25 10" FontSize="20"/>
-                    </StackPanel>
-                </Button>
-                <Button Name="btnNganSach" Command="{Binding NavCommand}" CommandParameter="ngan_sach" Height="50" Background="White" >
-                    <StackPanel Orientation="Horizontal" Width="180" Height="40">
-                        <materialDesign:PackIcon Kind="InboxMultiple"
-                                                 Background="White" Foreground="Black"
-                                                 Width="32" Height="32"
-                                                 VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Ngân sách" VerticalAlignment="Center"
-                                   Margin="25 10" Foreground="Black" FontSize="20"/>
                     </StackPanel>
                 </Button>
                 <Button Name="btnXuHuong" Command="{Binding NavCommand}" CommandParameter="xu_huong" Height="50" Background="White" >
