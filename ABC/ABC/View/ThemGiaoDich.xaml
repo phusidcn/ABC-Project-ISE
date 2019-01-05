@@ -6,8 +6,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="675" d:DesignWidth="800"
-	Title="ThemGiaoDich" OpacityMask="AliceBlue">
-    <Grid Height="360" Width="440" Margin="60,100,130,40" Background="AliceBlue">
+	Title="ThemGiaoDich" OpacityMask="White">
+    <Grid Height="360" Width="440" Margin="60,100,130,40" Background="White">
         <StackPanel Orientation="Vertical" Height="360">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
