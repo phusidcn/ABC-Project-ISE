@@ -90,10 +90,10 @@
 								 Width="250" Margin="5"/>
 				</StackPanel>
 				<StackPanel Margin="0,10" Orientation="Horizontal">
-					<materialDesign:PackIcon Kind="Mail" VerticalAlignment="Center" Foreground="#070707"/>
+					<materialDesign:PackIcon Kind="User" VerticalAlignment="Center" Foreground="#070707"/>
 					<TextBox Name="txtName"
 							 Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-							 materialDesign:HintAssist.Hint="Email" 
+							 materialDesign:HintAssist.Hint="Name" 
 							 Width="250" Margin="5"
 							 />
 				</StackPanel>
@@ -101,6 +101,7 @@
 					<materialDesign:PackIcon Kind="Calendar" VerticalAlignment="Center" Foreground="#070707"/>
 					<TextBox 
 						Name="txtBirthDay" 
+                        Text="{Binding DayOfBirth,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 						materialDesign:HintAssist.Hint="Birth day" 
 						Width="250" Margin="5"/>
 				</StackPanel>
@@ -113,7 +114,6 @@
 							Width="100" Margin="5,5,15,5" 
 							Background="#d60000" BorderBrush="#FF307CD6" 
                             Command="{Binding SignUpCommand}" CommandParameter="{Binding ElementName=SignUpWindow}"/>
-                    <!--="BtnSignUp_Click"/>-->
                     <Button Name="BtnCancel" 
 							HorizontalAlignment="Stretch" 
 							Content="CANCEL" 
@@ -121,7 +121,6 @@
 							Width="100" Margin="15,5,5,5" 
 							Background="#d60000" BorderBrush="#FF307CD6" 
 							Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=SignUpWindow}"/>
-                    <!--="BtnCancel_Click"/>-->
 				</StackPanel>
 			</StackPanel>
 

@@ -124,14 +124,10 @@ AS
 BEGIN
     SET NOCOUNT ON
 	DECLARE @userID INT
-	DECLARE @ngansachID INT
 	SET @userID = (SELECT COUNT(*) FROM Users) + 1;
-	SET @ngansachID = (SELECT COUNT(*) FROM USER_Ngan_Sach) +1;
     BEGIN TRY
-
         INSERT INTO dbo.[Users] (ID, Ten, UserName, PWHash, Ngay_Sinh)
         VALUES(@userID, @pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
-
         SET @responseMessage='Success'
 
     END TRY

@@ -115,14 +115,13 @@ namespace ABC.ViewModel
                     {
                         throw new Exception("password and password confirm are different");
                     }
-                    //using (var context = new QLChiTieuEntities())
-                    //{
-                    //    System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
+                    using (QLChiTieuEntities context = new QLChiTieuEntities())
+                    {
+                        System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
 
-                    //    context.uspAddUser(UserName, _passWord, CustomerName,dob,responseMessage);
-
-                    //    MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
-                    //}
+                        context.uspAddUser(UserName, _passWord, CustomerName, dob, responseMessage);
+                        MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+                    }
                 }
                 catch (Exception error)
                 {

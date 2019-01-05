@@ -21,6 +21,7 @@
                 <TextBlock Margin="20 50 20 5">Nhập tên đăng nhập mới</TextBlock>
                 <TextBox materialDesign:HintAssist.Hint="vd: nguyenvanA" 
                          Name="txtNewName" 
+                         Text="{Binding newUserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="20 20 20 0"></TextBox>
                 <TextBlock Margin="20 50 20 5">Nhập mật khẩu</TextBlock>
                 <PasswordBox
@@ -30,6 +31,7 @@
                 <Canvas>
                     <Button 
                         Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding ElementName=thayDoiUserNameDialog}"
                         Width="60" Margin="100 30 240 0">
                         Lưu
                     </Button>

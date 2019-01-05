@@ -89,8 +89,8 @@
                             Margin="20 20 20 0"/>
                         <TextBlock 
                             FontSize="15"
-                            HorizontalAlignment="Center">
-                            account</TextBlock>
+                            HorizontalAlignment="Center"
+                            Text="{Binding curentUser.Ten}"/>
                         <Button Name="btnSettingInfo" 
                                 Command="{Binding NavCommand}" CommandParameter="chinh_sua"
                                 Margin="10"
