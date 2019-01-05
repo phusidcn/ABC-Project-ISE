@@ -15,7 +15,11 @@ namespace ABC.ViewModel
         {
             okCommand = new MyICommand(onOk);
             cancelCommand = new MyICommand(onCancel);
-        }
+			using (var context = new QLChiTieuEntities())
+			{
+				ViList = context.Vis.ToList();
+			}
+		}
 
 		#region Properties
 

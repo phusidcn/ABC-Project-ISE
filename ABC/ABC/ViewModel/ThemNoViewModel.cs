@@ -16,7 +16,11 @@ namespace ABC.ViewModel
 
             onCancelCommand = new MyICommand(onCancel);
             onOKCommand = new MyICommand(onOk);
-        }
+			using (var context = new QLChiTieuEntities())
+			{
+				ViList = context.Vis.ToList();
+			}
+		}
 
 		#region Properties
 		// So giao dich properties
