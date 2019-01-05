@@ -22,8 +22,12 @@ namespace ABC.ViewModel
             CurrentWindowState = WindowState.Normal;
         }
 
-        #region ViewModel
-        private TrangChuViewModel giaoDichViewModel = new TrangChuViewModel();
+		#region Properties
+		
+		#endregion
+
+		#region ViewModel
+		private TrangChuViewModel giaoDichViewModel = new TrangChuViewModel();
         private GhiNoViewModel ghiNoViewModel = new GhiNoViewModel();
         private TietKiemViewModel tietKiemViewModel = new TietKiemViewModel();
         private NhomCanDungViewModel nhomViewModel = new NhomCanDungViewModel();
