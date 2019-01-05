@@ -18,9 +18,9 @@ namespace ABC.Views
     /// <summary>
     /// Interaction logic for ThemNganSach.xaml
     /// </summary>
-    public partial class ThemNganSach : UserControl
+    public partial class ChuyenTien : UserControl
     {
-        public ThemNganSach()
+        public ChuyenTien()
         {
             InitializeComponent();
         }

@@ -17,7 +17,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <Grid Name="MenuBar" Height="44"  Margin="0,0,0,631" Background="#d60000">
+        <Grid Name="MenuBar" Height="54"  Margin="0,0,0,621" Background="#d60000">
             <StackPanel VerticalAlignment="Center">
                 <Grid>
                     <Label Name="WalletName"
@@ -49,7 +49,7 @@
                             BorderBrush="{x:Null}" 
                             Width="50" 
                             HorizontalAlignment="Right"
-                            Margin="0,0,130,0">
+                            Margin="0,0,170,0">
                         <materialDesign:PackIcon 
                             Kind="Plus"
                             Foreground="White"/>
@@ -59,20 +59,32 @@
                             BorderBrush="{x:Null}"
                             Width="50"
                             HorizontalAlignment="Right"
-                            Margin="0,0,90,0"
+                            Margin="0,0,120,0"
                             >
                         <materialDesign:PackIcon
                             Kind="SwapHorizontalBold"
                             Foreground="White"/>
                     </Button>
-                    <materialDesign:Badged Badge="1" Margin="700 40 30 0">
+                    <Button
+                        Name="btnXemTheoNgay"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Width="50"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 70 0"
+                        >
+                        <materialDesign:PackIcon
+                        Kind="ViewDay"
+                        Foreground="White"/>
+                    </Button>
+                    <materialDesign:Badged 
+                        Badge="1"
+                        HorizontalAlignment="Right"
+                            Margin="0 40 20 0">
                         <Button Name="btnThongBao"
                             Background="{x:Null}"  
                             BorderBrush="{x:Null}" 
-                            Width="50" 
-                            HorizontalAlignment="Right"
-                            
-                            >
+                            Width="50">
                             <materialDesign:PackIcon 
                             Kind="Bell"
                             Foreground="White"/>
@@ -91,7 +103,7 @@
                             Kind="Bell"
                             Foreground="White"/>
                     </Button>
-                    -->
+                    
                     <materialDesign:PopupBox 
                     HorizontalAlignment="Right"
                     Margin="10"
@@ -106,14 +118,17 @@
                             <Button Name="btnQuayLaiThangNay" Content="Quay lại tháng này"/>
                         </StackPanel>
                     </materialDesign:PopupBox>
+                    
+                    -->
+                   
                 </Grid>
             </StackPanel>
         </Grid>
 
         <Grid 
             Name="StatusBar"
-            Margin="0, 44, 0 ,581" 
-            Height="50" 
+            Margin="0, 54, 0 ,581" 
+            Height="40" 
             Background="#d60000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -123,9 +138,46 @@
                        TextAlignment="Center" 
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"
-                       FontSize="23" Height="30" Width="130"
-                       Margin="215,10,285,10"/>
+                       FontSize="22" Height="30" Width="130"
+                       Margin="215,0,285,10"/>
         </Grid>
+
+
+        <StackPanel Margin="0 91 0 0">
+
+            <Border
+                Background="{DynamicResource MaterialDesignBackground}">
+                <GroupBox
+                    Margin="0 20 0 0"
+                    Header="Tổng quan"
+                    Style="{DynamicResource MaterialDesignGroupBox}"
+                    Width="600"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Thu nhập: "/>
+                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Đã chi: "/>
+                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Còn lại: "/>
+                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Border>
+
+            <ListBox                 Name="lst"                 Width="600"                 Height="440"                Margin="10"                 ItemsSource="{Binding items}"                 HorizontalContentAlignment="Stretch"                ScrollViewer.VerticalScrollBarVisibility="Auto">                <ListBox.ItemTemplate>                    <DataTemplate>                        <materialDesign:Card                                                        Background="{DynamicResource MaterialDesignBackground}">                            <StackPanel>                                <Expander                                  HorizontalAlignment="Stretch"                                    Header="{Binding Name}">                                    <StackPanel                                        Orientation="Vertical"                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"                                        Margin="24,8,24,16">                                        <TextBlock Text="hehehehehehe"/>                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>                                        <TextBlock Text="{Binding Name}"/>                                    </StackPanel>                                </Expander>                                <Border                                  Background="{DynamicResource MaterialDesignDivider}"                                  Height="1"                                  HorizontalAlignment="Stretch"                                  SnapsToDevicePixels="True" />                            </StackPanel>                        </materialDesign:Card>                    </DataTemplate>                </ListBox.ItemTemplate>            </ListBox>
+
+        </StackPanel>
+        
+
+
+
         <Frame 
             x:Name="frTrangChu" 
             Height="675" Width="800" 
