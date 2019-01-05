@@ -166,6 +166,9 @@
     <Compile Include="Views\BieuDoView.xaml.cs">
       <DependentUpon>BieuDoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DoiMatKhauView.xaml.cs">
+      <DependentUpon>DoiMatKhauView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GiupDoView.xaml.cs">
       <DependentUpon>GiupDoView.xaml</DependentUpon>
     </Compile>
