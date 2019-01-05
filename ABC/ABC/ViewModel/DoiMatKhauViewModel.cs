@@ -41,7 +41,7 @@ namespace ABC.ViewModel
                     using(var db = new QLChiTieuEntities()){
                         System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
 
-                        db.uspModifyPassWord(pId: id, nPassword: nPass, responseMessage: responseMessage);
+                        //db.uspModifyPassWord(pId: id, nPassword: nPass, responseMessage: responseMessage);
 
                         if (responseMessage != null)
                         {

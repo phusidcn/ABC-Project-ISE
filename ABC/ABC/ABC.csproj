@@ -106,9 +106,6 @@
     <Compile Include="Model\HEO.cs">
       <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Ngan_Sach.cs">
-      <DependentUpon>QLChiTieu.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Nhom.cs">
       <DependentUpon>QLChiTieu.tt</DependentUpon>
     </Compile>
@@ -451,7 +448,18 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\QLChiTieu.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieu.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\QLChiTieu.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLChiTieu.edmx</DependentUpon>
+      <LastGenOutput>QLChiTieu.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
@@ -468,18 +476,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Model\QLChiTieu.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLChiTieu.edmx</DependentUpon>
-      <LastGenOutput>QLChiTieu.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\QLChiTieu.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLChiTieu.edmx</DependentUpon>
-      <LastGenOutput>QLChiTieu.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
