@@ -22,7 +22,6 @@ namespace ABC.Model
     
         public int ID { get; set; }
         public string TEN { get; set; }
-        public string LOAI { get; set; }
         public string ICON { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

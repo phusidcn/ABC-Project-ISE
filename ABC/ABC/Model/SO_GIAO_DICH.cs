@@ -17,20 +17,18 @@ namespace ABC.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SO_GIAO_DICH()
         {
-            this.SO_NO = new HashSet<SO_NO>();
             this.Users = new HashSet<User>();
         }
     
         public int ID { get; set; }
         public int ID_VI { get; set; }
-        public int NHOM { get; set; }
+        public int ID_NHOM { get; set; }
         public int SO_TIEN { get; set; }
         public string GHI_CHU { get; set; }
+        public string NguoiLQ { get; set; }
         public Nullable<System.DateTime> NGAY { get; set; }
     
-        public virtual Nhom Nhom1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SO_NO> SO_NO { get; set; }
+        public virtual Nhom Nhom { get; set; }
         public virtual Vi Vi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

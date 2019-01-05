@@ -18,6 +18,7 @@ namespace ABC.Model
         public Vi()
         {
             this.SO_GIAO_DICH = new HashSet<SO_GIAO_DICH>();
+            this.SO_NO = new HashSet<SO_NO>();
             this.Users = new HashSet<User>();
         }
     
@@ -27,6 +28,8 @@ namespace ABC.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SO_GIAO_DICH> SO_GIAO_DICH { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SO_NO> SO_NO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }

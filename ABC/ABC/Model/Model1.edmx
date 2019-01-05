@@ -9,57 +9,54 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MUC_DICH" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="MUC_TIEU" Type="int" Nullable="false" />
           <Property Name="HIEN_TAI" Type="int" Nullable="false" />
-          <Property Name="NGAY_KT" Type="date" Nullable="false" />
+          <Property Name="NGAY_KT" Type="date" />
           <Property Name="ID_USER" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Ngan_Sach">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ten" Type="int" Nullable="false" />
-          <Property Name="IdNhom" Type="int" Nullable="false" />
-          <Property Name="SoTien" Type="int" Nullable="false" />
-          <Property Name="SoTienConLai" Type="int" Nullable="false" />
-          <Property Name="PhanTram" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="Ngay_Bat_Dau" Type="date" />
-          <Property Name="Ngay_Ket_Thuc" Type="date" />
         </EntityType>
         <EntityType Name="Nhom">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TEN" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="LOAI" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ICON" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="TEN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ICON" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="SO_GIAO_DICH">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="ID_VI" Type="int" Nullable="false" />
-          <Property Name="NHOM" Type="int" Nullable="false" />
+          <Property Name="ID_NHOM" Type="int" Nullable="false" />
           <Property Name="SO_TIEN" Type="int" Nullable="false" />
           <Property Name="GHI_CHU" Type="nvarchar" MaxLength="150" />
+          <Property Name="NguoiLQ" Type="nvarchar" MaxLength="50" />
           <Property Name="NGAY" Type="date" />
         </EntityType>
         <EntityType Name="SO_NO">
           <Key>
-            <PropertyRef Name="STT" />
-            <PropertyRef Name="ID_GIAO_DICH" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_GIAO_DICH" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_VI" Type="int" Nullable="false" />
           <Property Name="LOAI" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SO_TIEN" Type="int" Nullable="false" />
+          <Property Name="Ghi_Chu" Type="nvarchar" MaxLength="50" />
           <Property Name="PERSON" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="NGAY" Type="date" Nullable="false" />
+          <Property Name="DaTra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SO_NO_USER">
+          <Key>
+            <PropertyRef Name="ID_SO_NO" />
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_SO_NO" Type="int" Nullable="false" />
+          <Property Name="ID_USER" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USER_GIAO_DICH">
           <Key>
@@ -68,14 +65,6 @@
           </Key>
           <Property Name="ID_GIAO_DICH" Type="int" Nullable="false" />
           <Property Name="ID_USER" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="USER_Ngan_Sach">
-          <Key>
-            <PropertyRef Name="IdNganSach" />
-            <PropertyRef Name="IdUser" />
-          </Key>
-          <Property Name="IdNganSach" Type="int" Nullable="false" />
-          <Property Name="IdUser" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USER_VI">
           <Key>
@@ -89,7 +78,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PWHash" Type="binary" MaxLength="64" Nullable="false" />
@@ -99,7 +88,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="TEN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SO_TIEN" Type="int" Nullable="false" />
         </EntityType>
@@ -115,15 +104,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SO_NO_GIAO_DICH">
-          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="1" />
+        <Association Name="FK_SO_NO_USER__SO_NO">
+          <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="1" />
+          <End Role="SO_NO_USER" Type="Self.SO_NO_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SO_NO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_NO_USER">
+              <PropertyRef Name="ID_SO_NO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SO_NO_USER__USER">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="SO_NO_USER" Type="Self.SO_NO_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_NO_USER">
+              <PropertyRef Name="ID_USER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SO_NO_VI">
+          <End Role="Vi" Type="Self.Vi" Multiplicity="1" />
           <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SO_GIAO_DICH">
+            <Principal Role="Vi">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="SO_NO">
-              <PropertyRef Name="ID_GIAO_DICH" />
+              <PropertyRef Name="ID_VI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -135,7 +148,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="SO_GIAO_DICH">
-              <PropertyRef Name="NHOM" />
+              <PropertyRef Name="ID_NHOM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,30 +212,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserNganSach_NganSach">
-          <End Role="Ngan_Sach" Type="Self.Ngan_Sach" Multiplicity="1" />
-          <End Role="USER_Ngan_Sach" Type="Self.USER_Ngan_Sach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ngan_Sach">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="USER_Ngan_Sach">
-              <PropertyRef Name="IdNganSach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserNganSach_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="USER_Ngan_Sach" Type="Self.USER_Ngan_Sach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="USER_Ngan_Sach">
-              <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="uspAddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pUsername" Type="varchar" Mode="In" />
           <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
@@ -237,22 +226,82 @@
         </Function>
         <Function Name="uspModifyPassWord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pId" Type="int" Mode="In" />
-          <Parameter Name="nPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="oldPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="newPassword" Type="nvarchar" Mode="In" />
           <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
         </Function>
         <Function Name="uspModifyUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pId" Type="int" Mode="In" />
+          <Parameter Name="uPassword" Type="nvarchar" Mode="In" />
           <Parameter Name="nUsername" Type="nvarchar" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemGiaoDich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdUser" Type="int" Mode="In" />
+          <Parameter Name="pVi" Type="int" Mode="In" />
+          <Parameter Name="pIdNhom" Type="int" Mode="In" />
+          <Parameter Name="pSoTien" Type="int" Mode="In" />
+          <Parameter Name="pGhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="pNguoiLienQuan" Type="nvarchar" Mode="In" />
+          <Parameter Name="pNgay" Type="date" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemKhoanChoVay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pId_User" Type="int" Mode="In" />
+          <Parameter Name="pId_Vi" Type="int" Mode="In" />
+          <Parameter Name="pPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="pSoTien" Type="int" Mode="In" />
+          <Parameter Name="pGhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="pNgayVay" Type="date" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemKhoanTietKiem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdUser" Type="int" Mode="In" />
+          <Parameter Name="pIdKhoanTK" Type="int" Mode="In" />
+          <Parameter Name="pIdVi" Type="int" Mode="In" />
+          <Parameter Name="pSoTien" Type="int" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemKhoanVay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pId_User" Type="int" Mode="In" />
+          <Parameter Name="pId_Vi" Type="int" Mode="In" />
+          <Parameter Name="pPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="pSoTien" Type="int" Mode="In" />
+          <Parameter Name="pGhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="pNgayVay" Type="date" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemTietKiem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdUser" Type="int" Mode="In" />
+          <Parameter Name="pTenKhoanTk" Type="nvarchar" Mode="In" />
+          <Parameter Name="pMucDich" Type="nvarchar" Mode="In" />
+          <Parameter Name="pMucTieu" Type="int" Mode="In" />
+          <Parameter Name="pNgayKT" Type="date" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThemVi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdUser" Type="int" Mode="In" />
+          <Parameter Name="pTenVi" Type="nvarchar" Mode="In" />
+          <Parameter Name="pSoTien" Type="int" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspThuNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUser" Type="int" Mode="In" />
+          <Parameter Name="IdKhoanChoVay" Type="int" Mode="In" />
+          <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="uspTraNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUser" Type="int" Mode="In" />
+          <Parameter Name="IdKhoanVay" Type="int" Mode="In" />
           <Parameter Name="responseMessage" Type="nvarchar" Mode="InOut" />
         </Function>
         <EntityContainer Name="QLChiTieuModelStoreContainer">
           <EntitySet Name="HEO" EntityType="Self.HEO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ngan_Sach" EntityType="Self.Ngan_Sach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nhom" EntityType="Self.Nhom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_GIAO_DICH" EntityType="Self.SO_GIAO_DICH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SO_NO" EntityType="Self.SO_NO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SO_NO_USER" EntityType="Self.SO_NO_USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER_GIAO_DICH" EntityType="Self.USER_GIAO_DICH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USER_Ngan_Sach" EntityType="Self.USER_Ngan_Sach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER_VI" EntityType="Self.USER_VI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vi" EntityType="Self.Vi" Schema="dbo" store:Type="Tables" />
@@ -260,8 +309,16 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="HEO" EntitySet="HEO" />
           </AssociationSet>
-          <AssociationSet Name="FK_SO_NO_GIAO_DICH" Association="Self.FK_SO_NO_GIAO_DICH">
-            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          <AssociationSet Name="FK_SO_NO_USER__SO_NO" Association="Self.FK_SO_NO_USER__SO_NO">
+            <End Role="SO_NO" EntitySet="SO_NO" />
+            <End Role="SO_NO_USER" EntitySet="SO_NO_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SO_NO_USER__USER" Association="Self.FK_SO_NO_USER__USER">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SO_NO_USER" EntitySet="SO_NO_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SO_NO_VI" Association="Self.FK_SO_NO_VI">
+            <End Role="Vi" EntitySet="Vi" />
             <End Role="SO_NO" EntitySet="SO_NO" />
           </AssociationSet>
           <AssociationSet Name="FK_SOGD_NHOM" Association="Self.FK_SOGD_NHOM">
@@ -288,14 +345,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="USER_GIAO_DICH" EntitySet="USER_GIAO_DICH" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserNganSach_NganSach" Association="Self.FK_UserNganSach_NganSach">
-            <End Role="Ngan_Sach" EntitySet="Ngan_Sach" />
-            <End Role="USER_Ngan_Sach" EntitySet="USER_Ngan_Sach" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserNganSach_Users" Association="Self.FK_UserNganSach_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="USER_Ngan_Sach" EntitySet="USER_Ngan_Sach" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -306,88 +355,77 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MUC_DICH" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MUC_TIEU" Type="Int32" Nullable="false" />
           <Property Name="HIEN_TAI" Type="Int32" Nullable="false" />
-          <Property Name="NGAY_KT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NGAY_KT" Type="DateTime" Precision="0" />
           <Property Name="ID_USER" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_HEO_USER" FromRole="HEO" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Ngan_Sach">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="Int32" Nullable="false" />
-          <Property Name="IdNhom" Type="Int32" Nullable="false" />
-          <Property Name="SoTien" Type="Int32" Nullable="false" />
-          <Property Name="SoTienConLai" Type="Int32" Nullable="false" />
-          <Property Name="PhanTram" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="Ngay_Bat_Dau" Type="DateTime" Precision="0" />
-          <Property Name="Ngay_Ket_Thuc" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Users" Relationship="Self.USER_Ngan_Sach" FromRole="Ngan_Sach" ToRole="Users" />
         </EntityType>
         <EntityType Name="Nhom">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TEN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ICON" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.FK_SOGD_NHOM" FromRole="Nhom" ToRole="SO_GIAO_DICH" />
         </EntityType>
         <EntityType Name="SO_GIAO_DICH">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ID_VI" Type="Int32" Nullable="false" />
-          <Property Name="NHOM" Type="Int32" Nullable="false" />
+          <Property Name="ID_NHOM" Type="Int32" Nullable="false" />
           <Property Name="SO_TIEN" Type="Int32" Nullable="false" />
           <Property Name="GHI_CHU" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiLQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NGAY" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Nhom1" Relationship="Self.FK_SOGD_NHOM" FromRole="SO_GIAO_DICH" ToRole="Nhom" />
-          <NavigationProperty Name="SO_NO" Relationship="Self.FK_SO_NO_GIAO_DICH" FromRole="SO_GIAO_DICH" ToRole="SO_NO" />
+          <NavigationProperty Name="Nhom" Relationship="Self.FK_SOGD_NHOM" FromRole="SO_GIAO_DICH" ToRole="Nhom" />
           <NavigationProperty Name="Vi" Relationship="Self.FK_SOGD_VI" FromRole="SO_GIAO_DICH" ToRole="Vi" />
           <NavigationProperty Name="Users" Relationship="Self.USER_GIAO_DICH" FromRole="SO_GIAO_DICH" ToRole="Users" />
         </EntityType>
         <EntityType Name="SO_NO">
           <Key>
-            <PropertyRef Name="STT" />
-            <PropertyRef Name="ID_GIAO_DICH" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_GIAO_DICH" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_VI" Type="Int32" Nullable="false" />
           <Property Name="LOAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SO_TIEN" Type="Int32" Nullable="false" />
+          <Property Name="Ghi_Chu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PERSON" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NGAY" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.FK_SO_NO_GIAO_DICH" FromRole="SO_NO" ToRole="SO_GIAO_DICH" />
+          <Property Name="DaTra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vi" Relationship="Self.FK_SO_NO_VI" FromRole="SO_NO" ToRole="Vi" />
+          <NavigationProperty Name="Users" Relationship="Self.SO_NO_USER" FromRole="SO_NO" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PWHash" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
           <Property Name="Ngay_Sinh" Type="DateTime" Precision="0" />
           <NavigationProperty Name="HEOs" Relationship="Self.FK_HEO_USER" FromRole="Users" ToRole="HEO" />
+          <NavigationProperty Name="SO_NO" Relationship="Self.SO_NO_USER" FromRole="Users" ToRole="SO_NO" />
           <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.USER_GIAO_DICH" FromRole="Users" ToRole="SO_GIAO_DICH" />
-          <NavigationProperty Name="Ngan_Sach" Relationship="Self.USER_Ngan_Sach" FromRole="Users" ToRole="Ngan_Sach" />
           <NavigationProperty Name="Vis" Relationship="Self.USER_VI" FromRole="Users" ToRole="Vi" />
         </EntityType>
         <EntityType Name="Vi">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="TEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SO_TIEN" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SO_GIAO_DICH" Relationship="Self.FK_SOGD_VI" FromRole="Vi" ToRole="SO_GIAO_DICH" />
+          <NavigationProperty Name="SO_NO" Relationship="Self.FK_SO_NO_VI" FromRole="Vi" ToRole="SO_NO" />
           <NavigationProperty Name="Users" Relationship="Self.USER_VI" FromRole="Vi" ToRole="Users" />
         </EntityType>
         <Association Name="FK_HEO_USER">
@@ -410,19 +448,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="SO_GIAO_DICH">
-              <PropertyRef Name="NHOM" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SO_NO_GIAO_DICH">
-          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="1" />
-          <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SO_GIAO_DICH">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SO_NO">
-              <PropertyRef Name="ID_GIAO_DICH" />
+              <PropertyRef Name="ID_NHOM" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -438,12 +464,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="USER_GIAO_DICH">
-          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="*" />
+        <Association Name="FK_SO_NO_VI">
+          <End Role="Vi" Type="Self.Vi" Multiplicity="1" />
+          <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SO_NO">
+              <PropertyRef Name="ID_VI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SO_NO_USER">
+          <End Role="SO_NO" Type="Self.SO_NO" Multiplicity="*" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
         </Association>
-        <Association Name="USER_Ngan_Sach">
-          <End Role="Ngan_Sach" Type="Self.Ngan_Sach" Multiplicity="*" />
+        <Association Name="USER_GIAO_DICH">
+          <End Role="SO_GIAO_DICH" Type="Self.SO_GIAO_DICH" Multiplicity="*" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
         </Association>
         <Association Name="USER_VI">
@@ -452,7 +490,6 @@
         </Association>
         <EntityContainer Name="QLChiTieuEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HEOs" EntityType="Self.HEO" />
-          <EntitySet Name="Ngan_Sach" EntityType="Self.Ngan_Sach" />
           <EntitySet Name="Nhoms" EntityType="Self.Nhom" />
           <EntitySet Name="SO_GIAO_DICH" EntityType="Self.SO_GIAO_DICH" />
           <EntitySet Name="SO_NO" EntityType="Self.SO_NO" />
@@ -466,20 +503,20 @@
             <End Role="Nhom" EntitySet="Nhoms" />
             <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
           </AssociationSet>
-          <AssociationSet Name="FK_SO_NO_GIAO_DICH" Association="Self.FK_SO_NO_GIAO_DICH">
-            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
-            <End Role="SO_NO" EntitySet="SO_NO" />
-          </AssociationSet>
           <AssociationSet Name="FK_SOGD_VI" Association="Self.FK_SOGD_VI">
             <End Role="Vi" EntitySet="Vis" />
             <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
           </AssociationSet>
-          <AssociationSet Name="USER_GIAO_DICH" Association="Self.USER_GIAO_DICH">
-            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
+          <AssociationSet Name="FK_SO_NO_VI" Association="Self.FK_SO_NO_VI">
+            <End Role="Vi" EntitySet="Vis" />
+            <End Role="SO_NO" EntitySet="SO_NO" />
+          </AssociationSet>
+          <AssociationSet Name="SO_NO_USER" Association="Self.SO_NO_USER">
+            <End Role="SO_NO" EntitySet="SO_NO" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="USER_Ngan_Sach" Association="Self.USER_Ngan_Sach">
-            <End Role="Ngan_Sach" EntitySet="Ngan_Sach" />
+          <AssociationSet Name="USER_GIAO_DICH" Association="Self.USER_GIAO_DICH">
+            <End Role="SO_GIAO_DICH" EntitySet="SO_GIAO_DICH" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="USER_VI" Association="Self.USER_VI">
@@ -500,12 +537,73 @@
           </FunctionImport>
           <FunctionImport Name="uspModifyPassWord">
             <Parameter Name="pId" Mode="In" Type="Int32" />
-            <Parameter Name="nPassword" Mode="In" Type="String" />
+            <Parameter Name="oldPassword" Mode="In" Type="String" />
+            <Parameter Name="newPassword" Mode="In" Type="String" />
             <Parameter Name="responseMessage" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="uspModifyUserName">
             <Parameter Name="pId" Mode="In" Type="Int32" />
+            <Parameter Name="uPassword" Mode="In" Type="String" />
             <Parameter Name="nUsername" Mode="In" Type="String" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemGiaoDich">
+            <Parameter Name="pIdUser" Mode="In" Type="Int32" />
+            <Parameter Name="pVi" Mode="In" Type="Int32" />
+            <Parameter Name="pIdNhom" Mode="In" Type="Int32" />
+            <Parameter Name="pSoTien" Mode="In" Type="Int32" />
+            <Parameter Name="pGhiChu" Mode="In" Type="String" />
+            <Parameter Name="pNguoiLienQuan" Mode="In" Type="String" />
+            <Parameter Name="pNgay" Mode="In" Type="DateTime" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemKhoanChoVay">
+            <Parameter Name="pId_User" Mode="In" Type="Int32" />
+            <Parameter Name="pId_Vi" Mode="In" Type="Int32" />
+            <Parameter Name="pPerson" Mode="In" Type="String" />
+            <Parameter Name="pSoTien" Mode="In" Type="Int32" />
+            <Parameter Name="pGhiChu" Mode="In" Type="String" />
+            <Parameter Name="pNgayVay" Mode="In" Type="DateTime" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemKhoanTietKiem">
+            <Parameter Name="pIdUser" Mode="In" Type="Int32" />
+            <Parameter Name="pIdKhoanTK" Mode="In" Type="Int32" />
+            <Parameter Name="pIdVi" Mode="In" Type="Int32" />
+            <Parameter Name="pSoTien" Mode="In" Type="Int32" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemKhoanVay">
+            <Parameter Name="pId_User" Mode="In" Type="Int32" />
+            <Parameter Name="pId_Vi" Mode="In" Type="Int32" />
+            <Parameter Name="pPerson" Mode="In" Type="String" />
+            <Parameter Name="pSoTien" Mode="In" Type="Int32" />
+            <Parameter Name="pGhiChu" Mode="In" Type="String" />
+            <Parameter Name="pNgayVay" Mode="In" Type="DateTime" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemTietKiem">
+            <Parameter Name="pIdUser" Mode="In" Type="Int32" />
+            <Parameter Name="pTenKhoanTk" Mode="In" Type="String" />
+            <Parameter Name="pMucDich" Mode="In" Type="String" />
+            <Parameter Name="pMucTieu" Mode="In" Type="Int32" />
+            <Parameter Name="pNgayKT" Mode="In" Type="DateTime" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThemVi">
+            <Parameter Name="pIdUser" Mode="In" Type="Int32" />
+            <Parameter Name="pTenVi" Mode="In" Type="String" />
+            <Parameter Name="pSoTien" Mode="In" Type="Int32" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspThuNo">
+            <Parameter Name="IdUser" Mode="In" Type="Int32" />
+            <Parameter Name="IdKhoanChoVay" Mode="In" Type="Int32" />
+            <Parameter Name="responseMessage" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="uspTraNo">
+            <Parameter Name="IdUser" Mode="In" Type="Int32" />
+            <Parameter Name="IdKhoanVay" Mode="In" Type="Int32" />
             <Parameter Name="responseMessage" Mode="InOut" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -528,26 +626,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ngan_Sach">
-            <EntityTypeMapping TypeName="QLChiTieuModel.Ngan_Sach">
-              <MappingFragment StoreEntitySet="Ngan_Sach">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="IdNhom" ColumnName="IdNhom" />
-                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
-                <ScalarProperty Name="SoTienConLai" ColumnName="SoTienConLai" />
-                <ScalarProperty Name="PhanTram" ColumnName="PhanTram" />
-                <ScalarProperty Name="Ngay_Bat_Dau" ColumnName="Ngay_Bat_Dau" />
-                <ScalarProperty Name="Ngay_Ket_Thuc" ColumnName="Ngay_Ket_Thuc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Nhoms">
             <EntityTypeMapping TypeName="QLChiTieuModel.Nhom">
               <MappingFragment StoreEntitySet="Nhom">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TEN" ColumnName="TEN" />
-                <ScalarProperty Name="LOAI" ColumnName="LOAI" />
                 <ScalarProperty Name="ICON" ColumnName="ICON" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -557,9 +640,10 @@
               <MappingFragment StoreEntitySet="SO_GIAO_DICH">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_VI" ColumnName="ID_VI" />
-                <ScalarProperty Name="NHOM" ColumnName="NHOM" />
+                <ScalarProperty Name="ID_NHOM" ColumnName="ID_NHOM" />
                 <ScalarProperty Name="SO_TIEN" ColumnName="SO_TIEN" />
                 <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="NguoiLQ" ColumnName="NguoiLQ" />
                 <ScalarProperty Name="NGAY" ColumnName="NGAY" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -567,11 +651,14 @@
           <EntitySetMapping Name="SO_NO">
             <EntityTypeMapping TypeName="QLChiTieuModel.SO_NO">
               <MappingFragment StoreEntitySet="SO_NO">
-                <ScalarProperty Name="STT" ColumnName="STT" />
-                <ScalarProperty Name="ID_GIAO_DICH" ColumnName="ID_GIAO_DICH" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_VI" ColumnName="ID_VI" />
                 <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+                <ScalarProperty Name="SO_TIEN" ColumnName="SO_TIEN" />
+                <ScalarProperty Name="Ghi_Chu" ColumnName="Ghi_Chu" />
                 <ScalarProperty Name="PERSON" ColumnName="PERSON" />
                 <ScalarProperty Name="NGAY" ColumnName="NGAY" />
+                <ScalarProperty Name="DaTra" ColumnName="DaTra" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -595,20 +682,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="SO_NO_USER" TypeName="QLChiTieuModel.SO_NO_USER" StoreEntitySet="SO_NO_USER">
+            <EndProperty Name="SO_NO">
+              <ScalarProperty Name="ID" ColumnName="ID_SO_NO" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="ID" ColumnName="ID_USER" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="USER_GIAO_DICH" TypeName="QLChiTieuModel.USER_GIAO_DICH" StoreEntitySet="USER_GIAO_DICH">
             <EndProperty Name="SO_GIAO_DICH">
               <ScalarProperty Name="ID" ColumnName="ID_GIAO_DICH" />
             </EndProperty>
             <EndProperty Name="Users">
               <ScalarProperty Name="ID" ColumnName="ID_USER" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="USER_Ngan_Sach" TypeName="QLChiTieuModel.USER_Ngan_Sach" StoreEntitySet="USER_Ngan_Sach">
-            <EndProperty Name="Ngan_Sach">
-              <ScalarProperty Name="ID" ColumnName="IdNganSach" />
-            </EndProperty>
-            <EndProperty Name="Users">
-              <ScalarProperty Name="ID" ColumnName="IdUser" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="USER_VI" TypeName="QLChiTieuModel.USER_VI" StoreEntitySet="USER_VI">
@@ -623,6 +710,14 @@
           <FunctionImportMapping FunctionImportName="uspLogin" FunctionName="QLChiTieuModel.Store.uspLogin" />
           <FunctionImportMapping FunctionImportName="uspModifyPassWord" FunctionName="QLChiTieuModel.Store.uspModifyPassWord" />
           <FunctionImportMapping FunctionImportName="uspModifyUserName" FunctionName="QLChiTieuModel.Store.uspModifyUserName" />
+          <FunctionImportMapping FunctionImportName="uspThemGiaoDich" FunctionName="QLChiTieuModel.Store.uspThemGiaoDich" />
+          <FunctionImportMapping FunctionImportName="uspThemKhoanChoVay" FunctionName="QLChiTieuModel.Store.uspThemKhoanChoVay" />
+          <FunctionImportMapping FunctionImportName="uspThemKhoanTietKiem" FunctionName="QLChiTieuModel.Store.uspThemKhoanTietKiem" />
+          <FunctionImportMapping FunctionImportName="uspThemKhoanVay" FunctionName="QLChiTieuModel.Store.uspThemKhoanVay" />
+          <FunctionImportMapping FunctionImportName="uspThemTietKiem" FunctionName="QLChiTieuModel.Store.uspThemTietKiem" />
+          <FunctionImportMapping FunctionImportName="uspThemVi" FunctionName="QLChiTieuModel.Store.uspThemVi" />
+          <FunctionImportMapping FunctionImportName="uspThuNo" FunctionName="QLChiTieuModel.Store.uspThuNo" />
+          <FunctionImportMapping FunctionImportName="uspTraNo" FunctionName="QLChiTieuModel.Store.uspTraNo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

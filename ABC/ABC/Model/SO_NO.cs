@@ -14,12 +14,23 @@ namespace ABC.Model
     
     public partial class SO_NO
     {
-        public int STT { get; set; }
-        public int ID_GIAO_DICH { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SO_NO()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
+        public int ID { get; set; }
+        public int ID_VI { get; set; }
         public string LOAI { get; set; }
+        public int SO_TIEN { get; set; }
+        public string Ghi_Chu { get; set; }
         public string PERSON { get; set; }
         public System.DateTime NGAY { get; set; }
+        public int DaTra { get; set; }
     
-        public virtual SO_GIAO_DICH SO_GIAO_DICH { get; set; }
+        public virtual Vi Vi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }
