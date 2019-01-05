@@ -2,7 +2,6 @@
 GO
 USE QLChiTieu
 GO
-
 --------create table--------
 CREATE TABLE Users(
 	ID INT PRIMARY KEY,
@@ -47,7 +46,6 @@ CREATE TABLE SO_GIAO_DICH
 	NguoiLQ nvarchar(50) null,
 	NGAY DATE null
 )
-------- Có nên tạo bảng User-Vi với User-Giaodich không????
 
 CREATE TABLE USER_GIAO_DICH
 (
@@ -75,26 +73,6 @@ CREATE TABLE SO_NO
 	DaTra INT NOT NULL
 )
 
-Create table Ngan_Sach
-(
-	ID INT PRIMARY KEY,
-	Ten INT NOT NULL,
-	IdNhom INT NOT NULL,
-	SoTien INT NOT NULL,
-	SoTienConLai INT NOT NULL,
-	PhanTram decimal(3,2) NOT NULL,
-	Ngay_Bat_Dau DATE NULL,
-	Ngay_Ket_Thuc DATE NULL
-)
-
-
-Create table USER_Ngan_Sach
-(
-	IdNganSach INT NOT NULL,
-	IdUser INT NOT NULL
-	CONSTRAINT PK_U_N_S PRIMARY KEY(IdNganSach,IdUser)
-)
-
 CREATE TABLE SO_NO_USER
 (
 	ID_SO_NO INT NOT NULL,
@@ -118,13 +96,20 @@ ALTER TABLE SO_NO ADD CONSTRAINT FK_SO_NO_VI FOREIGN KEY(ID_VI) REFERENCES Vi(ID
 
 ALTER TABLE HEO ADD CONSTRAINT FK_HEO_USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 
-ALTER TABLE Ngan_Sach ADD CONSTRAINT FK_NGANSACH_NHOM FOREIGN KEY(IdNhom) REFERENCES Nhom(ID)
-
-ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_Users FOREIGN KEY(IdUser) REFERENCES Users(ID)
-ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_NganSach FOREIGN KEY(IdNganSach) REFERENCES Ngan_Sach(ID)
-
 ALTER TABLE SO_NO_USER ADD CONSTRAINT FK_SO_NO_USER__SO_NO FOREIGN KEY(ID_SO_NO) REFERENCES SO_NO(ID)
 ALTER TABLE SO_NO_USER ADD CONSTRAINT FK_SO_NO_USER__USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
+Go
+
+
+INSERT INTO Nhom(ID, TEN, ICON)
+VALUES
+(1, N'Nhu cầu thiết yếu', N'icon/Bill.png'),
+(2,N'Giáo dục',N'icon/Education.png'),
+(3, N'Hưởng thụ', N'icon/Health.png'),
+(4, N'Tự do tài chính', N'icon/Gift.png'),
+(5, N'Tiết kiệm dài hạn', N'icon/SaveMoney.png'),
+(6, N'Giúp đỡ người khác', N'icon/FriendsAndLover.png'),
+(7, N'Thu nhập', N'icon/Bonus.png');
 
 Go
 
@@ -138,7 +123,9 @@ AS
 BEGIN
     SET NOCOUNT ON
 	DECLARE @userID INT
-	SET @userID = (SELECT COUNT(*) + 1 FROM Users)
+	DECLARE @ngansachID INT
+	SET @userID = (SELECT COUNT(*) FROM Users) + 1;
+	SET @ngansachID = (SELECT COUNT(*) FROM USER_Ngan_Sach) +1;
     BEGIN TRY
 
         INSERT INTO dbo.[Users] (ID, Ten, UserName, PWHash, Ngay_Sinh)
@@ -231,23 +218,6 @@ BEGIN
 end
 go
 
-
-INSERT INTO Nhom(ID, TEN, ICON)
-VALUES
-(1, N'Nhu cầu thiết yếu', N'icon/Bill.png'),
-(2,N'Giáo dục',N'icon/Education.png'),
-(3, N'Hưởng thụ', N'icon/Health.png'),
-(4, N'Tự do tài chính', N'icon/Gift.png'),
-(5, N'Tiết kiệm dài hạn', N'icon/SaveMoney.png'),
-(6, N'Giúp đỡ người khác', N'icon/FriendsAndLover.png'),
-(7, N'Thu nhập', N'icon/Bonus.png');
-
-Go
-
-INSERT INTO Vi(ID,TEN,SO_TIEN)
-VALUES(1, N'Tiền Mặt',0)
-go
-
 --khoan cho vay: loai = 8,, Datra = 0 -> chua tra =1
 create procedure dbo.uspThemKhoanVay
 	@pId_User INT,
@@ -323,7 +293,6 @@ BEGIN
 END
 go
 
-
 create procedure dbo.uspThemGiaoDich
 	@pIdUser INT,
 	@pVi INT,
@@ -337,7 +306,9 @@ AS
 BEGIN
     SET NOCOUNT ON
 	Declare @idGiaoDich INT
-	set @idGiaoDich = (select count(*) from SO_GIAO_DICH) + 1;
+	set @idGiaoDich = (
+					select count(*) 
+					from SO_GIAO_DICH ) + 1;
 	Declare @TienVi INT
 	set @TienVi = (select Vi.SO_TIEN from Vi Where Vi.ID = @pVi)
 	if (@pSoTien <= @TienVi)
@@ -361,5 +332,138 @@ BEGIN
 	End
 	else
 		set @responseMessage=N'Số tiền của ví không đủ'
+END
+Go
+
+create procedure dbo.uspThemTietKiem
+	@pIdUser INT,
+	@pTenKhoanTk NVARCHAR(100),
+	@pMucDich NVARCHAR(100),
+	@pMucTieu INT,
+	@pNgayKT Date,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON
+	DECLARE @IdTietKiem INT
+	SET @IdTietKiem = (SELECT COUNT(*) FROM HEO)
+	BEGIN TRY
+		INSERT INTO HEO(ID,ID_USER,TEN,MUC_DICH,MUC_TIEU,HIEN_TAI,NGAY_KT)
+		VALUES(@IdTietKiem,@pIdUser,@pTenKhoanTk,@pMucDich,@pMucTieu,0,@pNgayKT)
+
+		SET @responseMessage = N'Success'
+	END TRY
+	BEGIN CATCH
+		SET @responseMessage = N'Error'
+	END CATCH
+END
+
+Go
+
+create procedure dbo.uspThemKhoanTietKiem
+	@pIdUser INT,
+	@pIdKhoanTK INT,
+	@pIdVi INT,
+	@pSoTien INT,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON
+	Declare @idGiaoDich int
+	Declare @TienVi int
+	set @TienVi = (select Vi.SO_TIEN from Vi where Vi.ID = @pIdVi)
+	set @idGiaoDich = (select count(*) from SO_GIAO_DICH) + 1;
+	IF(@TienVi >= @pSoTien)
+	BEGIN
+		BEGIN TRY
+			INSERT INTO SO_GIAO_DICH(ID, ID_VI,ID_NHOM,SO_TIEN,GHI_CHU,NguoiLQ,NGAY)
+			VALUES(@idGiaoDich, @pIdVi,5,@pSoTien,N'Tiết kiểm',null, null)
+
+			UPDATE Vi
+			SET Vi.SO_TIEN = @TienVi - @pSoTien
+			WHERE Vi.ID = @pIdVi
+
+			UPDATE HEO
+			SET HIEN_TAI = HIEN_TAI + @pSoTien
+			WHERE HEO.ID = @pIdKhoanTK
+
+			SET @responseMessage = N'Success'
+		END TRY
+		BEGIN CATCH
+			SET @responseMessage = N'Error'
+		END CATCH
+	END
+	ELSE
+		SET @responseMessage = N'Ví không đủ tiền'
+END
+Go
+
+CREATE procedure dbo.uspThemVi
+	@pIdUser INT,
+	@pTenVi NVARCHAR(25),
+	@pSoTien INT,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	DECLARE @IdVi INT 
+	set @IdVi = (SELECT COUNT(*) FROM Vi) + 1;
+	BEGIN TRY
+		INSERT INTO Vi(ID, TEN, SO_TIEN)
+		VALUES(@IdVi, @pTenVi, @pSoTien)
+
+		INSERT INTO USER_VI(ID_USER, ID_VI)
+		VALUES(@pIdUser,@pTenVi)
+
+		set @responseMessage = 'Success'
+	END TRY
+	BEGIN CATCH
+		Set @responseMessage = 'Error'
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE dbo.uspTraNo
+	@IdUser INT,
+	@IdKhoanVay INT,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	declare @idVi int
+	DECLARE @SoTien int
+	set @idVi = (SELECT SO_NO.ID_VI FROM SO_NO WHERE SO_NO.ID = @IdKhoanVay)
+	set @SoTien = (Select SO_NO.SO_TIEN From SO_NO where SO_NO.ID = @IdKhoanVay)
+	BEGIN TRY
+		UPDATE SO_NO SET DaTra = 1 WHERE SO_NO.ID = @IdKhoanVay
+
+		UPDATE Vi SET SO_TIEN = SO_TIEN - @SoTien where ID = @idVi
+
+		SET @responseMessage = 'Success'
+	END TRY
+	BEGIN CATCH
+		SET @responseMessage = 'Error'
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE dbo.uspThuNo
+	@IdUser INT,
+	@IdKhoanChoVay INT,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	declare @idVi int
+	DECLARE @SoTien int
+	set @idVi = (SELECT SO_NO.ID_VI FROM SO_NO WHERE SO_NO.ID = @IdKhoanChoVay)
+	set @SoTien = (Select SO_NO.SO_TIEN From SO_NO where SO_NO.ID = @IdKhoanChoVay)
+	BEGIN TRY
+		UPDATE SO_NO SET DaTra = 1 WHERE SO_NO.ID = @IdKhoanChoVay
+
+		UPDATE Vi SET SO_TIEN = SO_TIEN + @SoTien where ID = @idVi
+
+		SET @responseMessage = 'Success'
+	END TRY
+	BEGIN CATCH
+		SET @responseMessage = 'Error'
+	END CATCH
 END
 Go
