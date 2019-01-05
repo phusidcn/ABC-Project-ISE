@@ -45,20 +45,82 @@
             </Grid.ColumnDefinitions>
             <TabControl>
                 <TabItem Header="Cần thu" Height="50" Width="398" FontSize="20" Background="#d60000">
-                    <!--                       Biding data to listBox, like this:                                   <ListBox Name="lst" Margin="100" ItemsSource="{Binding items}" HorizontalContentAlignment="Stretch">                <ListBox.ItemTemplate>                    <DataTemplate>                        <materialDesign:Card                            Background="{DynamicResource MaterialDesignBackground}">                            <StackPanel>                                <Expander                                  HorizontalAlignment="Stretch"                                    Header="{Binding Name}">                                    <StackPanel                                        Orientation="Vertical"                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"                                        Margin="24,8,24,16">                                        <TextBlock Text="hehehehehehe"/>                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>                                    </StackPanel>                                </Expander>                                <Border                                  Background="{DynamicResource MaterialDesignDivider}"                                  Height="1"                                  HorizontalAlignment="Stretch"                                  SnapsToDevicePixels="True" />                            </StackPanel>                        </materialDesign:Card>                    </DataTemplate>                </ListBox.ItemTemplate>            </ListBox>                        -->
+                    <!--
+                       Biding data to listBox, like this:
+           <ListBox Name="lst" Margin="100" ItemsSource="{Binding items}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card
+                            Background="{DynamicResource MaterialDesignBackground}">
+                            <StackPanel>
+                                <Expander
+                                  HorizontalAlignment="Stretch"
+                                    Header="{Binding Name}">
+                                    <StackPanel
+                                        Orientation="Vertical"
+                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                        Margin="24,8,24,16">
+                                        <TextBlock Text="hehehehehehe"/>
+                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Border
+                                  Background="{DynamicResource MaterialDesignDivider}"
+                                  Height="1"
+                                  HorizontalAlignment="Stretch"
+                                  SnapsToDevicePixels="True" />
+                            </StackPanel>
+
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+                        -->
                     <Button Name="btnThemNguoiNo" Content="Thêm" Background="Red"
                             Width="90" Height="40"
-                            FontSize="20" Margin="272,310,272,23"
+                            FontSize="20" Margin="352,510,352,23"
                             Command="{Binding themKhoanChoVayCommand}"
                             />
 
                 </TabItem>
                 <TabItem Header="Cần trả" Height="50" Width="398" FontSize="20" Background="#d60000">
-                    <!--                       Biding data to listBox, like this:                                   <ListBox Name="lst" Margin="100" ItemsSource="{Binding items}" HorizontalContentAlignment="Stretch">                <ListBox.ItemTemplate>                    <DataTemplate>                        <materialDesign:Card                            Background="{DynamicResource MaterialDesignBackground}">                            <StackPanel>                                <Expander                                  HorizontalAlignment="Stretch"                                    Header="{Binding Name}">                                    <StackPanel                                        Orientation="Vertical"                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"                                        Margin="24,8,24,16">                                        <TextBlock Text="hehehehehehe"/>                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>                                    </StackPanel>                                </Expander>                                <Border                                  Background="{DynamicResource MaterialDesignDivider}"                                  Height="1"                                  HorizontalAlignment="Stretch"                                  SnapsToDevicePixels="True" />                            </StackPanel>                        </materialDesign:Card>                    </DataTemplate>                </ListBox.ItemTemplate>            </ListBox>                        -->
+                    <!--
+                       Biding data to listBox, like this:
+                                   <ListBox Name="lst" Margin="100" ItemsSource="{Binding items}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card
+                            Background="{DynamicResource MaterialDesignBackground}">
+                            <StackPanel>
+                                <Expander
+                                  HorizontalAlignment="Stretch"
+                                    Header="{Binding Name}">
+                                    <StackPanel
+                                        Orientation="Vertical"
+                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                        Margin="24,8,24,16">
+                                        <TextBlock Text="hehehehehehe"/>
+                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Border
+                                  Background="{DynamicResource MaterialDesignDivider}"
+                                  Height="1"
+                                  HorizontalAlignment="Stretch"
+                                  SnapsToDevicePixels="True" />
+                            </StackPanel>
+
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+                        -->
 
                     <Button Name="btnThemNoNguoi" Content="Thêm" Background="Red"
                             Width="90" Height="40"
-                            FontSize="20" Margin="272,310,272,23"
+                            FontSize="20" Margin="352,510,352,23"
                             Command="{Binding themKhoanVayCommand}"
                             />
                 </TabItem>

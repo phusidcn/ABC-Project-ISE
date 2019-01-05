@@ -31,15 +31,21 @@
             <ListView FontSize="12">
                 <ListViewItem Height="50" Background="White">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HelpCircle"
+                        <materialDesign:PackIcon Kind="Group"
                                                  Background="White"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
-                        <ComboBox IsEditable="True" Width="300" Height="25">
-                            <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                            <ComboBoxItem>ComboBox Item #2</ComboBoxItem>
-                            <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
+                        <ComboBox ItemsSource="{Binding Nhom}" IsEditable="True" Width="300" Height="25">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle Fill="{Binding TEN}" Width="16" Height="16" Margin="0,2,5,2" />
+                                        <TextBlock Text="{Binding TEN}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+
                         </ComboBox>
                     </StackPanel>
                 </ListViewItem>
