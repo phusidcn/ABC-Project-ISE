@@ -80,18 +80,20 @@
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="200" Height="675"
               Margin="0,25,0,0" Background="White">
             <StackPanel>
-                <Grid Height="225">
+                <Grid Height="275">
                     <StackPanel>
                         <materialDesign:PackIcon 
                             Kind="AccountCircle"
                             Height="160"
                             Width="160"
-                            Margin="20 0 20 0"/>
+                            Margin="20 20 20 0"/>
                         <TextBlock 
                             FontSize="15"
                             HorizontalAlignment="Center">
                             account</TextBlock>
-                        <Button Name="btnSettingInfo" Command="{Binding NavCommand}" CommandParameter="chinh_sua"
+                        <Button Name="btnSettingInfo" 
+                                Command="{Binding NavCommand}" CommandParameter="chinh_sua"
+                                Margin="10"
                                 Width="60"
                                 Height="30"
                                 Background="White"
