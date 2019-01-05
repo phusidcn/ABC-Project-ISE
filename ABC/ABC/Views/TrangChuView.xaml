@@ -171,7 +171,43 @@
                 </GroupBox>
             </Border>
 
-            <ListBox                 Name="lst"                 Width="600"                 Height="440"                Margin="10"                 ItemsSource="{Binding items}"                 HorizontalContentAlignment="Stretch"                ScrollViewer.VerticalScrollBarVisibility="Auto">                <ListBox.ItemTemplate>                    <DataTemplate>                        <materialDesign:Card                                                        Background="{DynamicResource MaterialDesignBackground}">                            <StackPanel>                                <Expander                                  HorizontalAlignment="Stretch"                                    Header="{Binding Name}">                                    <StackPanel                                        Orientation="Vertical"                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"                                        Margin="24,8,24,16">                                        <TextBlock Text="hehehehehehe"/>                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>                                        <TextBlock Text="{Binding Name}"/>                                    </StackPanel>                                </Expander>                                <Border                                  Background="{DynamicResource MaterialDesignDivider}"                                  Height="1"                                  HorizontalAlignment="Stretch"                                  SnapsToDevicePixels="True" />                            </StackPanel>                        </materialDesign:Card>                    </DataTemplate>                </ListBox.ItemTemplate>            </ListBox>
+            <ListBox 
+                Name="lst" 
+                Width="600" 
+                Height="440"
+                Margin="10" 
+                ItemsSource="{Binding items}" 
+                HorizontalContentAlignment="Stretch"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card
+                            
+                            Background="{DynamicResource MaterialDesignBackground}">
+                            <StackPanel>
+                                <Expander
+                                  HorizontalAlignment="Stretch"
+                                    Header="{Binding Name}">
+                                    <StackPanel
+                                        Orientation="Vertical"
+                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
+                                        Margin="24,8,24,16">
+                                        <TextBlock Text="hehehehehehe"/>
+                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Border
+                                  Background="{DynamicResource MaterialDesignDivider}"
+                                  Height="1"
+                                  HorizontalAlignment="Stretch"
+                                  SnapsToDevicePixels="True" />
+                            </StackPanel>
+
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
         </StackPanel>
         

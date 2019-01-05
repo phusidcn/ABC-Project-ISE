@@ -10,5 +10,7 @@ namespace ABC.Helper
     {
         System.Security.SecureString Password { get; }
         System.Security.SecureString RePassword { get; }
+
+        System.Security.SecureString OldPassword { get; }
     }
 }

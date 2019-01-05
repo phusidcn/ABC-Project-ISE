@@ -40,5 +40,13 @@ namespace ABC
                 return pswPassword.SecurePassword;
             }
         }
+
+        public System.Security.SecureString OldPassword
+        {
+            get
+            {
+                return pswPassword.SecurePassword;
+            }
+        }
     }
 }

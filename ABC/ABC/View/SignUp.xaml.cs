@@ -40,6 +40,14 @@ namespace ABC.View
             {
                 return pswReEnter.SecurePassword;
             }
-        } 
+        }
+
+        public System.Security.SecureString OldPassword
+        {
+            get
+            {
+                return pswPass.SecurePassword;
+            }
+        }
     }
 }

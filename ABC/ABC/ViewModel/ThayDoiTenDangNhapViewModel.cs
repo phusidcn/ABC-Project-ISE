@@ -8,6 +8,8 @@ using MaterialDesignThemes.Wpf;
 
 namespace ABC.ViewModel
 {
+
+
     public class ThayDoiTenDangNhapViewModel : BindableBase
     {
         public ThayDoiTenDangNhapViewModel()
@@ -15,6 +17,10 @@ namespace ABC.ViewModel
             SaveCommand = new MyICommand(OnSave);
             CancelCommand = new MyICommand(OnCancel);
         }
+
+        #region Properties
+
+        #endregion
 
         #region Command
         public MyICommand SaveCommand { get; private set; }

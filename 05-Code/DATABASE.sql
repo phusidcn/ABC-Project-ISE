@@ -1,23 +1,22 @@
 ﻿CREATE DATABASE QLChiTieu
 GO
-
 USE QLChiTieu
 GO
+
 --------create table--------
 CREATE TABLE Users(
-	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID INT PRIMARY KEY,
 	Ten nvarchar(50) NOT NULL,
 	UserName varchar(50) NOT NULL UNIQUE,
 	PWHash BINARY(64) NOT NULL,
-	Ngay_Sinh date
+	Ngay_Sinh date null
 )
 
 CREATE TABLE Vi
 (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID INT PRIMARY KEY,
 	TEN nvarchar(50) NOT NULL,
 	SO_TIEN INT NOT NULL,
-	----ID_USER INT NOT NULL
 )
 
 CREATE TABLE USER_VI
@@ -29,26 +28,25 @@ CREATE TABLE USER_VI
 
 CREATE TABLE HEO
 (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
+	ID INT PRIMARY KEY,
 	TEN nvarchar(50) NOT NULL,
 	MUC_DICH nvarchar(150) NOT NULL,
 	MUC_TIEU INT NOT NULL,
 	HIEN_TAI INT NOT NULL,
-	NGAY_KT DATE NOT NULL,
+	NGAY_KT DATE NULL,
 	ID_USER INT NOT NULL
 )
 
 CREATE TABLE SO_GIAO_DICH
 (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
-	--ID_USER INT NOT NULL,
+	ID INT PRIMARY KEY,
 	ID_VI INT NOT NULL,
-	NHOM INT NOT NULL,
+	ID_NHOM INT NOT NULL,
 	SO_TIEN INT NOT NULL, --VÌ LÀ TIỀN VIỆT NÊN DÙNG INT
 	GHI_CHU nvarchar(150) null,
-	NGAY DATE
+	NguoiLQ nvarchar(50) null,
+	NGAY DATE null
 )
-
 ------- Có nên tạo bảng User-Vi với User-Giaodich không????
 
 CREATE TABLE USER_GIAO_DICH
@@ -60,25 +58,26 @@ CREATE TABLE USER_GIAO_DICH
 
 CREATE TABLE Nhom
 (
-	ID INT IDENTITY(1,1) PRIMARY KEY,
-	TEN nvarchar(20) NOT NULL,
-	LOAI nvarchar(20) NOT NULL,
-	ICON nvarchar(20) NOT NULL
+	ID INT PRIMARY KEY,
+	TEN nvarchar(100) NOT NULL,
+	ICON nvarchar(100) NOT NULL
 )
 
 CREATE TABLE SO_NO
 (
-	STT INT IDENTITY NOT NULL,
-	ID_GIAO_DICH INT NOT NULL,
+	ID INT PRIMARY KEY,
+	ID_VI INT NOT NULL,
 	LOAI nvarchar(20) NOT NULL,
+	SO_TIEN INT NOT NULL,
+	Ghi_Chu nvarchar(50) null,
 	PERSON nvarchar(25) NOT NULL,
 	NGAY DATE NOT NULL,
-	CONSTRAINT PK_SN PRIMARY KEY(STT, ID_GIAO_DICH)
+	DaTra INT NOT NULL
 )
 
 Create table Ngan_Sach
 (
-	ID INT IDENTITY PRIMARY KEY,
+	ID INT PRIMARY KEY,
 	Ten INT NOT NULL,
 	IdNhom INT NOT NULL,
 	SoTien INT NOT NULL,
@@ -96,22 +95,38 @@ Create table USER_Ngan_Sach
 	CONSTRAINT PK_U_N_S PRIMARY KEY(IdNganSach,IdUser)
 )
 
+CREATE TABLE SO_NO_USER
+(
+	ID_SO_NO INT NOT NULL,
+	ID_USER INT NOT NULL,
+	CONSTRAINT PK_NO_USER PRIMARY KEY(ID_SO_NO,ID_USER)
+)
+
+Go
+
 ---FOREIGN KEY
 ALTER TABLE USER_VI ADD CONSTRAINT FK_USER_VI_USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 ALTER TABLE USER_VI ADD CONSTRAINT FK_USER_VI_VI FOREIGN KEY(ID_VI) REFERENCES Vi(ID)
 
 ALTER TABLE SO_GIAO_DICH ADD CONSTRAINT FK_SOGD_VI FOREIGN KEY(ID_VI) REFERENCES Vi(ID)
-ALTER TABLE SO_GIAO_DICH ADD CONSTRAINT FK_SOGD_NHOM FOREIGN KEY(NHOM) REFERENCES Nhom(ID)
+ALTER TABLE SO_GIAO_DICH ADD CONSTRAINT FK_SOGD_NHOM FOREIGN KEY(ID_NHOM) REFERENCES Nhom(ID)
 
 ALTER TABLE USER_GIAO_DICH ADD CONSTRAINT FK_USERGD_USERS FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 ALTER TABLE USER_GIAO_DICH ADD CONSTRAINT FK_USERGD_GIAO_DICH FOREIGN KEY(ID_GIAO_DICH) REFERENCES SO_GIAO_DICH(ID)
 
-ALTER TABLE SO_NO ADD CONSTRAINT FK_SO_NO_GIAO_DICH FOREIGN KEY(ID_GIAO_DICH) REFERENCES SO_GIAO_DICH(ID) 
+ALTER TABLE SO_NO ADD CONSTRAINT FK_SO_NO_VI FOREIGN KEY(ID_VI) REFERENCES Vi(ID) 
 
 ALTER TABLE HEO ADD CONSTRAINT FK_HEO_USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
 
+ALTER TABLE Ngan_Sach ADD CONSTRAINT FK_NGANSACH_NHOM FOREIGN KEY(IdNhom) REFERENCES Nhom(ID)
+
 ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_Users FOREIGN KEY(IdUser) REFERENCES Users(ID)
 ALTER TABLE USER_Ngan_Sach ADD CONSTRAINT FK_UserNganSach_NganSach FOREIGN KEY(IdNganSach) REFERENCES Ngan_Sach(ID)
+
+ALTER TABLE SO_NO_USER ADD CONSTRAINT FK_SO_NO_USER__SO_NO FOREIGN KEY(ID_SO_NO) REFERENCES SO_NO(ID)
+ALTER TABLE SO_NO_USER ADD CONSTRAINT FK_SO_NO_USER__USER FOREIGN KEY(ID_USER) REFERENCES Users(ID)
+
+Go
 
 create procedure dbo.uspAddUser
     @pUsername VARCHAR(50), 
@@ -122,11 +137,12 @@ create procedure dbo.uspAddUser
 AS
 BEGIN
     SET NOCOUNT ON
-
+	DECLARE @userID INT
+	SET @userID = (SELECT COUNT(*) + 1 FROM Users)
     BEGIN TRY
 
-        INSERT INTO dbo.[Users] (Ten, UserName, PWHash, Ngay_Sinh)
-        VALUES(@pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
+        INSERT INTO dbo.[Users] (ID, Ten, UserName, PWHash, Ngay_Sinh)
+        VALUES(@userID, @pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
 
         SET @responseMessage='Success'
 
@@ -137,23 +153,7 @@ BEGIN
 
 END
 
-create procedure dbo.uspModifyPassWord
-	@pId INT,
-	@nPassword NVARCHAR(50),
-	@responseMessage NVARCHAR(250) OUTPUT
-AS
-BEGIN
-	SET NOCOUNT ON
-	BEGIN TRY
-		update Users
-		set PWHash = HASHBYTES('SHA2_512',@nPassword)
-		where id = @pId
-		set @responseMessage='successful'
-	end try 
-	begin catch
-		set @responseMessage='error'
-	END CATCH
-end
+go
 --- procedure login
 
 CREATE PROCEDURE dbo.uspLogin
@@ -181,13 +181,18 @@ BEGIN
 
 END
 
+go
+
 create procedure dbo.uspModifyUserName
 	@pId INT,
+	@uPassword NVARCHAR(50),
 	@nUsername NVARCHAR(50),
 	@responseMessage NVARCHAR(250) OUTPUT
 AS
 BEGIN
 	SET NOCOUNT ON
+	if exists (select id from [dbo].[Users] where PWHash = HASHBYTES('SHA2_512', @uPassword))
+	Begin
 	BEGIN TRY
 		update Users
 		set UserName=@nUsername
@@ -197,4 +202,164 @@ BEGIN
 	begin catch
 		set @responseMessage='error'
 	END CATCH
+	end
+		else
+		set @responseMessage='incorrect password'
+end	
+go
+
+create procedure dbo.uspModifyPassWord
+	@pId INT,
+	@oldPassword NVARCHAR(50),
+	@newPassword NVARCHAR(50),
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON
+	if exists (select id from [dbo].Users where PWHash = HASHBYTES('SHA2_512', @oldPassword))
+	BEGIN TRY
+		update Users
+		set PWHash = HASHBYTES('SHA2_512',@newPassword)
+		where id = @pId
+		set @responseMessage='successful'
+	end try 
+	begin catch
+		set @responseMessage='error'
+	END CATCH
+	else
+		set @responseMessage='your password is incorrect'
 end
+go
+
+
+INSERT INTO Nhom(ID, TEN, ICON)
+VALUES
+(1, N'Nhu cầu thiết yếu', N'icon/Bill.png'),
+(2,N'Giáo dục',N'icon/Education.png'),
+(3, N'Hưởng thụ', N'icon/Health.png'),
+(4, N'Tự do tài chính', N'icon/Gift.png'),
+(5, N'Tiết kiệm dài hạn', N'icon/SaveMoney.png'),
+(6, N'Giúp đỡ người khác', N'icon/FriendsAndLover.png'),
+(7, N'Thu nhập', N'icon/Bonus.png');
+
+Go
+
+INSERT INTO Vi(ID,TEN,SO_TIEN)
+VALUES(1, N'Tiền Mặt',0)
+go
+
+--khoan cho vay: loai = 8,, Datra = 0 -> chua tra =1
+create procedure dbo.uspThemKhoanVay
+	@pId_User INT,
+	@pId_Vi INT,
+	@pPerson NVARCHAR(25),
+	@pSoTien INT,
+	@pGhiChu nvarchar(50) = null,
+	@pNgayVay date = null,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON
+	DECLARE @id int
+	set @id = (Select count(*) from SO_NO) + 1;
+	Declare @TienVi INT
+	set @TienVi = (select Vi.SO_TIEN from Vi Where Vi.ID = @pId_Vi)
+    BEGIN TRY
+		INSERT INTO dbo.[SO_NO](ID, ID_VI, LOAI, SO_TIEN, Ghi_Chu, PERSON, NGAY, DaTra)
+		VALUES(@id, @pId_Vi, 8, @pSoTien, @pGhiChu,@pPerson, @pNgayVay,0)
+
+		INSERT INTO dbo.[SO_NO_USER](ID_SO_NO,ID_USER)
+		VALUES(@id, @pId_User)
+
+		UPDATE dbo.Vi
+		SET Vi.SO_TIEN = @TienVi + @pSoTien
+		WHERE Vi.ID = @pId_Vi
+
+        SET @responseMessage='Success'
+    END TRY
+    BEGIN CATCH
+        SET @responseMessage=ERROR_MESSAGE() 
+    END CATCH
+END
+go
+
+--khoan cho vay: loai = 9,, Datra = 0 -> chua tra =1
+create procedure dbo.uspThemKhoanChoVay
+	@pId_User INT,
+	@pId_Vi INT,
+	@pPerson NVARCHAR(25),
+	@pSoTien INT,
+	@pGhiChu nvarchar(50) = null,
+	@pNgayVay date = null,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON
+	DECLARE @id int
+	set @id = (Select count(*) from SO_NO) + 1;
+	Declare @TienVi INT
+	set @TienVi = (select Vi.SO_TIEN from Vi Where Vi.ID = @pId_Vi)
+	if (@pSoTien <= @TienVi)
+	BEGIN
+    BEGIN TRY
+		INSERT INTO dbo.[SO_NO](ID, ID_VI, LOAI, SO_TIEN, Ghi_Chu, PERSON, NGAY, DaTra)
+		VALUES(@id, @pId_Vi, 9, @pSoTien, @pGhiChu,@pPerson, @pNgayVay,0)
+
+		INSERT INTO dbo.[SO_NO_USER](ID_SO_NO,ID_USER)
+		VALUES(@id, @pId_User)
+
+		UPDATE dbo.Vi
+		SET Vi.SO_TIEN = @TienVi - @pSoTien
+		WHERE Vi.ID = @pId_Vi
+
+        SET @responseMessage='Success'
+    END TRY
+    BEGIN CATCH
+        SET @responseMessage=ERROR_MESSAGE() 
+    END CATCH
+	END
+	ELSE
+		SET @responseMessage = N'Số tiền không đủ'
+END
+go
+
+
+create procedure dbo.uspThemGiaoDich
+	@pIdUser INT,
+	@pVi INT,
+	@pIdNhom INT, 
+	@pSoTien INT,
+	@pGhiChu NVARCHAR(50) = NULL,
+	@pNguoiLienQuan NVARCHAR(50) = NULL,
+	@pNgay date = NULL,
+	@responseMessage NVARCHAR(250) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON
+	Declare @idGiaoDich INT
+	set @idGiaoDich = (select count(*) from SO_GIAO_DICH) + 1;
+	Declare @TienVi INT
+	set @TienVi = (select Vi.SO_TIEN from Vi Where Vi.ID = @pVi)
+	if (@pSoTien <= @TienVi)
+	Begin
+		BEGIN TRY
+			INSERT INTO dbo.[SO_GIAO_DICH] (ID,ID_VI,ID_NHOM, SO_TIEN, GHI_CHU,NguoiLQ, NGAY)
+			VALUES(@idGiaoDich,@pVi,@pIdNhom, @pSoTien , @pGhiChu, @pNguoiLienQuan, @pNgay)
+		
+			INSERT INTO dbo.[USER_GIAO_DICH](ID_GIAO_DICH, ID_USER)
+			VALUES(@idGiaoDich, @pIdUser)
+
+			Update Vi
+			Set Vi.SO_TIEN = @TienVi - @pSoTien
+			Where Vi.ID = @pVi
+
+			SET @responseMessage='Success'
+		END TRY
+		BEGIN CATCH
+			SET @responseMessage=ERROR_MESSAGE() 
+		END CATCH
+	End
+	else
+		set @responseMessage=N'Số tiền của ví không đủ'
+END
+Go
