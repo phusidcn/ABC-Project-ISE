@@ -75,22 +75,22 @@ namespace ABC.ViewModel
                 PassWord = ConvertToUnsecureString(secureString);
                 var userN = UserName;
 
-                using (var context = new QLChiTieuEntities())
-                {
-                    System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
+                //using (var context = new QLChiTieuEntities())
+                //{
+                //    System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
 
-                    context.uspLogin(userN, PassWord, responseMessage);
+                //    context.uspLogin(userN, PassWord, responseMessage);
 
-                    MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
-                    if (responseMessage.Value.ToString() == successLogin)
-                    {
-                        int id = GetCustomerIdByUserName(userN);
-                        writeToSession(id);
-                        Window main = new MainWindow();
-                        ABC.ViewModel.MainWindowViewModel.userID = id;
-                        main.Show();
-                    }
-                }
+                //    MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+                //    if (responseMessage.Value.ToString() == successLogin)
+                //    {
+                //        int id = GetCustomerIdByUserName(userN);
+                //        writeToSession(id);
+                //        Window main = new MainWindow();
+                //        ABC.ViewModel.MainWindowViewModel.userID = id;
+                //        main.Show();
+                //    }
+                //}
             }
         }
 

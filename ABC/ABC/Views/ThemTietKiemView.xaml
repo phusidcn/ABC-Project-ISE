@@ -53,11 +53,11 @@
                 <ListViewItem Height="50" Background="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Bullseye"
-                                                 Background="White"
-                                                 Width="30" Height="30"
-                                                 VerticalAlignment="Center"
-                                                 Margin="10,0,50,0"/>
-                        <TextBox Width="300">Mục đích</TextBox>
+                			Background="White"
+                			Width="30" Height="30"
+                			VerticalAlignment="Center"
+                			Margin="10,0,50,0"/>
+                        <TextBox Width="300" Text="Mục đích"/>
                     </StackPanel>
                 </ListViewItem>
 

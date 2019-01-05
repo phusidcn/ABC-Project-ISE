@@ -2,6 +2,7 @@
 GO
 USE QLChiTieu
 GO
+
 --------create table--------
 CREATE TABLE Users(
 	ID INT PRIMARY KEY,
