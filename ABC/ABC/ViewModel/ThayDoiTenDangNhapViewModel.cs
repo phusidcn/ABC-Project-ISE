@@ -48,13 +48,13 @@ namespace ABC.ViewModel
             {
                 var secureString = container.Password;
                 passWord = ConvertToUnsecureString(secureString);
-                /// doi ten tai khoan
-                /// 
                 using (var db = new QLChiTieuEntities())
                 {
                     System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
                     db.uspModifyUserName(userID, passWord, newUserName, responseMessage);
+                    DialogHost.CloseDialogCommand.Execute(null, null);
                     MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+                    
                 }
             }
             DialogHost.CloseDialogCommand.Execute(null, null);

@@ -51,9 +51,16 @@
                     Height="170"
                     Width="170"/>
                         <StackPanel>
-                            <TextBlock FontSize="18" FontWeight="Black" Margin="5" Text="{Binding SelectedUser.UserName, Mode=TwoWay}"></TextBlock>
-                            <TextBlock FontSize="16" Margin="5" Text="{Binding SelectedUser.Ten}"></TextBlock>
-                            <TextBlock FontSize="16" Margin="5" Text="{Binding SelectedUser.Ngay_Sinh}"></TextBlock>
+                            <TextBlock FontSize="18" 
+                                       FontWeight="Black" 
+                                       Margin="5" 
+                                       Text="{Binding SelectedUser.UserName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock FontSize="16" 
+                                       Margin="5" 
+                                       Text="{Binding SelectedUser.Ten, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            <TextBlock FontSize="16" 
+                                       Margin="5" 
+                                       Text="{Binding SelectedUser.Ngay_Sinh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </materialDesign:Card>

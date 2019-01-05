@@ -15,8 +15,7 @@ namespace ABC.ViewModel
             int id = ABC.ViewModel.MainWindowViewModel.userID;
             using(var db = new QLChiTieuEntities())
             {
-                var query = db.Users.Find(id);
-                SelectedUser = query;
+                SelectedUser = db.Users.Find(id);
             }
             
             OpenChangePassDialogCommand = new MyICommand<object>(OpenChangePassDialog);

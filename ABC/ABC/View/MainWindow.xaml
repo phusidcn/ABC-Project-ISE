@@ -90,7 +90,7 @@
                         <TextBlock 
                             FontSize="15"
                             HorizontalAlignment="Center"
-                            Text="{Binding curentUser.Ten}"/>
+                            Text="{Binding curentUser.Ten, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Name="btnSettingInfo" 
                                 Command="{Binding NavCommand}" CommandParameter="chinh_sua"
                                 Margin="10"

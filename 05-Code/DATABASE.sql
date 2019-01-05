@@ -124,10 +124,19 @@ AS
 BEGIN
     SET NOCOUNT ON
 	DECLARE @userID INT
+	DECLARE @viID int
 	SET @userID = (SELECT COUNT(*) FROM Users) + 1;
+	sET @viID = (SELECT COUNT(*) FROM Vi) + 1;
     BEGIN TRY
         INSERT INTO dbo.[Users] (ID, Ten, UserName, PWHash, Ngay_Sinh)
         VALUES(@userID, @pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
+
+		INSERT INTO Vi(ID,TEN,SO_TIEN)
+		VALUES(@viID, N'Tiền Mặt', 0)
+
+		INSERT INTO USER_VI(ID_USER, ID_VI)
+		VALUES(@userID, @viID)
+
         SET @responseMessage='Success'
 
     END TRY
@@ -308,27 +317,42 @@ BEGIN
 					from SO_GIAO_DICH ) + 1;
 	Declare @TienVi INT
 	set @TienVi = (select Vi.SO_TIEN from Vi Where Vi.ID = @pVi)
-	if (@pSoTien <= @TienVi)
-	Begin
-		BEGIN TRY
-			INSERT INTO dbo.[SO_GIAO_DICH] (ID,ID_VI,ID_NHOM, SO_TIEN, GHI_CHU,NguoiLQ, NGAY)
-			VALUES(@idGiaoDich,@pVi,@pIdNhom, @pSoTien , @pGhiChu, @pNguoiLienQuan, @pNgay)
+	if(@pIdNhom = 7)
+	BEGiN
+		INSERT INTO dbo.[SO_GIAO_DICH] (ID,ID_VI,ID_NHOM, SO_TIEN, GHI_CHU,NguoiLQ, NGAY)
+		VALUES(@idGiaoDich,@pVi,@pIdNhom, @pSoTien , @pGhiChu, @pNguoiLienQuan, @pNgay)
+
+		INSERT INTO dbo.[USER_GIAO_DICH](ID_GIAO_DICH, ID_USER)
+		VALUES(@idGiaoDich, @pIdUser)
+
+		Update Vi
+		Set Vi.SO_TIEN = @TienVi + @pSoTien
+		Where Vi.ID = @pVi
+
+		SET @responseMessage = 'Success'
+	END
+	ELSE
+		if (@pSoTien <= @TienVi)
+		Begin
+			BEGIN TRY
+				INSERT INTO dbo.[SO_GIAO_DICH] (ID,ID_VI,ID_NHOM, SO_TIEN, GHI_CHU,NguoiLQ, NGAY)
+				VALUES(@idGiaoDich,@pVi,@pIdNhom, @pSoTien , @pGhiChu, @pNguoiLienQuan, @pNgay)
 		
-			INSERT INTO dbo.[USER_GIAO_DICH](ID_GIAO_DICH, ID_USER)
-			VALUES(@idGiaoDich, @pIdUser)
+				INSERT INTO dbo.[USER_GIAO_DICH](ID_GIAO_DICH, ID_USER)
+				VALUES(@idGiaoDich, @pIdUser)
 
-			Update Vi
-			Set Vi.SO_TIEN = @TienVi - @pSoTien
-			Where Vi.ID = @pVi
+				Update Vi
+				Set Vi.SO_TIEN = @TienVi - @pSoTien
+				Where Vi.ID = @pVi
 
-			SET @responseMessage='Success'
-		END TRY
-		BEGIN CATCH
-			SET @responseMessage=ERROR_MESSAGE() 
-		END CATCH
-	End
-	else
-		set @responseMessage=N'Số tiền của ví không đủ'
+				SET @responseMessage='Success'
+			END TRY
+			BEGIN CATCH
+				SET @responseMessage=ERROR_MESSAGE() 
+			END CATCH
+		End
+		else
+			set @responseMessage=N'Số tiền của ví không đủ'
 END
 Go
 
@@ -464,3 +488,19 @@ BEGIN
 	END CATCH
 END
 Go
+
+/*use QLChiTieu
+select * from Users
+
+INSERT INTO Vi(ID,TEN,SO_TIEN)
+VALUES(1, N'Tiền Mặt', 0)
+
+		INSERT INTO USER_VI(ID_USER, ID_VI)
+		VALUES(1, 1)
+
+		select * from VI
+
+		select * from SO_GIAO_DICH
+declare @responseMessage nvarchar(50)
+Exec uspThemGiaoDich
+	1,1,7,1000,null, null,'2019/01/06',@responseMessage output*/
