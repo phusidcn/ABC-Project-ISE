@@ -31,7 +31,6 @@ namespace ABC.ViewModel
         private GhiNoViewModel ghiNoViewModel = new GhiNoViewModel();
         private TietKiemViewModel tietKiemViewModel = new TietKiemViewModel();
         private NhomCanDungViewModel nhomViewModel = new NhomCanDungViewModel();
-        private NganSachViewModel nganSachViewModel = new NganSachViewModel();
         private XuHuongViewModel xuHuongViewModel = new XuHuongViewModel();
         private BieuDoViewModel bieuDoViewModel = new BieuDoViewModel();
         private GiupDoViewModel giupDoViewModel = new GiupDoViewModel();
@@ -71,9 +70,6 @@ namespace ABC.ViewModel
                     break;
                 case "nhom":
                     CurrentViewModel = nhomViewModel;
-                    break;
-                case "ngan_sach":
-                    CurrentViewModel = nganSachViewModel;
                     break;
                 case "xu_huong":
                     CurrentViewModel = xuHuongViewModel;

@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
              xmlns:vm="clr-namespace:ABC.ViewModel"
+             Name="thayDoiUserNameDialog"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.DataContext>
@@ -18,7 +19,9 @@
             </Grid>
             <StackPanel>
                 <TextBlock Margin="20 50 20 5">Nhập tên đăng nhập mới</TextBlock>
-                <TextBox materialDesign:HintAssist.Hint="vd: nguyenvanA" Name="txtNewName" Margin="20 20 20 0" ></TextBox>
+                <TextBox materialDesign:HintAssist.Hint="vd: nguyenvanA" 
+                         Name="txtNewName" 
+                         Margin="20 20 20 0"></TextBox>
                 <TextBlock Margin="20 50 20 5">Nhập mật khẩu</TextBlock>
                 <PasswordBox
               materialDesign:HintAssist.Hint="Mật khẩu" Name="pswValidate"

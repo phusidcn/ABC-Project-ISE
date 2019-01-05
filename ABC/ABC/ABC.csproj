@@ -148,7 +148,6 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\NganSachViewModel.cs" />
     <Compile Include="ViewModel\NhomCanDungViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
     <Compile Include="ViewModel\TaiKhoanViewModel.cs" />

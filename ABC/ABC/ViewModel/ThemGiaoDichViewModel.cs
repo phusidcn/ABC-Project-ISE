@@ -16,10 +16,10 @@ namespace ABC.ViewModel
         {
             CancelCommand = new MyICommand(onCancel);
             OkCommand = new MyICommand(onOk);
-			using (var context = new QLChiTieuEntities())
-			{
-				Nhom = context.Nhoms.ToList();
-			}
+            //using (var context = new QLChiTieuEntities())
+            //{
+            //    Nhom = context.Nhoms.ToList();
+            //}
 		}
 
 		#region Properties
