@@ -7,11 +7,11 @@
              xmlns:local="clr-namespace:ABC.Views"
              xmlns:vm="clr-namespace:ABC.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="260" d:DesignWidth="440">
+             d:DesignHeight="300" d:DesignWidth="440">
     <UserControl.DataContext>
         <vm:ThemTietKiemViewModel/>
     </UserControl.DataContext>
-    <Grid Height="260" Width="440" Background="WhiteSmoke">
+    <Grid Height="300" Width="440" Background="White">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0">
             <Grid Height="50" Background="#d60000">
                 <TextBlock Foreground="White" FontSize="20"
@@ -29,21 +29,31 @@
                     Foreground="White"/>
                 </Button>
             </Grid>
-            <ListView FontSize="12">
-                <ListViewItem Height="50" Background="WhiteSmoke">
+            <ListView FontSize="12" Background="White">
+                <ListViewItem Height="50" Background="White">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Pig"
+                                                 Background="White"
+                                                 Width="30" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="10,0,50,0"/>
+                        <TextBox Width="300">Tên khoản tiết kiệm</TextBox>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="50" Background="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="CurrencyUsd"
-                                                 Background="WhiteSmoke"
+                                                 Background="White"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
                         <TextBox Width="300">0</TextBox>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Height="50" Background="WhiteSmoke">
+                <ListViewItem Height="50" Background="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Bullseye"
-                                                 Background="WhiteSmoke"
+                                                 Background="White"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
@@ -51,10 +61,10 @@
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem Height="50" Background="WhiteSmoke">
+                <ListViewItem Height="50" Background="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Calendar"
-                                                 Background="WhiteSmoke"
+                                                 Background="White"
                                                  Width="30" Height="30"
                                                  VerticalAlignment="Center"
                                                  Margin="10,0,50,0"/>
@@ -63,7 +73,7 @@
                     </StackPanel>
                 </ListViewItem>
 
-                <ListViewItem>
+                <ListViewItem Background="White">
                     <Button Name="btnOk" 
                             Background="Red" HorizontalAlignment="Center"
                             Command="{Binding okCommand}"
