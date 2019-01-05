@@ -19,7 +19,7 @@ namespace ABC.Model
         public string MUC_DICH { get; set; }
         public int MUC_TIEU { get; set; }
         public int HIEN_TAI { get; set; }
-        public System.DateTime NGAY_KT { get; set; }
+        public Nullable<System.DateTime> NGAY_KT { get; set; }
         public int ID_USER { get; set; }
     
         public virtual User User { get; set; }

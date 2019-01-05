@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8facd455157e4d2d92b0d143603a1f94" Name="Diagram1">
+        <EntityTypeShape EntityType="QLChiTieuModel.HEO" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLChiTieuModel.Nhom" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLChiTieuModel.SO_GIAO_DICH" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLChiTieuModel.SO_NO" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLChiTieuModel.User" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLChiTieuModel.Vi" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="QLChiTieuModel.FK_HEO_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.FK_SOGD_NHOM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.FK_SOGD_VI" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.FK_SO_NO_VI" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.SO_NO_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.USER_GIAO_DICH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLChiTieuModel.USER_VI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
