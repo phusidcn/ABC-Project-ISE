@@ -69,16 +69,32 @@
                         <DatePicker Width="300"/>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Height="50" Background="White">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="MapMarkerCircle"
-        					Background="White"
-        					Width="30" Height="30"
-        					VerticalAlignment="Center"
-        					Margin="10,0,50,0"/>
-                        <TextBox Width="300" Text="Địa điểm"/>
-                    </StackPanel>
-                </ListViewItem>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="450">
+                    <!--<materialDesign:PackIcon Kind="MapMarkerCircle"
+                                                 Background="White"
+                                                 Width="10" Height="30"
+                                                 VerticalAlignment="Center"
+                                                 Margin="0,0,0,0"/>-->
+                    <!--<TextBox Width="300">Địa điểm</TextBox>-->
+                    <ComboBox
+                                Name="cmbLoaiVi"
+                                HorizontalAlignment="Right"  
+                                Margin="85, 0 , 90, 0"
+                                Width="300"
+                                ItemsSource="{Binding ViList}"
+                                  >
+
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding TEN}" Width="16" Height="16" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding TEN}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                </StackPanel>
                 <ListViewItem>
                     <Button Background="Red" HorizontalAlignment="Center"
         				VerticalAlignment="Center" Width="60" Height="30" Margin="190,0,190,15" Content="Ok"
