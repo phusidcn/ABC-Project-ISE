@@ -32,16 +32,15 @@ namespace ABC.ViewModel
             {
                 var newPassword = passWordContainer.Password;
                 var reEnterPassword = passWordContainer.RePassword;
-                var oldPassword = passWordContainer.OldPassword;
-                string nPass = ConvertToUnsecureString(newPassword);
+				var oldSecureString = passWordContainer.OldPassword;
+				var oldPass = ConvertToUnsecureString(oldSecureString);
+				string nPass = ConvertToUnsecureString(newPassword);
                 string rePass = ConvertToUnsecureString(reEnterPassword);
-                string oldPass = ConvertToUnsecureString(oldPassword);
                 if (nPass == rePass)
                 {
                    
                     using(var db = new QLChiTieuEntities()){
                         System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
-
                         db.uspModifyPassWord(id, oldPass, nPass, responseMessage);
 
                         if (responseMessage != null)

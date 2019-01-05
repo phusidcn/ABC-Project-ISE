@@ -114,6 +114,8 @@ VALUES
 
 Go
 
+
+
 create procedure dbo.uspAddUser
     @pUsername VARCHAR(50), 
     @pPassword NVARCHAR(50), 
@@ -504,3 +506,4 @@ VALUES(1, N'Tiền Mặt', 0)
 declare @responseMessage nvarchar(50)
 Exec uspThemGiaoDich
 	1,1,7,1000,null, null,'2019/01/06',@responseMessage output*/
+
