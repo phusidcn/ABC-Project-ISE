@@ -128,10 +128,8 @@ BEGIN
 	DECLARE @userID INT
 	SET @userID = (SELECT COUNT(*) FROM Users) + 1;
     BEGIN TRY
-
         INSERT INTO dbo.[Users] (ID, Ten, UserName, PWHash, Ngay_Sinh)
         VALUES(@userID, @pTen, @pUsername , HASHBYTES('SHA2_512', @pPassword), @pDob)
-
         SET @responseMessage='Success'
 
     END TRY

@@ -18,7 +18,14 @@ namespace ABC.ViewModel
             onOKCommand = new MyICommand(onOk);
 			using (var context = new QLChiTieuEntities())
 			{
-				ViList = context.Vis.ToList();
+                try
+                {
+                    ViList = context.Vis.ToList();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
+                }
 			}
 		}
 

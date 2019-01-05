@@ -17,7 +17,14 @@ namespace ABC.ViewModel
             cancelCommand = new MyICommand(onCancel);
 			using (var context = new QLChiTieuEntities())
 			{
-				ViList = context.Vis.ToList();
+                try
+                {
+                    ViList = context.Vis.ToList();
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
+                }
 			}
 		}
 

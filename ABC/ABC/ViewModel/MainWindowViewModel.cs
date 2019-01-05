@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using ABC.Helper;
 using ABC.Model;
-
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,6 +15,7 @@ namespace ABC.ViewModel
         public static int userID { get; set; }
         public MainWindowViewModel()
         {
+            Load();
             NavCommand = new MyICommand<string>(OnNav);
             ButtonClickCommand = new MyICommand<string>(OnClick);
             CurrentViewModel = giaoDichViewModel;
@@ -23,7 +23,18 @@ namespace ABC.ViewModel
         }
 
 		#region Properties
-		
+        private User _curentUser;
+        public User curentUser
+        {
+            get { return _curentUser; }
+            set { SetProperty(ref _curentUser, value); }
+        }
+
+        private void Load()
+        {
+            var db = new QLChiTieuEntities();
+            curentUser = db.Users.Find(userID);
+        }
 		#endregion
 
 		#region ViewModel

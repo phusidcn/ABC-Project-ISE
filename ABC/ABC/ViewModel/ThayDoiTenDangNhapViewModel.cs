@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ABC.Helper;
 using MaterialDesignThemes.Wpf;
+using ABC.Model;
+using System.Windows;
 
 namespace ABC.ViewModel
 {
@@ -12,6 +14,7 @@ namespace ABC.ViewModel
 
     public class ThayDoiTenDangNhapViewModel : BindableBase
     {
+        int userID = ABC.ViewModel.MainWindowViewModel.userID;
         public ThayDoiTenDangNhapViewModel()
         {
             SaveCommand = new MyICommand<object>(OnSave);
@@ -45,8 +48,14 @@ namespace ABC.ViewModel
             {
                 var secureString = container.Password;
                 passWord = ConvertToUnsecureString(secureString);
-                
                 /// doi ten tai khoan
+                /// 
+                using (var db = new QLChiTieuEntities())
+                {
+                    System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
+                    db.uspModifyUserName(userID, passWord, newUserName, responseMessage);
+                    MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+                }
             }
             DialogHost.CloseDialogCommand.Execute(null, null);
         }
