@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             d:DesignHeight="220" d:DesignWidth="300">
     <StackPanel Background="White">
         <Grid Height="50" Background="Red">
             <TextBlock 
@@ -17,12 +17,20 @@
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon 
                 Kind="CurrencyUsd"
-                Height="50"
-                Width="50"
+                Height="40"
+                Width="40"
                 Margin="10"
                 Foreground="Black"/>
-            <TextBox Width="200" Foreground="Black" Height="30">Số tiền</TextBox>
+            <TextBox Width="185" Foreground="Black" Height="30">Số tiền</TextBox>
         </StackPanel>
+        <ComboBox
+            materialDesign:HintAssist.Hint="Chọn ví" 
+            ItemsSource="{Binding}"
+            Width="200">
+            <ComboBoxItem>
+                
+            </ComboBoxItem>
+        </ComboBox>
         <StackPanel Orientation="Horizontal">
             <Button Margin="80 15 50 0">Ok</Button>
             <Button Margin="0 15 50 0">Hủy</Button>

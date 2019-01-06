@@ -32,21 +32,21 @@ namespace ABC.ViewModel
             {
                 var newPassword = passWordContainer.Password;
                 var reEnterPassword = passWordContainer.RePassword;
-                string nPass = ConvertToUnsecureString(newPassword);
+				var oldSecureString = passWordContainer.OldPassword;
+				var oldPass = ConvertToUnsecureString(oldSecureString);
+				string nPass = ConvertToUnsecureString(newPassword);
                 string rePass = ConvertToUnsecureString(reEnterPassword);
-
                 if (nPass == rePass)
                 {
                    
                     using(var db = new QLChiTieuEntities()){
                         System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
-
-                        //db.uspModifyPassWord(pId: id, nPassword: nPass, responseMessage: responseMessage);
+                        db.uspModifyPassWord(id, oldPass, nPass, responseMessage);
 
                         if (responseMessage != null)
                         {
-                            MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
                             DialogHost.CloseDialogCommand.Execute(null, null);
+                            MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
                         }
                     }
                 }

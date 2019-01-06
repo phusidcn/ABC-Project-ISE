@@ -22,7 +22,7 @@
                 <Grid>
                     <Label Name="WalletName"
                            BorderBrush="{x:Null}"
-                           Content="Tất cả các ví" 
+                           Content="{Binding viHienTai.TEN}" 
                            Foreground="White"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
@@ -38,9 +38,24 @@
                             <materialDesign:PackIcon Kind="MenuDown" Foreground="White"/>
                         </materialDesign:PopupBox.ToggleContent>
                         <StackPanel>
-                            <Button Name="btnTienMat" Content="Tiền Mặt"/>
+                            <ListView ItemsSource="{Binding userVi}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border>
+                                            <Button Command="{Binding ChonViCommand}" CommandParameter="{Binding ID}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding TEN}"/>
+                                                    <TextBlock Text="-"/>
+                                                    <TextBlock Text="{Binding SO_TIEN}"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                             <Separator/>
-                            <Button Name="btnThemVi" Content="Thêm ví"/>
+                            <Button Name="btnThemVi" Content="Thêm ví"
+                                    Command="{Binding themViCommand}"/>
                         </StackPanel>
                     </materialDesign:PopupBox>
                     <Button Name="btnThemGiaoDich"
@@ -133,13 +148,30 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Tháng này" 
+            <!--<TextBlock Text="{Binding currentDate.Today}" 
                        Foreground="White" 
                        TextAlignment="Center" 
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center"
                        FontSize="22" Height="30" Width="130"
-                       Margin="215,0,285,10"/>
+                       Margin="215,0,285,10"/>-->
+            <StackPanel
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Height="30" Width="130"
+                Margin="215,0,285,10">
+                <TextBlock Text="{Binding currentDate.Day}"
+                           FontSize="22" Foreground="White"/>
+                <TextBlock Text="-"
+                            FontSize="22" Foreground="White"/>
+                <TextBlock Text="{Binding currentDate.Month}"
+                            FontSize="22" Foreground="White"/>
+                <TextBlock Text="-"
+                            FontSize="22" Foreground="White"/>
+                <TextBlock Text="{Binding currentDate.Year}"
+                            FontSize="22" Foreground="White"/>
+            </StackPanel>
         </Grid>
 
 
@@ -157,57 +189,66 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Thu nhập: "/>
-                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding thuNhapTrongThang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Đã chi: "/>
-                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding chiTieuTrongThang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Còn lại: "/>
-                            <TextBlock Text="{Binding Age}" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding conLai, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
             </Border>
-
-            <ListBox 
-                Name="lst" 
-                Width="600" 
-                Height="440"
-                Margin="10" 
-                ItemsSource="{Binding items}" 
-                HorizontalContentAlignment="Stretch"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListBox.ItemTemplate>
+            <ItemsControl
+                ItemsSource="{Binding giaoDichs}"
+                Grid.IsSharedSizeScope="True"
+                Width="600" Height="440" Margin="10"
+                HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <materialDesign:Card
-                            
-                            Background="{DynamicResource MaterialDesignBackground}">
-                            <StackPanel>
-                                <Expander
-                                  HorizontalAlignment="Stretch"
-                                    Header="{Binding Name}">
-                                    <StackPanel
-                                        Orientation="Vertical"
-                                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"
-                                        Margin="24,8,24,16">
-                                        <TextBlock Text="hehehehehehe"/>
-                                        <TextBlock Opacity=".68" Text="{Binding Age}"/>
-                                        <TextBlock Text="{Binding Name}"/>
-                                    </StackPanel>
-                                </Expander>
-                                <Border
-                                  Background="{DynamicResource MaterialDesignDivider}"
-                                  Height="1"
-                                  HorizontalAlignment="Stretch"
-                                  SnapsToDevicePixels="True" />
-                            </StackPanel>
-
-                        </materialDesign:Card>
+                        <Border
+                            x:Name="Border"
+                            Padding="8"
+                            BorderThickness="0 0 0 1"
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        SharedSizeGroup="Checkerz" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <ToggleButton
+                                    VerticalAlignment="Center"
+                                    IsChecked="{Binding IsSelected}"
+                                    Style="{StaticResource MaterialDesignActionLightToggleButton}"
+                                    Content="Chỉnh Sửa" />
+                                <StackPanel
+                                    Margin="8 0 0 0"
+                                    Grid.Column="1">
+                                    <TextBlock
+                                          FontWeight="Bold"
+                                          Text="{Binding Nhom.TEN}" />
+                                    <TextBlock
+                                          Text="{Binding SO_TIEN}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger
+                                  Binding="{Binding IsSelected}"
+                                  Value="True">
+                                <Setter
+                                    TargetName="Border"
+                                    Property="Background"
+                                    Value="{DynamicResource MaterialDesignSelection}" />        
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
         </StackPanel>
         
