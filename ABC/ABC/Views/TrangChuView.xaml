@@ -64,7 +64,7 @@
                             BorderBrush="{x:Null}" 
                             Width="50" 
                             HorizontalAlignment="Right"
-                            Margin="0,0,170,0">
+                            Margin="0,0,120,0">
                         <materialDesign:PackIcon 
                             Kind="Plus"
                             Foreground="White"/>
@@ -74,23 +74,11 @@
                             BorderBrush="{x:Null}"
                             Width="50"
                             HorizontalAlignment="Right"
-                            Margin="0,0,120,0"
+                            Margin="0,0,70,0"
                             >
                         <materialDesign:PackIcon
                             Kind="SwapHorizontalBold"
                             Foreground="White"/>
-                    </Button>
-                    <Button
-                        Name="btnXemTheoNgay"
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}"
-                        Width="50"
-                        HorizontalAlignment="Right"
-                        Margin="0 0 70 0"
-                        >
-                        <materialDesign:PackIcon
-                        Kind="ViewDay"
-                        Foreground="White"/>
                     </Button>
                     <materialDesign:Badged 
                         Badge="1"
@@ -105,37 +93,6 @@
                             Foreground="White"/>
                         </Button>
                     </materialDesign:Badged>
-                    <!--
-                    
-                    <Button Name="btnThongBao"
-                            Background="{x:Null}"  
-                            BorderBrush="{x:Null}" 
-                            Width="50" 
-                            HorizontalAlignment="Right"
-                            Margin="0,0,50,0"
-                            >
-                        <materialDesign:PackIcon 
-                            Kind="Bell"
-                            Foreground="White"/>
-                    </Button>
-                    
-                    <materialDesign:PopupBox 
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    PlacementMode="BottomAndAlignRightEdges"
-                    StaysOpen="False"
-                    Foreground="White"
-                    Width="50">
-                        <StackPanel>
-                            <Button Name="btnChonKhoangThoiGian" Content="Chọn khoảng thời gian"/>
-                            <Button Name="btnXemTheoNgay"  Content="Xem theo ngày"/>
-                            <Button Name ="btnXemTheoNhom"  Content="Xem theo nhóm"/>
-                            <Button Name="btnQuayLaiThangNay" Content="Quay lại tháng này"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-                    
-                    -->
-                   
                 </Grid>
             </StackPanel>
         </Grid>
@@ -148,29 +105,24 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <!--<TextBlock Text="{Binding currentDate.Today}" 
-                       Foreground="White" 
-                       TextAlignment="Center" 
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Center"
-                       FontSize="22" Height="30" Width="130"
-                       Margin="215,0,285,10"/>-->
-            <StackPanel
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Orientation="Horizontal"
-                Height="30" Width="130"
-                Margin="215,0,285,10">
-                <TextBlock Text="{Binding currentDate.Day}"
-                           FontSize="22" Foreground="White"/>
-                <TextBlock Text="-"
-                            FontSize="22" Foreground="White"/>
-                <TextBlock Text="{Binding currentDate.Month}"
-                            FontSize="22" Foreground="White"/>
-                <TextBlock Text="-"
-                            FontSize="22" Foreground="White"/>
-                <TextBlock Text="{Binding currentDate.Year}"
-                            FontSize="22" Foreground="White"/>
+            <StackPanel Height="50" Width="200"
+                        Margin="215 0 285 10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                <DatePicker 
+                        Foreground="White"
+                        FontSize="25"
+                        SelectedDate="{Binding currentDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        />
+                <Button
+                      Command="{Binding reLoadCommand}"
+                      Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                      Foreground="White"
+                      Background="Red"
+                      Height="25" Width="25" Margin="10 0 0 0">
+                    <TextBlock Text="OK"/>
+                </Button>
             </StackPanel>
         </Grid>
 
@@ -243,7 +195,7 @@
                                 <Setter
                                     TargetName="Border"
                                     Property="Background"
-                                    Value="{DynamicResource MaterialDesignSelection}" />        
+                                    Value="{DynamicResource MaterialDesignSelection}" />
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
@@ -251,7 +203,7 @@
             </ItemsControl>
 
         </StackPanel>
-        
+
 
 
 
@@ -265,7 +217,8 @@
             IsOpen="{Binding IsAddDialogOpen}"
             CloseOnClickAway="True"
             Height="675" Width="800"
-            DialogContent="{Binding AddContent}"/>
+            DialogContent="{Binding AddContent}">
+        </materialDesign:DialogHost>
 
     </Grid>
 </UserControl>

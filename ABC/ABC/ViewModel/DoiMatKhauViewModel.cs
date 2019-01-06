@@ -12,70 +12,70 @@ using ABC.Model;
 
 namespace ABC.ViewModel
 {
-    public class DoiMatKhauViewModel:BindableBase
-    {
-        int id = ABC.ViewModel.MainWindowViewModel.userID;
-        public DoiMatKhauViewModel()
-        {
-            SaveCommand = new MyICommand<object>(OnSave);
-            CancelCommand = new MyICommand(OnCancel);
-        }
+	public class DoiMatKhauViewModel:BindableBase
+	{
+		int id = ABC.ViewModel.MainWindowViewModel.userID;
+		public DoiMatKhauViewModel()
+		{
+			SaveCommand = new MyICommand<object>(OnSave);
+			CancelCommand = new MyICommand(OnCancel);
+		}
 
-        #region Command
-        public MyICommand<object> SaveCommand { get; private set; }
-        public MyICommand CancelCommand { get; private set; }
+		#region Command
+		public MyICommand<object> SaveCommand { get; private set; }
+		public MyICommand CancelCommand { get; private set; }
 
-        void OnSave(object parameter)
-        {
-            var passWordContainer = parameter as IHavePassword;
-            if (passWordContainer != null)
-            {
-                var newPassword = passWordContainer.Password;
-                var reEnterPassword = passWordContainer.RePassword;
+		void OnSave(object parameter)
+		{
+			var passWordContainer = parameter as IHavePassword;
+			if (passWordContainer != null)
+			{
+				var newPassword = passWordContainer.Password;
+				var reEnterPassword = passWordContainer.RePassword;
 				var oldSecureString = passWordContainer.OldPassword;
 				var oldPass = ConvertToUnsecureString(oldSecureString);
 				string nPass = ConvertToUnsecureString(newPassword);
-                string rePass = ConvertToUnsecureString(reEnterPassword);
-                if (nPass == rePass)
-                {
-                   
-                    using(var db = new QLChiTieuEntities()){
-                        System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
-                        db.uspModifyPassWord(id, oldPass, nPass, responseMessage);
+				string rePass = ConvertToUnsecureString(reEnterPassword);
+				if (nPass == rePass)
+				{
+				   
+					using(var db = new QLChiTieuEntities()){
+						System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
+						db.uspModifyPassWord(id, oldPass, nPass, responseMessage);
 
-                        if (responseMessage != null)
-                        {
-                            DialogHost.CloseDialogCommand.Execute(null, null);
-                            MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
-                        }
-                    }
-                }
-            }
-        }
+						if (responseMessage != null)
+						{
+							DialogHost.CloseDialogCommand.Execute(null, null);
+							MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
+						}
+					}
+				}
+			}
+		}
 
-        void OnCancel()
-        {
-            DialogHost.CloseDialogCommand.Execute(null, null);
-        }
+		void OnCancel()
+		{
+			DialogHost.CloseDialogCommand.Execute(null, null);
+		}
 
-        private string ConvertToUnsecureString(System.Security.SecureString securePassword)
-        {
-            if (securePassword == null)
-            {
-                return string.Empty;
-            }
+		private string ConvertToUnsecureString(System.Security.SecureString securePassword)
+		{
+			if (securePassword == null)
+			{
+				return string.Empty;
+			}
 
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = System.Runtime.InteropServices.Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                return System.Runtime.InteropServices.Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                System.Runtime.InteropServices.Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        } 
-        #endregion
-    }
+			IntPtr unmanagedString = IntPtr.Zero;
+			try
+			{
+				unmanagedString = System.Runtime.InteropServices.Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+				return System.Runtime.InteropServices.Marshal.PtrToStringUni(unmanagedString);
+			}
+			finally
+			{
+				System.Runtime.InteropServices.Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+			}
+		} 
+		#endregion
+	}
 }

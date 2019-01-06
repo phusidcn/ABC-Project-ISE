@@ -25,6 +25,7 @@ namespace ABC.ViewModel
             Load();
             OpenAddDialogCommand = new MyICommand<object>(OpenAddDialog);
             ChonViCommand = new MyICommand<int>(ChonVi);
+            reLoadCommand = new MyICommand(reLoad);
         }
 
         #region Properties
@@ -69,12 +70,10 @@ namespace ABC.ViewModel
             get { return _conLai; }
             set { SetProperty(ref _conLai, value); }
         }
-
-        private Vi _viHienTai;
-        public Vi viHienTai
+        public static Vi viHienTai
         {
-            get { return _viHienTai; }
-            set { SetProperty(ref _viHienTai, value); }
+            get;
+            set;
         }
 
         private ObservableCollection<Vi> _userVi;
@@ -88,6 +87,23 @@ namespace ABC.ViewModel
         void Load()
         {
             currentDate = DateTime.Now;
+            db = new QLChiTieuEntities();
+            var userGD = db.Users.Find(idUser).SO_GIAO_DICH;
+            foreach (var gd in userGD)
+            {
+                if (gd.NGAY.Value.Date == currentDate.Date && gd.ID_VI == viHienTai.ID)
+                {
+                    giaoDichs.Add(gd);
+                }
+            }
+            thuNhapTrongThang = TinhThuNhapTrongThang(userGD, currentDate, viHienTai);
+            chiTieuTrongThang = TinhChiTieuTrongThang(userGD, currentDate, viHienTai);
+            conLai = thuNhapTrongThang - chiTieuTrongThang;
+        }
+
+        void reLoad()
+        {
+            giaoDichs.Clear();
             db = new QLChiTieuEntities();
             var userGD = db.Users.Find(idUser).SO_GIAO_DICH;
             foreach (var gd in userGD)
@@ -153,6 +169,8 @@ namespace ABC.ViewModel
         public MyICommand<int> ChonViCommand { get; private set; }
 
         public MyICommand themViCommand { get; private set; }
+
+        public MyICommand reLoadCommand { get; private set; }
 
         private bool _isAddDialogOpen;
         private BindableBase _addContent;
