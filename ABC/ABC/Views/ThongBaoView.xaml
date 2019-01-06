@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ABC.Views"
+             xmlns:vm="clr-namespace:ABC.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="675" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ThongBaoViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid Name="MenuBar" Height="44"  Margin="0,0,0,631" Background="#d60000">
             <StackPanel VerticalAlignment="Center">

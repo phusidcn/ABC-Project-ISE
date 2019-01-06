@@ -9,7 +9,7 @@ using ABC.Helper;
 using MaterialDesignThemes.Wpf;
 using MaterialDesignColors;
 using ABC.Model;
-
+using System.Windows;
 
 namespace ABC.ViewModel
 {
@@ -31,7 +31,6 @@ namespace ABC.ViewModel
 			get { return _nhom; }
 			set { SetProperty(ref _nhom, value); }
 		}
-
 
 		private DateTime _ngay;
 		public DateTime Ngay
@@ -94,12 +93,13 @@ namespace ABC.ViewModel
                 {
                     System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
                     context.uspThemGiaoDich(userId, viHienTai.ID, _selectedNhom, SoTien, GhiChu, nguoiLienQuan, Ngay, responseMessage);
+                    DialogHost.CloseDialogCommand.Execute((bool)true, null);
+                    MessageBox.Show(responseMessage.Value.ToString(), "Notification", MessageBoxButton.OK);
                 }
-                //DialogHost.CloseDialogCommand.Execute((bool)true, null);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show(e.Message, "Notification", MessageBoxButton.OK);
             }
             DialogHost.CloseDialogCommand.Execute((bool)true, null);
         }

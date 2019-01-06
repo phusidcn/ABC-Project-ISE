@@ -9,18 +9,18 @@ using MaterialDesignThemes.Wpf;
 
 namespace ABC.ViewModel
 {
-    public class TietKiemViewModel : BindableBase
-    {
+	public class TietKiemViewModel : BindableBase
+	{
 
-        public TietKiemViewModel()
-        {
-            themTietKiem = new MyICommand(OnClick);
+		public TietKiemViewModel()
+		{
+			themTietKiem = new MyICommand(OnClick);
 			using(var context = new QLChiTieuEntities())
 			{
 				System.Data.Entity.Core.Objects.ObjectParameter responseMessage = new System.Data.Entity.Core.Objects.ObjectParameter("responseMessage", typeof(String));
 				context.uspThemKhoanTietKiem(IDUser, IDTK, IDVI, SoTien, responseMessage);
 			}
-        }
+		}
 
 		#region Properties
 		private List<TietKiem> _listTK;
@@ -59,34 +59,34 @@ namespace ABC.ViewModel
 
 		#region Content
 		private ThemTietKiemViewModel themTietKiemViewModel = new ThemTietKiemViewModel();
-        private BindableBase _addView;
+		private BindableBase _addView;
 
-        public BindableBase addView
-        {
-            get { return _addView; }
-            set { SetProperty(ref _addView, value); }
-        }
-        #endregion
+		public BindableBase addView
+		{
+			get { return _addView; }
+			set { SetProperty(ref _addView, value); }
+		}
+		#endregion
 
-        #region Popup Command
-        private bool _isAddDialogOpen;
-        public bool IsAddDialogOpen
-        {
-            get { return _isAddDialogOpen; }
-            set
-            {
-                if (_isAddDialogOpen == value) return;
-                SetProperty(ref _isAddDialogOpen, value);
-            }
-        }
-        public MyICommand themTietKiem { get; private set; }
+		#region Popup Command
+		private bool _isAddDialogOpen;
+		public bool IsAddDialogOpen
+		{
+			get { return _isAddDialogOpen; }
+			set
+			{
+				if (_isAddDialogOpen == value) return;
+				SetProperty(ref _isAddDialogOpen, value);
+			}
+		}
+		public MyICommand themTietKiem { get; private set; }
 
-        private void OnClick()
-        {
-            addView = themTietKiemViewModel;
-            IsAddDialogOpen = true;
-        }
+		private void OnClick()
+		{
+			addView = themTietKiemViewModel;
+			IsAddDialogOpen = true;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

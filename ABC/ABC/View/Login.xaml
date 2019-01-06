@@ -87,7 +87,8 @@
                     <CheckBox Content="Forget password ?" Margin="20,10" Foreground="#707070"/>
                 </Grid>
 
-                <Button Name="BtnLogin" HorizontalAlignment="Center" Content="LOGIN" 
+                <Button IsDefault="True"
+                    Name="BtnLogin" HorizontalAlignment="Center" Content="LOGIN" 
                         FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6" 
                         Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=loginWindow}"/>
                 <Button Name="BtnSignUp" HorizontalAlignment="Center" Content="SIGNUP" FontFamily="Impact" FontSize="18" Width="100" Background="#d60000" BorderBrush="#FF307CD6"

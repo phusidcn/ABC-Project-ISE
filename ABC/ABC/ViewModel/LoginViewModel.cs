@@ -69,6 +69,7 @@ namespace ABC.ViewModel
         private void OnLoginCommand(object parameter)
         {
             var pwContainer = parameter as IHavePassword;
+            var window = parameter as Window;
             if (pwContainer != null)
             {
                 var secureString = pwContainer.Password;
@@ -85,8 +86,9 @@ namespace ABC.ViewModel
                     {
                         int id = GetCustomerIdByUserName(userN);
                         writeToSession(id);
-                        Window main = new MainWindow();
+                        window.Hide();
                         ABC.ViewModel.MainWindowViewModel.userID = id;
+                        Window main = new MainWindow();
                         main.Show();
                     }
                 }

@@ -7,6 +7,7 @@
         Title="MainWindow" Height="700" Width="1000"
         WindowStyle="None" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
+        Name="mainWindow"
         WindowState="{Binding CurrentWindowState, Mode=TwoWay}">
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
@@ -180,14 +181,15 @@
                                    Foreground="Black" Margin="25 10" FontSize="20"></TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Name="btnDangXuat" Command="{Binding NavCommand}" CommandParameter="giup_do" Height="50" Background="White" >
+                <Button Name="btnDangXuat" Command="{Binding logOutCommand}" CommandParameter="{Binding ElementName=mainWindow}" Height="50" Background="White" >
                     <StackPanel Orientation="Horizontal" Width="180" Height="40">
                         <materialDesign:PackIcon Kind="Logout"
                                                  Background="White" Foreground="Black"
                                                  Width="32" Height="32"
                                                  VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Đăng xuất" VerticalAlignment="Center"
-                                   Foreground="Black" Margin="25 10" FontSize="20"></TextBlock>
+                        	Foreground="Black" Margin="25,7" FontSize="20"  >
+                        </TextBlock>
                     </StackPanel>
                 </Button>
 

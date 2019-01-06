@@ -103,6 +103,7 @@ namespace ABC.ViewModel
 
         void reLoad()
         {
+            LoadVi();
             giaoDichs.Clear();
             db = new QLChiTieuEntities();
             var userGD = db.Users.Find(idUser).SO_GIAO_DICH;
@@ -148,9 +149,13 @@ namespace ABC.ViewModel
 
         void LoadVi()
         {
+            userVi.Clear();
             db = new QLChiTieuEntities();
             var userVis = db.Users.Find(idUser).Vis;
-            viHienTai = db.Users.Find(idUser).Vis.First();
+            if (userVis.Count != 0)
+            {
+                viHienTai = db.Users.Find(idUser).Vis.First();
+            }
             foreach (var vi in userVis)
             {   
                 
