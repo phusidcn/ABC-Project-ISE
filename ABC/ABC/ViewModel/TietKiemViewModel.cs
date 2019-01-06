@@ -23,12 +23,12 @@ namespace ABC.ViewModel
 		}
 
 		#region Properties
-		private List<TietKiem> _listTK;
-		public List<TietKiem> ListTK
-		{
-			get { return _listTK; }
-			set { SetProperty(ref _listTK, value); }
-		}
+        //private List<TietKiem> _listTK;
+        //public List<TietKiem> ListTK
+        //{
+        //    get { return _listTK; }
+        //    set { SetProperty(ref _listTK, value); }
+        //}
 
 		private int _idUser;
 		public int IDUser

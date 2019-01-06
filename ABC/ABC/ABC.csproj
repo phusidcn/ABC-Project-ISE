@@ -156,6 +156,7 @@
     <Compile Include="ViewModel\ThemNoViewModel.cs" />
     <Compile Include="ViewModel\ThemThuViewModel.cs" />
     <Compile Include="ViewModel\ThemTietKiemViewModel.cs" />
+    <Compile Include="ViewModel\ThongBaoViewModel.cs" />
     <Compile Include="ViewModel\TietKiemViewModel.cs" />
     <Compile Include="ViewModel\TrangChuViewModel.cs" />
     <Compile Include="ViewModel\XuHuongViewModel.cs" />

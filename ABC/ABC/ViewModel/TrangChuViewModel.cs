@@ -72,8 +72,7 @@ namespace ABC.ViewModel
         }
         public static Vi viHienTai
         {
-            get;
-            set;
+            get; set;
         }
 
         private ObservableCollection<Vi> _userVi;
@@ -166,6 +165,7 @@ namespace ABC.ViewModel
 
         #region Child
         private ThemGiaoDichViewModel themGiaoDich = new ThemGiaoDichViewModel();
+        private ThemViViewModel themViViewModel = new ThemViViewModel();
         #endregion
 
         #region them giao dich buttom
@@ -182,7 +182,9 @@ namespace ABC.ViewModel
 
         public void themVi()
         {
-            Console.WriteLine("ahihi");
+            AddContent = themViViewModel;
+            IsAddDialogOpen = true;
+
         }
 
         public void ChonVi(int idVi)

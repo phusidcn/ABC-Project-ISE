@@ -67,7 +67,6 @@ namespace ABC.ViewModel
 		#region Commands
 		public MyICommand<string> NavCommand { get; private set; }
 		public MyICommand<string> ButtonClickCommand { get; private set; }
-
 		public MyICommand<object> logOutCommand { get; private set; }
 
 		private void OnNav(string des)

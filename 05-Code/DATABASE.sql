@@ -491,9 +491,11 @@ BEGIN
 END
 Go
 
+
 /*use QLChiTieu
 select * from Users
-
+select * from vi
+select * from USER_VI
 INSERT INTO Vi(ID,TEN,SO_TIEN)
 VALUES(1, N'Tiền Mặt', 0)
 

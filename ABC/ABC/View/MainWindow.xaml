@@ -20,6 +20,7 @@
         <DataTemplate DataType="{x:Type viewModels:GiupDoViewModel}">
             <views:GiupDoView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModels:NhomCanDungViewModel}">
             <views:NhomCanDungView/>
         </DataTemplate>

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ABC.ViewModel
 {
-    class NhomCanDungViewModel:BindableBase
+    public class NhomCanDungViewModel:BindableBase
     {
+
     }
 }

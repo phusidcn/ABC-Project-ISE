@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:ABC.View"
+             xmlns:vm="clr-namespace:ABC.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.DataContext>
+        <vm:ThemViViewModel/>
+    </UserControl.DataContext>
     <StackPanel Background="White">
         <Grid Height="50" Background="Red">
             <TextBlock 
@@ -21,7 +26,9 @@
                 Width="50"
                 Margin="10"
                 Foreground="Black"/>
-            <TextBox Width="300" Foreground="Black" Height="30">Tên ví</TextBox>
+            <TextBox Width="300" Foreground="Black" Height="30"
+                     materialDesign:HintAssist.Hint="Tên ví"
+                     Text="{Binding tenVi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <materialDesign:PackIcon 
@@ -30,11 +37,15 @@
                 Width="50"
                 Margin="10"
                 Foreground="Black"/>
-            <TextBox Width="300" Foreground="Black" Height="30">Số tiền</TextBox>
+            <TextBox Width="300" Foreground="Black" Height="30"
+                     materialDesign:HintAssist.Hint="Số tiền"
+                     Text="{Binding soTienVi, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Margin="120 15 50 0">Ok</Button>
-            <Button Margin="0 15 50 0">Hủy</Button>
+            <Button Margin="120 15 50 0"
+                    Command="{Binding OkCommand}">Ok</Button>
+            <Button Margin="0 15 50 0"
+                    Command="{Binding CancelCommand}">Hủy</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>
