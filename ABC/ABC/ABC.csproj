@@ -198,6 +198,9 @@
     <Compile Include="Views\ThemTietKiemView.xaml.cs">
       <DependentUpon>ThemTietKiemView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ThemViView.xaml.cs">
+      <DependentUpon>ThemViView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ThongBaoView.xaml.cs">
       <DependentUpon>ThongBaoView.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ThemTietKiemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemViView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
