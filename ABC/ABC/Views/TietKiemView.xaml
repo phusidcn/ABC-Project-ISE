@@ -42,6 +42,48 @@
                 </Grid>
             </StackPanel>
         </Grid>
+        <materialDesign:Card
+          Width="200">      
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <!--<Button
+          Grid.Row="0"
+          Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+          HorizontalAlignment="Right"
+          VerticalAlignment="Bottom"
+          Margin="0 0 16 -20">
+                    
+                </Button>-->
+                <StackPanel
+          Grid.Row="1"
+          Margin="8 24 8 0">
+                    <TextBlock
+            FontWeight="Bold">
+          
+                    </TextBlock>
+                    <TextBlock
+                        Text="{Binding TenKhoanTK}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Center">
+                        
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+          HorizontalAlignment="Right"
+          Grid.Row="2"
+          Orientation="Horizontal"
+          Margin="8">
+                    
+                    
+                    
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>  
         <materialDesign:DialogHost 
             HorizontalAlignment="Center"
             IsOpen="{Binding IsAddDialogOpen}"
