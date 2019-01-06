@@ -26,6 +26,7 @@ namespace ABC.ViewModel
             OpenAddDialogCommand = new MyICommand<object>(OpenAddDialog);
             ChonViCommand = new MyICommand<int>(ChonVi);
             reLoadCommand = new MyICommand(reLoad);
+            themViCommand = new MyICommand(themVi);
         }
 
         #region Properties
@@ -168,7 +169,7 @@ namespace ABC.ViewModel
         private ThemViViewModel themViViewModel = new ThemViViewModel();
         #endregion
 
-        #region them giao dich buttom
+        #region command
         //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
         public MyICommand<object> OpenAddDialogCommand { get; private set; }
         public MyICommand<int> ChonViCommand { get; private set; }

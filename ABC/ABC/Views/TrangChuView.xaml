@@ -15,6 +15,10 @@
         <DataTemplate DataType="{x:Type vm:ThemGiaoDichViewModel}">
             <views:ThemGiaoDichView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ThemViViewModel}">
+            <views:ThemViView/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid Name="MenuBar" Height="54"  Margin="0,0,0,621" Background="#d60000">
@@ -45,7 +49,7 @@
                                             <Button Command="{Binding ChonViCommand}" CommandParameter="{Binding ID}">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding TEN}"/>
-                                                    <TextBlock Text="-"/>
+                                                    <TextBlock Text=" : "/>
                                                     <TextBlock Text="{Binding SO_TIEN}"/>
                                                 </StackPanel>
                                             </Button>
