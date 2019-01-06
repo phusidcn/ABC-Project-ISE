@@ -20,8 +20,11 @@ namespace ABC.ViewModel
         public TrangChuViewModel()
         {
             giaoDichs = new ObservableCollection<SO_GIAO_DICH>();
+            userVi = new ObservableCollection<Vi>();
+            LoadVi();
             Load();
             OpenAddDialogCommand = new MyICommand<object>(OpenAddDialog);
+            ChonViCommand = new MyICommand<int>(ChonVi);
         }
 
         #region Properties
@@ -66,6 +69,19 @@ namespace ABC.ViewModel
             get { return _conLai; }
             set { SetProperty(ref _conLai, value); }
         }
+
+        private Vi _viHienTai;
+        public Vi viHienTai
+        {
+            get { return _viHienTai; }
+            set { SetProperty(ref _viHienTai, value); }
+        }
+
+        private ObservableCollection<Vi> _userVi;
+        public ObservableCollection<Vi> userVi{
+            get{ return _userVi;}
+            set {SetProperty(ref _userVi,value);}
+        }
         #endregion
 
         #region data function
@@ -76,23 +92,23 @@ namespace ABC.ViewModel
             var userGD = db.Users.Find(idUser).SO_GIAO_DICH;
             foreach (var gd in userGD)
             {
-                if (gd.NGAY.Value.Date == currentDate.Date)
+                if (gd.NGAY.Value.Date == currentDate.Date && gd.ID_VI == viHienTai.ID)
                 {
                     giaoDichs.Add(gd);
                 }
             }
-            thuNhapTrongThang = TinhThuNhapTrongThang(userGD, currentDate);
-            chiTieuTrongThang = TinhChiTieuTrongThang(userGD, currentDate);
+            thuNhapTrongThang = TinhThuNhapTrongThang(userGD, currentDate, viHienTai);
+            chiTieuTrongThang = TinhChiTieuTrongThang(userGD, currentDate, viHienTai);
             conLai = thuNhapTrongThang - chiTieuTrongThang;
         }
 
-        int TinhChiTieuTrongThang(ICollection<SO_GIAO_DICH> giaoDich, DateTime current)
+        int TinhChiTieuTrongThang(ICollection<SO_GIAO_DICH> giaoDich, DateTime current, Vi viHienTai)
         {
             int count = 0;
             foreach (var gd in giaoDich)
             {
    
-                if (gd.NGAY.Value.Month == current.Month && gd.Nhom.ID != 7)
+                if (gd.NGAY.Value.Month == current.Month && gd.Nhom.ID != 7 && gd.ID_VI == viHienTai.ID)
                 {
                     count += gd.SO_TIEN;
                 }
@@ -100,18 +116,30 @@ namespace ABC.ViewModel
             return count;
         }
 
-        int TinhThuNhapTrongThang(ICollection<SO_GIAO_DICH> giaoDich, DateTime current)
+        int TinhThuNhapTrongThang(ICollection<SO_GIAO_DICH> giaoDich, DateTime current, Vi viHienTai)
         {
             int count = 0;
             foreach (var gd in giaoDich)
             {
 
-                if (gd.NGAY.Value.Month == current.Month && gd.Nhom.ID == 7)
+                if (gd.NGAY.Value.Month == current.Month && gd.Nhom.ID == 7 && gd.ID_VI == viHienTai.ID)
                 {
                     count += gd.SO_TIEN;
                 }
             }
             return count;
+        }
+
+        void LoadVi()
+        {
+            db = new QLChiTieuEntities();
+            var userVis = db.Users.Find(idUser).Vis;
+            viHienTai = db.Users.Find(idUser).Vis.First();
+            foreach (var vi in userVis)
+            {   
+                
+                userVi.Add(vi);
+            }
         }
         #endregion
 
@@ -122,10 +150,30 @@ namespace ABC.ViewModel
         #region them giao dich buttom
         //pretty much ignore all the stuff provided, and manage everything via custom commands and a binding for .IsOpen
         public MyICommand<object> OpenAddDialogCommand { get; private set; }
+        public MyICommand<int> ChonViCommand { get; private set; }
+
+        public MyICommand themViCommand { get; private set; }
 
         private bool _isAddDialogOpen;
         private BindableBase _addContent;
 
+        public void themVi()
+        {
+            Console.WriteLine("ahihi");
+        }
+
+        public void ChonVi(int idVi)
+        {
+            db = new QLChiTieuEntities();
+            var dsVi = db.Users.Find(idUser).Vis;
+            foreach(var vi in dsVi){
+                if(vi.ID == idVi){
+                    viHienTai = vi;
+                    return;
+                }
+            }
+            Load();
+        }
         public bool IsAddDialogOpen
         {
             get { return _isAddDialogOpen; }
